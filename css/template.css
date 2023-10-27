@@ -36,15 +36,19 @@ main {
 
 .cards-section {
   border: solid 1px blue;
+  padding: 4rem 2.4rem;
 }
 
 .cards-section h3 {
   font-size: 4rem;
+  font-weight: bold;
+  color: #fff;
 }
 
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  padding: 1.8rem 0;
 }
 
 .card {
