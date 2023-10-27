@@ -9,52 +9,99 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+  <!-- contain carousel and cards section -->
+  <main> 
+    <!-- carousel -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="images/好不容易.jpeg" class="d-block w-100 " alt="好不容易">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>好不容易</h5>
+            <p>告五人</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="images/too much.jpg" class="d-block w-100" alt="too much">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Too Much</h5>
+            <p>The Kid LAROI, Jung Kook, Central Cee</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="images/seven.jpg" class="d-block w-100" alt="seven">
+          <div class="carousel-caption d-none d-md-block text-dark">
+            <h5>Seven</h5>
+            <p>Jung Kook feat. Latto</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="images/Super shy.webp" class="d-block w-100 super-shy-img" alt="Super shy" style="object-position: 5% 5%;">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Super Shy</h5>
+            <p>New Jeans</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="images/好不容易.jpeg" class="d-block w-100 " alt="好不容易">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>好不容易</h5>
-          <p>告五人</p>
+
+    <!--cards mandopop -->
+    <div class="cards-section mandopop">
+      <h3 class="card-title">華語流行</h3>
+      <div class="cards">
+        <div class="card">
+          <img class="card-img-top" src="images/閣愛你一擺.jpg" alt="閣愛你一擺">
+          <div class="card-body">
+            <p class="card-text song-title">閣愛你一擺</p>
+            <p class="card-text singer">茄子蛋</p>
+          </div>
         </div>
-      </div>
-      <div class="carousel-item">
-        <img src="images/too much.jpg" class="d-block w-100" alt="too much">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>Too Much</h5>
-          <p>The Kid LAROI, Jung Kook, Central Cee</p>
+        <div class="card">
+          <img class="card-img-top" src="images/披星戴月的想你.jpg" alt="披星戴月的想你">
+          <div class="card-body">
+            <p class="card-text song-title">披星戴月的想你</p>
+            <p class="card-text singer">告五人</p>
+          </div>
         </div>
-      </div>
-      <div class="carousel-item">
-        <img src="images/seven.jpg" class="d-block w-100" alt="seven">
-        <div class="carousel-caption d-none d-md-block text-dark">
-          <h5>Seven</h5>
-          <p>Jung Kook feat. Latto</p>
+        <div class="card">
+          <img class="card-img-top" src="images/嘉宾_张远.jpg" alt="嘉宾">
+          <div class="card-body">
+            <p class="card-text song-title">嘉宾</p>
+            <p class="card-text singer">张远</p>
+          </div>
         </div>
-      </div>
-      <div class="carousel-item">
-        <img src="images/Super shy.webp" class="d-block w-100 super-shy-img" alt="Super shy" style="object-position: 5% 5%;">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>Super Shy</h5>
-          <p>New Jeans</p>
+        <div class="card">
+          <img class="card-img-top" src="images/終究還是因為愛.jpg" alt="終究還是因為愛">
+          <div class="card-body">
+            <p class="card-text song-title">終究還是因為愛</p>
+            <p class="card-text singer">TRASH</p>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img-top" src="images/唯一.jpg" alt="唯一">
+          <div class="card-body">
+            <p class="card-text song-title">唯一</p>
+            <p class="card-text singer">G.E.M. 鄧紫棋</p>
+          </div>
         </div>
       </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
+  </main>
+  
   <script src="js/music-player.js"></script>
 </body>
 </html>
