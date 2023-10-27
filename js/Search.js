@@ -3,10 +3,10 @@ const searchResults = document.getElementById('search-results');
 const resultsList = document.getElementById('results-list');
 
 searchInput.addEventListener('input', function () {
+
     const searchTerm = searchInput.value.toLowerCase();
-    
     const sampleData = [
-        '電腦', '電電腦', '鍵盤', '鍵鍵盤', '鍵盤滑鼠', '滑鼠'
+        'LMF', 'POPO J', '鍵盤', '鍵鍵盤', '鍵盤滑鼠', '滑鼠'
     ];
 
     resultsList.innerHTML = '';
