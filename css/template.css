@@ -35,7 +35,7 @@ main {
 }
 
 .cards-section {
-  border: solid 1px blue;
+  /* border: solid 1px blue; */
   padding: 4rem 2.4rem;
 }
 
@@ -53,5 +53,13 @@ main {
 
 .card {
   width: 18rem;
-  border: solid 1px blue;
+  background-color: #555 !important;
+}
+
+.card-image {
+  width: 100%;
+}
+
+.card-body {
+  background-color: #555;
 }
