@@ -88,6 +88,34 @@ main {
   width: 18rem;
   background-color: #555 !important;
   box-shadow: 0 0 0.8rem rgba(0,0,0,0.5);
+  position: relative;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.card i {
+  color: #333;
+  position: absolute;
+  font-size: 2rem;
+  background-color: #eee;
+  padding: 1rem;
+  width: 3.9rem;
+  height: 3.9rem;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 100%;
+  top: 60%;
+  right: 10%;
+  opacity: 0;
+  transition: 0.8s;
+}
+
+.card i.toPlay {
+  top: 50%;
+  right: 10%;
+  opacity: 1;
 }
 
 .card-image {
