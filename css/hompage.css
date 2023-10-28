@@ -17,9 +17,32 @@ body {
   background-color: #333 !important; 
 }
 
-nav {
+nav.navbar {
   background-color: #333;
-  opacity: 0.9;
+  padding: 1.3rem 4rem;
+  border-radius: 0 0 1rem 1rem;
+  transition: 0.8s;
+}
+
+nav a, nav div ul .nav-item a  {
+  color: #eee;
+}
+
+nav a:hover, nav div ul .nav-item a:hover  {
+  color: #e0e0e0;
+}
+
+nav.sticky {
+  background-color: #eee;
+  padding: 0.6rem 4rem;
+}
+
+nav.sticky a, nav.sticky div ul .nav-item a  {
+  color: #333;
+}
+
+nav.sticky a:hover, nav.sticky div ul .nav-item a:hover  {
+  color: #222;
 }
 
 main {
