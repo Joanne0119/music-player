@@ -2,15 +2,39 @@
   margin: 0;
   padding: 0;
   border: solid red 1px;
+  font-family: sans-serif;
 }
 
 html {
   font-size: 10px;
+  height: 100vh;
+}
+
+body {
+  background-color: #333;
+  padding: 1.2rem;
+  overflow: hidden;
+}
+
+.library-section {
+  width: 65%;
+  height: 100vh;
+  padding: 1.2rem 6rem;
+  overflow: hidden;
+}
+
+h1 {
+  color: #eee;
+  font-size: 5rem;
+  font-weight: bold;
+  padding: 2.4rem 0.2rem;
 }
 
 .songs-container {
   display: flex;
   flex-direction: column;
+  height: 75vh;
+  overflow-y: scroll;
 }
 
 .song {
@@ -18,9 +42,14 @@ html {
   height: 8rem;
   padding: 1.2rem;
   align-items: center;
+  color: #eee;
+  background-color: #222;
+  margin-top: 1.2rem;
+  border-radius: 0.8rem;
 }
 
 .song img {
   width: 8rem;
   object-fit: cover;
+  margin: 0 2.4rem;
 }
