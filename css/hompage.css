@@ -18,10 +18,12 @@ body {
 }
 
 nav {
+  background-color: #333;
   opacity: 0.9;
 }
 
 main {
+  margin-top: 5rem;
   width: 70%;
   height: 70%;
 }
