@@ -1,0 +1,69 @@
+.loading-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #333;
+  background-image: url("/images/Coffee beans white.png");
+  background-size: 10rem;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  z-index: 999;
+  animation: loading-floating 2s ease-in-out infinite;
+  transition: opacity 0.5s, visibility 0.5s;
+}
+
+.loading-container::after {
+  content: "";
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  border: none;
+  border-bottom: solid 1rem #eee;
+  border-radius: 0.8rem;
+  transform: translate(-7rem, 6rem);
+  animation: loading 3.5s ease 1;
+  animation-fill-mode: forwards;
+}
+
+.loading-container::before {
+  content: "";
+  width: 15rem;
+  height: 1rem;
+  border: none;
+  border-bottom: solid 1rem #555;
+  border-radius: 0.8rem;
+  transform: translate(0, 6rem);
+}
+
+@keyframes loading {
+  from {
+    transform: translate(-7rem, 6rem);
+    width: 1rem;
+  }
+  to {
+    transform: translate(0, 6rem);
+    width: 15rem;
+  }
+}
+
+@keyframes loading-floating {
+  0% {
+    background-position: 50% 50%;
+  }
+  50% {
+    background-position: 50% 49%;
+  }
+  100% {
+    background-position: 50% 50%;
+  }
+}
+
+.loader-hidden {
+  opacity: 0;
+  visibility: 0;
+}
