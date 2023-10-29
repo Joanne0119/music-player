@@ -1,9 +1,18 @@
 const navbar = document.querySelector('nav');
 const cards = document.querySelectorAll('.card');
+const logoImg = document.querySelector('.logo-img');
 
-addEventListener('scroll', () => {
+window.addEventListener('scroll', () => {
   navbar.classList.toggle('sticky', window.scrollY > 0);
+
+  if (window.scrollY > 0) {
+    logoImg.src = "images/Coffee beans black.png";
+  } else {
+    logoImg.src = "images/Coffee beans white.png";
+  }
+  
 })
+
 
 cards.forEach((card) => {
   const playIcon = card.querySelector('i');
