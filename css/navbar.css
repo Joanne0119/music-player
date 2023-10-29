@@ -20,6 +20,7 @@ nav a img {
 
 nav a:hover, nav div ul .nav-item a:hover  {
   color: #e0e0e0;
+  font-weight: bold;
 }
 
 nav.sticky {
