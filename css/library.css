@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  border: solid red 1px;
+  /* border: solid red 1px; */
   font-family: sans-serif;
 }
 
@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  background-color: #333;
+  background-color: #333 !important;
   padding: 1.2rem;
   overflow: hidden;
 }
@@ -19,21 +19,21 @@ body {
 .library-section {
   width: 65%;
   height: 100vh;
-  padding: 1.2rem 6rem;
+  padding: 3rem 6rem;
   overflow: hidden;
 }
 
-h1 {
+.library-section h1 {
   color: #eee;
   font-size: 5rem;
   font-weight: bold;
-  padding: 2.4rem 0.2rem;
+  padding: 2rem 0.2rem;
 }
 
 .songs-container {
   display: flex;
   flex-direction: column;
-  height: 75vh;
+  height: 72vh;
   overflow-y: scroll;
 }
 
@@ -45,6 +45,7 @@ h1 {
   color: #eee;
   background-color: #222;
   margin-top: 1.2rem;
+  margin-right: 1rem;
   border-radius: 0.8rem;
 }
 
@@ -52,4 +53,27 @@ h1 {
   width: 8rem;
   object-fit: cover;
   margin: 0 2.4rem;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 1rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 1rem;
+  background-color: #555;
+  margin: 0 0.5rem;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #eee; 
+  border-radius: 1rem;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #999; 
 }
