@@ -47,12 +47,19 @@
   transition: 0.8s;
 }
 
+.card i.fa-plus {
+  top: 40%;
+}
+
 .card i.toPlay {
   top: 50%;
   right: 10%;
   opacity: 1;
 }
 
+.card i.toPlay.fa-plus {
+  top: 30%;
+}
 .card-image {
   width: 100%;
 }

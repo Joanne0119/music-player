@@ -1,14 +1,18 @@
 const cards = document.querySelectorAll('.card');
 
 cards.forEach((card) => {
-  const playIcon = card.querySelector('i');
-  console.log(playIcon);
+  const playIcons = card.querySelectorAll('i');
+  
   card.addEventListener('mouseenter', () => {
     console.log('mouse Enter');
-    playIcon.classList.add('toPlay');
+    playIcons.forEach((playIcon) => {
+      playIcon.classList.add('toPlay');
+    });
   })
   card.addEventListener('mouseleave', () => {
     console.log('mouse Leave');
-    playIcon.classList.remove('toPlay');
+    playIcons.forEach((playIcon) => {
+      playIcon.classList.remove('toPlay');
+    });
   })
 })
