@@ -17,44 +17,6 @@ body {
   background-color: #333 !important; 
 }
 
-nav.navbar {
-  background-color: #333;
-  padding: 1.3rem 4rem;
-  border-radius: 0 0 0.8rem 0.8rem;
-  transition: 0.8s;
-}
-
-nav a, nav div ul .nav-item a  {
-  color: #eee;
-}
-
-nav a {
-  font-weight: bold;
-}
-
-nav a img {
-  width: 4rem;
-  padding: 0 0.5rem;
-}
-
-nav a:hover, nav div ul .nav-item a:hover  {
-  color: #e0e0e0;
-}
-
-nav.sticky {
-  background-color: #eee;
-  padding: 0.6rem 4rem;
-}
-
-nav.sticky a, nav.sticky div ul .nav-item a  {
-  color: #555;
-}
-
-nav.sticky a:hover, nav.sticky div ul .nav-item a:hover  {
-  color: #333;
-  font-weight: bold;
-}
-
 main {
   margin-top: 5rem;
   width: 70%;
@@ -71,71 +33,4 @@ main {
   height: 58rem;
   object-fit: cover;
   object-position: 40% 40%;
-}
-
-.cards-section {
-  /* border: solid 1px blue; */
-  padding: 4rem 2.4rem;
-  background-color: #222;
-  margin: 3rem 0;
-  border-radius: 1rem;
-  box-shadow: inset 0 0 0.8rem rgba(0,0,0,0.5);
-}
-
-.cards-section h3 {
-  font-size: 4rem;
-  font-weight: bold;
-  color: #fff;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  padding: 1.8rem 0;
-}
-
-.card {
-  width: 18rem;
-  background-color: #555 !important;
-  box-shadow: 0 0 0.8rem rgba(0,0,0,0.5);
-  position: relative;
-}
-
-.card:hover {
-  cursor: pointer;
-}
-
-.card i {
-  color: #333;
-  position: absolute;
-  font-size: 2rem;
-  background-color: #eee;
-  padding: 1rem;
-  width: 3.9rem;
-  height: 3.9rem;
-  text-align: center;
-  vertical-align: middle;
-  border-radius: 100%;
-  top: 60%;
-  right: 10%;
-  opacity: 0;
-  transition: 0.8s;
-}
-
-.card i.toPlay {
-  top: 50%;
-  right: 10%;
-  opacity: 1;
-}
-
-.card-image {
-  width: 100%;
-}
-
-.card-body {
-  background-color: #555;
-}
-
-.card-title {
-  font-weight: bold;
 }
