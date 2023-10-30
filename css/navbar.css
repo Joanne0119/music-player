@@ -37,3 +37,20 @@ nav.sticky a:hover, nav.sticky div ul .nav-item a:hover  {
   color: #333;
   font-weight: bold;
 }
+
+.navbar-toggler-icon {
+  color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: -60vw;
+  font-size: 1.4rem;
+}
+
+nav.sticky .navbar-toggler-icon {
+  color: #333;
+}
+
+.navbar-toggler {
+  border: solid 0.1rem #333;
+}
