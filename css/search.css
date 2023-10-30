@@ -50,3 +50,7 @@ main {
 .search-results {
     display: none;
 }
+
+.search-result-highlight {
+    background-color: #2B27D2;
+}
