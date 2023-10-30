@@ -6,7 +6,7 @@ function MarkSearchTerm(string, target) {
 
     const fId = string.indexOf(target);
     if (fId !== -1) {
-        return (string.substring(0, fId-1)
+        return (string.substring(0, fId)
                 + "<span class=\"search-result-highlight\">"
                 + string.substring(fId, fId+target.length)
                 + "</span>"
