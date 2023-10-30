@@ -35,6 +35,6 @@ main {
     padding: 5rem 0.2rem;
 }
 
-.search-results {
+#search-results {
     display: none;
 }
