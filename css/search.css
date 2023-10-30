@@ -1,10 +1,9 @@
 * {
     margin: 0;
     padding: 0;
-    /* border: solid red 1px; */
     font-family: sans-serif;
 }
-  
+
 html {
     font-size: 10px;
     height: 100vh;
@@ -32,4 +31,22 @@ body {
 
 .search-results {
     display: none;
+}
+
+main {
+    margin-top: 5rem;
+    width: 70%;
+    height: 70%;
+}
+  
+.carousel {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 1.2rem;
+}
+  
+.carousel-item img {
+    height: 58rem;
+    object-fit: cover;
+    object-position: 40% 40%;
 }

@@ -1,6 +1,6 @@
-const searchInput = document.getElementsByClassName('search-input');
-const searchResults = document.getElementsByClassName('search-results');
-const resultsList = document.getElementsByClassName('results-list');
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
+const resultsList = document.getElementById('results-list');
 
 searchInput.addEventListener('input', function () {
 
