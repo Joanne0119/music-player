@@ -13,8 +13,6 @@ searchInput.addEventListener('input', function () {
         [['LMF'], ['POPO J']]
     ]
 
-    
-
     resultsList.innerHTML = '';
     const filteredResults = songData.filter(item => item[0][0].toLowerCase().includes(searchTerm) || item[1][0].toLowerCase().includes(searchTerm));
     console.log(filteredResults);
@@ -32,14 +30,12 @@ searchInput.addEventListener('input', function () {
                         <p class="card-text text-light singer">${result[1]}</p>
                     </div>           
                 </div>
-                
             `;
-            
             resultsList.innerHTML += htmlString;
+            AddEventToCard();
         });
     } 
     else {
         searchResults.style.display = "none";
     }
-
 });
