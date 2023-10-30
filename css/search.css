@@ -1,3 +1,35 @@
-#search-results {
+* {
+    margin: 0;
+    padding: 0;
+    /* border: solid red 1px; */
+    font-family: sans-serif;
+}
+  
+html {
+    font-size: 10px;
+    height: 100vh;
+}
+  
+body {
+    background-color: #333 !important;
+    padding: 1.2rem;
+    overflow: hidden;
+}
+
+.search-section {
+    width: 65%;
+    height: 100vh;
+    padding: 3rem 6rem;
+    overflow: hidden;
+}
+
+.search-section h1 {
+    color: #eee;
+    font-size: 5rem;
+    font-weight: bold;
+    padding: 5rem 0.2rem;
+}
+
+.search-results {
     display: none;
 }
