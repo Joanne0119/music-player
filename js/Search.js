@@ -6,7 +6,7 @@ searchInput.addEventListener('input', function () {
 
     const searchTerm = searchInput.value.toLowerCase();
     const sampleData = [
-        'LMF', 'POPO J', '鍵盤', '鍵鍵盤', '鍵盤滑鼠', '滑鼠'
+        '想和你看五月的晚霞', '陳華', '突然好想你', '五月天', '披星戴月的想你', '告五人'
     ];
 
     resultsList.innerHTML = '';
@@ -20,5 +20,4 @@ searchInput.addEventListener('input', function () {
             resultsList.appendChild(listItem);
         });
     }
-
 });
