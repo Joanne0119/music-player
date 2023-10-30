@@ -12,12 +12,18 @@ html {
 body {
     background-color: #333 !important;
     padding: 1.2rem;
-    overflow: hidden;
+    /* overflow: hidden; */
+}
+
+main {
+    margin-top: 5rem;
+    width: 70%;
+    height: 70%;
 }
 
 .search-section {
     width: 65%;
-    height: 100vh;
+    height: 75vh;
     padding: 3rem 6rem;
     overflow: hidden;
 }
@@ -31,22 +37,4 @@ body {
 
 .search-results {
     display: none;
-}
-
-main {
-    margin-top: 5rem;
-    width: 70%;
-    height: 70%;
-}
-  
-.carousel {
-    width: 100%;
-    overflow: hidden;
-    border-radius: 1.2rem;
-}
-  
-.carousel-item img {
-    height: 58rem;
-    object-fit: cover;
-    object-position: 40% 40%;
 }
