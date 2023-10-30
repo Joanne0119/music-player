@@ -16,7 +16,7 @@ searchInput.addEventListener('input', function () {
     
 
     resultsList.innerHTML = '';
-    const filteredResults = songData.filter(item => item[0][0].includes(searchTerm) || item[1][0].includes(searchTerm));
+    const filteredResults = songData.filter(item => item[0][0].toLowerCase().includes(searchTerm) || item[1][0].toLowerCase().includes(searchTerm));
     console.log(filteredResults);
     if (filteredResults.length > 0 && filteredResults.length != songData.length) {
         searchResults.style.display = "block";
