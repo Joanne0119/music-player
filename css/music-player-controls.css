@@ -1,0 +1,75 @@
+.player-section {
+    margin-top: 5rem;
+    padding: 3rem;
+    width: 25%;
+    background-color: #222;
+    position: fixed;
+    top: 10rem;
+    right: 5rem;
+}
+
+.current-music {
+    width: 100%;
+    background-color: #555;
+    padding: 2rem;
+}
+
+.current-music img {
+    width: 100%;
+    display: block;
+}
+
+.current-music-info {
+    background-color: #555;
+    margin-top: 2rem;
+}
+
+.current-music-title {
+    font-weight: bold;
+    font-size: 3.5rem;
+    color: white;
+}
+
+.current-music-text {
+    font-weight: bold;
+    font-size: 2rem;
+    color: #D9D9D9;
+}
+
+.player-controls {
+    margin-top: 5rem;
+    width: 100%;
+    background-color: #555;
+    padding: 2rem;
+}
+
+
+/* audio::-webkit-media-controls-panel
+
+audio::-webkit-media-controls-mute-button
+
+audio::-webkit-media-controls-play-button
+
+audio::-webkit-media-controls-timeline-container
+
+audio::-webkit-media-controls-current-time-display
+
+audio::-webkit-media-controls-time-remaining-display
+
+audio::-webkit-media-controls-timeline
+
+audio::-webkit-media-controls-volume-slider-container
+
+audio::-webkit-media-controls-volume-slider
+
+audio::-webkit-media-controls-seek-back-button
+
+audio::-webkit-media-controls-seek-forward-button
+
+audio::-webkit-media-controls-fullscreen-button
+
+audio::-webkit-media-controls-rewind-button
+
+audio::-webkit-media-controls-return-to-realtime-button
+
+audio::-webkit-media-controls-toggle-closed-captions-button */
