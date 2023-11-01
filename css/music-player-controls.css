@@ -85,6 +85,7 @@
 .player-controls-progresses [type="range"] {
     -webkit-appearance: none;
     appearance: none;
+    cursor: pointer;
 }
 
 .player-controls-progresses input[type="range"]::-webkit-slider-runnable-track {
@@ -103,7 +104,6 @@
     width: 1rem;
     margin-top: -0.7rem;
     background-color: white;
-    cursor: pointer;
 }
 
 .player-controls-progresses #progress {
