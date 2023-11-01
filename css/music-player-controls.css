@@ -103,6 +103,7 @@
     width: 1rem;
     margin-top: -0.7rem;
     background-color: white;
+    cursor: pointer;
 }
 
 .player-controls-progresses #progress {
