@@ -1,3 +1,4 @@
+import { songs } from "./songs";
 const songs = document.querySelectorAll('.song');
 
 songs.forEach((song) => {
