@@ -19,11 +19,11 @@ body {
 .main {
     margin-top: 5rem;
     width: 70%;
+    padding-left: 5rem;
 }
 
 .search-section {
-    height: 75vh;
-    padding: 3rem 6rem;
+    padding: 3rem 0rem;
     overflow: hidden;
 }
 
@@ -44,10 +44,6 @@ body {
     background-color: #f0f0f0;
     border: 0.5rem solid #000000;
     border-radius: 2rem;
-}
-
-.search-results {
-    display: none;
 }
 
 .search-result-highlight {

@@ -1,6 +1,7 @@
 const searchInput = document.getElementById('search-input');
 const searchResults = document.getElementById('search-results');
 const resultsList = document.getElementById('results-list');
+const noResult = document.getElementById('no-result');
 
 function MarkSearchTerm(string, target) {
 
@@ -48,8 +49,9 @@ searchInput.addEventListener('input', function () {
             resultsList.innerHTML += htmlString;
             AddEventToCard();
         });
+        noResult.style.display = "none";
     } 
     else {
-        searchResults.style.display = "none";
+        noResult.style.display = "block";
     }
 });

@@ -1,27 +1,34 @@
 .player-section {
-    margin-top: 5rem;
-    padding: 3rem;
+    margin-top: 6.2rem;
+    padding: 10rem 3rem;
     width: 25%;
     background-color: #222;
     position: fixed;
-    top: 10rem;
+    top: 0;
+    bottom: 0;
     right: 5rem;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    border-radius: 2rem;
 }
 
 .current-music {
     width: 100%;
     background-color: #555;
     padding: 2rem;
+    border-radius: 1rem;
 }
 
 .current-music img {
     width: 100%;
     display: block;
+    border-radius: 1rem;
 }
 
 .current-music-info {
     background-color: #555;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .current-music-title {
@@ -42,6 +49,7 @@
     background-color: #555;
     padding: 2rem;
     position: relative;
+    border-radius: 1rem;
 }
 
 
@@ -52,8 +60,13 @@
 }
 
 .player-controls-bottons button {
+    width: 7.5%;
     background: none;
     border: none;
+}
+
+.player-controls-bottons img {
+    width: 100%;
 }
 
 .player-controls-bottons #shuffle {
@@ -68,6 +81,8 @@
 .player-controls-bottons #next {
     margin-right: 3rem;
 }
+
+
 
 .player-controls-progresses {
     margin-top: 1rem;
@@ -86,6 +101,7 @@
     -webkit-appearance: none;
     appearance: none;
     cursor: pointer;
+    margin: 0rem 1rem;
 }
 
 .player-controls-progresses input[type="range"]::-webkit-slider-runnable-track {
