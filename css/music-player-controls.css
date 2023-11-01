@@ -89,12 +89,17 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    width: 100%;
 }
 
 .player-controls-progresses span {
     color: white;
     font-weight: bolder;
     font-size: 1.5rem;
+}
+
+.player-controls-progresses img {
+    width: 5%;
 }
 
 .player-controls-progresses [type="range"] {
