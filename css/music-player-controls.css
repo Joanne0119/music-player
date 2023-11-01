@@ -76,14 +76,32 @@
     align-items: center;
 }
 
-.player-controls-progresses .progress-bar {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+.player-controls-progresses span {
+    color: white;
+    font-weight: bolder;
+    font-size: 1.5rem;
 }
 
-.player-controls-progresses .volume-bar {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+.player-controls-progresses input[type="range"]::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    height: 0.3rem;
+    border-radius: 1rem;
+    background: white;
+}
+
+.player-controls-progresses input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    position: relative;
+    height: 1rem;
+    width: 1rem;
+    margin-top: -0.7rem;
+    background-color: white;
+}
+
+.player-controls-progresses #progress {
+    width: 40%;
+}
+
+.player-controls-progresses #volume {
+    width: 30%;
 }
