@@ -10,8 +10,6 @@ const totalTime = document.getElementById('total-time');
 
 let isPlaying = false;
 
-console.log(audio.duration);
-
 //totalTime.innerHTML = `${Math.floor(audio.duration / 60)}:${Math.floor(audio.duration % 60)}`;
 
 function updateTimeDisplay() {
