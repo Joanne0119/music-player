@@ -56,11 +56,11 @@
 .player-controls-bottons {
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .player-controls-bottons button {
-    width: 7.5%;
+    height: 8%;
     background: none;
     border: none;
 }
