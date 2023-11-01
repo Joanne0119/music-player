@@ -160,10 +160,33 @@
     </div>
 
     <div class="player-controls">
-        <audio controls>
-            <source src="audio/好不容易-告五人.mp3" type="audio/mpeg">
-        </audio>
-    </div>
+      <audio id="audio">
+          <source src="audio/好不容易-告五人.mp3" type="audio/mpeg">
+      </audio>
+
+      <div class="player-controls-bottons">
+          <button id="shuffle" class="control-button">
+              <img src="images/music-player-controls/random.png" alt="random">
+          </button>
+          <button id="prev" class="control-button">
+              <img src="images/music-player-controls/skip_back.png" alt="skip_back">
+          </button>
+          <button id="play-pause" class="control-button">
+              <img src="images/music-player-controls/play.png" alt="play">
+          </button>
+          <button id="next" class="control-button">
+              <img src="images/music-player-controls/skip_forward.png" alt="skip_forward">
+          </button>
+      </div>
+
+      <div class="player-controls-progresses">
+          <span>0:00</span>
+          <input id="progress" type="range" min="0" max="100" step="0.1" value="0">
+          <span>0:00</span>
+          <img src="images/music-player-controls/volume.png" alt="volume">
+          <input id="volume" type="range" min="0" max="1" step="0.01" value="1">
+      </div>
+  </div>
 </div>
   
   <script src="js/loading.js"></script>
