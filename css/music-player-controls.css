@@ -52,11 +52,9 @@
     border-radius: 1rem;
 }
 
-
 .player-controls-bottons {
     display: flex;
     justify-content: space-around;
-    /* align-items: center; */
 }
 
 .player-controls-bottons button {
