@@ -105,3 +105,7 @@
 .player-controls-progresses #volume {
     width: 30%;
 }
+
+.player-controls-progresses img {
+    margin: 0rem 1rem 0rem 2rem;
+}
