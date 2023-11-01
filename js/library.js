@@ -1,4 +1,5 @@
-import { songs } from "./songs";
+import { songsLibrary } from "./songs.js";
+console.log(songsLibrary);
 const songs = document.querySelectorAll('.song');
 
 songs.forEach((song) => {

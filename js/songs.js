@@ -1,4 +1,4 @@
-export const songs = [
+export const songsLibrary = [
   {
     id: "001",
     image: "images/披星戴月的想你.jpg",
