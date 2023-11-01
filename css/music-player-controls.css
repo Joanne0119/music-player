@@ -82,15 +82,22 @@
     font-size: 1.5rem;
 }
 
-.player-controls-progresses input[type="range"]::-webkit-slider-runnable-track {
+.player-controls-progresses [type="range"] {
     -webkit-appearance: none;
+    appearance: none;
+}
+
+.player-controls-progresses input[type="range"]::-webkit-slider-runnable-track {
+	/* appearance: none;
+	-webkit-appearance: none; */
     height: 0.3rem;
     border-radius: 1rem;
     background: white;
 }
 
 .player-controls-progresses input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
+	/* appearance: none;
+	-webkit-appearance: none; */
     position: relative;
     height: 1rem;
     width: 1rem;
