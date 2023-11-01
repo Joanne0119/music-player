@@ -16,8 +16,15 @@ console.log(audio.duration);
 
 function updateTimeDisplay() {
             
-    const currentMinutes = Math.floor(audio.currentTime / 60);
-    const currentSeconds = Math.floor(audio.currentTime % 60);
+    const currentMinutes =
+          (Math.floor(audio.currentTime / 60) < 10)? 
+          "0" + Math.floor(audio.currentTime / 60).toString() 
+          : Math.floor(audio.currentTime / 60).toString();
+    const currentSeconds =
+          (Math.floor(audio.currentTime % 60) < 10)? 
+          "0" + Math.floor(audio.currentTime % 60).toString() 
+          : Math.floor(audio.currentTime % 60).toString();
+
     const totalMinutes = Math.floor(audio.duration / 60);
     const totalSeconds = Math.floor(audio.duration % 60);
 
