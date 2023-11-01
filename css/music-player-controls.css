@@ -41,35 +41,49 @@
     width: 100%;
     background-color: #555;
     padding: 2rem;
+    position: relative;
 }
 
 
-/* audio::-webkit-media-controls-panel
+.player-controls-bottons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 
-audio::-webkit-media-controls-mute-button
+.player-controls-bottons button {
+    background: none;
+    border: none;
+}
 
-audio::-webkit-media-controls-play-button
+.player-controls-bottons #shuffle {
+    position: absolute;
+    left: 3rem;
+}
 
-audio::-webkit-media-controls-timeline-container
+.player-controls-bottons #prev {
+    margin-left: 3rem;
+}
 
-audio::-webkit-media-controls-current-time-display
+.player-controls-bottons #next {
+    margin-right: 3rem;
+}
 
-audio::-webkit-media-controls-time-remaining-display
+.player-controls-progresses {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 
-audio::-webkit-media-controls-timeline
+.player-controls-progresses .progress-bar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 
-audio::-webkit-media-controls-volume-slider-container
-
-audio::-webkit-media-controls-volume-slider
-
-audio::-webkit-media-controls-seek-back-button
-
-audio::-webkit-media-controls-seek-forward-button
-
-audio::-webkit-media-controls-fullscreen-button
-
-audio::-webkit-media-controls-rewind-button
-
-audio::-webkit-media-controls-return-to-realtime-button
-
-audio::-webkit-media-controls-toggle-closed-captions-button */
+.player-controls-progresses .volume-bar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
