@@ -18,6 +18,7 @@ currentMusicArea.querySelector("img").src = songsLibrary[currentPlaying].image;
 currentMusicArea.querySelector("h4").innerHTML = songsLibrary[currentPlaying].title;
 currentMusicArea.querySelector("p").innerHTML = songsLibrary[currentPlaying].singer;
 audio.querySelector("source").src = songsLibrary[currentPlaying].audio;
+audio.load();
 
 function UpdateCurrentMusic(musicID) {
     console.log(currentPlaying);
