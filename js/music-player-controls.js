@@ -82,3 +82,17 @@ showPlayerBtn.addEventListener("click", function() {
         playerSection.classList.remove("toShow-player-section");
     }
 });
+
+showPlayerBtn.addEventListener("mouseenter", function() {
+    const btnImg = showPlayerBtn.querySelector("img");
+    const imgUrl = "images/music-player-controls/show-player-hover.png";
+    btnImg.src = imgUrl;
+});
+
+showPlayerBtn.addEventListener("mouseleave", function() {
+    const btnImg = showPlayerBtn.querySelector("img");
+    const imgUrl = "images/music-player-controls/show-player.png";
+    btnImg.src = imgUrl;
+});
+
+

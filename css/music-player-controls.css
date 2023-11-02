@@ -16,10 +16,13 @@
 .player-less-than-1250px {
     display: none;
     position: fixed;
-    width: 3%;
     bottom: 3rem;
     right: 8rem;
     z-index: 998;
+}
+
+.player-less-than-1250px img {
+    width: 5rem;
 }
 
 @media (max-width: 1250px) {
