@@ -75,6 +75,9 @@ audio.addEventListener('timeupdate', () => {
 
 progress.addEventListener('input', () => {
     const seekTime = (progress.value / 100) * audio.duration;
+    if(seekTime >= audio.duration * 0.9999) {
+        return;
+    }
     audio.currentTime = seekTime;
     UpdateTimeDisplay();
 });
