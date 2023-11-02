@@ -1,3 +1,4 @@
+const playerSection = document.getElementById("player-section");
 const audio = document.getElementById('audio');
 const playPauseButton = document.getElementById('play-pause');
 const progress = document.getElementById('progress');
@@ -7,6 +8,7 @@ const nextButton = document.getElementById('next');
 const shuffleButton = document.getElementById('shuffle');
 const currentTime = document.getElementById('current-time');
 const totalTime = document.getElementById('total-time');
+const showPlayerBtn = document.getElementById('show-player');
 
 let isPlaying = false;
 
@@ -70,4 +72,13 @@ nextButton.addEventListener('click', () => {
 
 shuffleButton.addEventListener('click', () => {
     
+});
+
+showPlayerBtn.addEventListener("click", function() {
+    if (!playerSection.classList.contains("toShow-player-section")) {
+        playerSection.classList.add("toShow-player-section");
+    }
+    else {
+        playerSection.classList.remove("toShow-player-section");
+    }
 });

@@ -11,7 +11,32 @@
     justify-content: space-around;
     flex-direction: column;
     border-radius: 2rem;
+}
+
+.player-less-than-1250px {
+    display: none;
+    position: fixed;
+    width: 3%;
+    bottom: 3rem;
+    right: 8rem;
     z-index: 998;
+}
+
+@media (max-width: 1250px) {
+
+    .player-section {
+        display: none;
+        width: 350px;
+        z-index: 997;
+    }
+
+    .toShow-player-section {
+        display: flex;
+    }
+
+    .player-less-than-1250px {
+        display: block;
+    }
 }
 
 .current-music {
