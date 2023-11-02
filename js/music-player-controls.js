@@ -23,9 +23,6 @@ if (localStorage.getItem("audioSrc") !== null) {
     audio.querySelector("source").src = localStorage.getItem("audioSrc");
     audio.load();
     audio.currentTime = parseFloat(localStorage.getItem("currentTime"));
-    if(localStorage.getItem("isPlaying") !== null && localStorage.getItem("isPlaying")) {
-        isPlaying = true;
-    }
 }
 else {
     totalTime.innerHTML = songsLibrary[currentPlaying].totalTime;
@@ -41,6 +38,16 @@ if(localStorage.getItem("audioVolume") !== null) {
     volume.value = parseFloat(localStorage.getItem("audioVolume"));
 }
 
+console.log(localStorage.getItem("isPlaying"));
+
+if(localStorage.getItem("isPlaying") === 'true') {
+    ToPlay();
+    playPauseButton.innerHTML = `<img src="images/music-player-controls/pause.png" alt="pause">`;
+} else {
+    ToPause();
+    playPauseButton.innerHTML = `<img src="images/music-player-controls/play.png" alt="play">`;
+}
+
 function UpdateCurrentMusic(musicID) {
     console.log(currentPlaying);
     if(musicID < 0 || musicID >= songsLibrary.length) {
@@ -51,7 +58,7 @@ function UpdateCurrentMusic(musicID) {
     currentMusicArea.querySelector("h4").innerHTML = songsLibrary[currentPlaying].title;
     currentMusicArea.querySelector("p").innerHTML = songsLibrary[currentPlaying].singer;
     audio.querySelector("source").src = songsLibrary[currentPlaying].audio;
-    audio.load(); ToPlay(); isPlaying = true;
+    audio.load(); ToPlay();
     totalTime.innerHTML = songsLibrary[currentPlaying].totalTime;
 }
 
@@ -71,12 +78,16 @@ function ToPlay() {
     audio.play();
     playPauseButton.innerHTML = 
     `<img src="images/music-player-controls/pause.png" alt="pause">`;
+    isPlaying = true;
+    localStorage.setItem("isPlaying", true);
 }
 
 function ToPause() {
     audio.pause();
     playPauseButton.innerHTML = 
     `<img src="images/music-player-controls/play.png" alt="play">`;
+    isPlaying = false;
+    localStorage.setItem("isPlaying", false);
 }
 
 playPauseButton.addEventListener('click', () => {
@@ -86,8 +97,7 @@ playPauseButton.addEventListener('click', () => {
     else {
         ToPlay();
     }
-    isPlaying = !isPlaying;
-    localStorage.setItem("isPlaying", isPlaying);
+    console.log(localStorage.getItem("isPlaying"));
 });
 
 audio.addEventListener('timeupdate', () => {
@@ -131,7 +141,7 @@ function PlayPrevSongs() {
         else cnt++;
     }
     UpdateCurrentMusic(currentPlaying);
-    ToPlay(); isPlaying = true;
+    ToPlay();
 }
 
 function PlayNextSongs() {
@@ -148,7 +158,7 @@ function PlayNextSongs() {
         else cnt++;
     }
     UpdateCurrentMusic(currentPlaying);
-    ToPlay(); isPlaying = true;
+    ToPlay();
 }
 
 prevButton.addEventListener('click', () => {
@@ -181,7 +191,7 @@ function PlayRandomSongs() {
         musicID = Math.floor(Math.random() * (songsLibrary.length));
     }
     UpdateCurrentMusic(musicID);
-    ToPlay(); isPlaying = true;
+    ToPlay();
 }
 
 showPlayerBtn.addEventListener("click", function() {
