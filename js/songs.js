@@ -4,24 +4,24 @@ export const songsLibrary = [
     image: "images/披星戴月的想你.jpg",
     title: "披星戴月的想你",
     singer: "告五人",
-    audio: "audio/好不容易-告五人.mp3",
-    totalTime: "05:27",
+    audio: "audio/披星戴月的想你-告五人.mp3",
+    totalTime: "05:51",
     added: true
   },{
     id: "002",
     image: "images/突然好想你.jpg",
     title: "突然好想你",
     singer: "五月天",
-    audio: "audio/好不容易-告五人.mp3",
-    totalTime: "05:27",
+    audio: "audio/突然好想你-五月天.mp3",
+    totalTime: "04:25",
     added: true
   },{
     id: "003",
     image: "images/唯一.jpg",
     title: "唯一",
     singer: "G.E.M. 鄧紫棋",
-    audio: "audio/好不容易-告五人.mp3",
-    totalTime: "05:27",
+    audio: "audio/唯一-G.E.M. 鄧紫棋.mp3",
+    totalTime: "04:12",
     added: true
   },{
     id: "004",
