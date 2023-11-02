@@ -135,6 +135,12 @@ audio.addEventListener("ended", function() {
 let isShuffle = false;
 shuffleButton.addEventListener('click', () => {
     isShuffle = !isShuffle;
+    if(isShuffle) {
+        shuffleButton.querySelector("img").src = "images/music-player-controls/random-hover.png";
+    }
+    else {
+        shuffleButton.querySelector("img").src = "images/music-player-controls/random.png";
+    }
 });
 
 function PlayRandomSongs() {
