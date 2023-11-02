@@ -19,10 +19,12 @@
     bottom: 2%;
     right: 8rem;
     z-index: 998;
+    background-color: rgb(119, 119, 119);
+    border-radius: 2rem;
 }
 
 .player-less-than-1250px img {
-    width: 8rem;
+    width: 10rem;
 }
 
 @media (max-width: 1250px) {

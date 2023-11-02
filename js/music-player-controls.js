@@ -164,16 +164,20 @@ showPlayerBtn.addEventListener("click", function() {
     }
 });
 
-showPlayerBtn.addEventListener("mouseenter", function() {
-    const btnImg = showPlayerBtn.querySelector("img");
-    const imgUrl = "images/Coffee beans.png";
-    btnImg.src = imgUrl;
-});
 
-showPlayerBtn.addEventListener("mouseleave", function() {
-    const btnImg = showPlayerBtn.querySelector("img");
-    const imgUrl = "images/Coffee beans white.png";
-    btnImg.src = imgUrl;
-});
+let isShowingPlayer = false;
 
+showPlayerBtn.addEventListener("click", function() {
+    if (isShowingPlayer) {
+        const btnImg = showPlayerBtn.querySelector("img");
+        const imgUrl = "images/Coffee beans white.png";
+        btnImg.src = imgUrl;
+    }
+    else {
+        const btnImg = showPlayerBtn.querySelector("img");
+        const imgUrl = "images/Coffee beans black.png";
+        btnImg.src = imgUrl;
+    }
+    isShowingPlayer = !isShowingPlayer;
+});
 
