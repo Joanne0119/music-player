@@ -12,7 +12,12 @@ const totalTime = document.getElementById('total-time');
 const showPlayerBtn = document.getElementById('show-player');
 import { songsLibrary } from "./songs.js";
 
-function UpdateCurrentMusic(currentPlaying) {
+var currentPlaying;
+function UpdateCurrentMusic(musicID) {
+    if(musicID <= 0 || musicID >= songsLibrary.length) {
+        return;
+    }
+    currentPlaying = musicID;
     currentMusicArea.querySelector("img").src = songsLibrary[currentPlaying].image;
     currentMusicArea.querySelector("h4").innerHTML = songsLibrary[currentPlaying].title;
     currentMusicArea.querySelector("p").innerHTML = songsLibrary[currentPlaying].singer;
@@ -35,16 +40,25 @@ function UpdateTimeDisplay() {
 }
 
 let isPlaying = false;
+
+function ToPlay() {
+    audio.play();
+    playPauseButton.innerHTML = 
+    `<img src="images/music-player-controls/pause.png" alt="pause">`;
+}
+
+function ToPause() {
+    audio.pause();
+    playPauseButton.innerHTML = 
+    `<img src="images/music-player-controls/play.png" alt="play">`;
+}
+
 playPauseButton.addEventListener('click', () => {
     if (isPlaying) {
-        audio.pause();
-        playPauseButton.innerHTML = 
-        `<img src="images/music-player-controls/play.png" alt="play">`;
+        ToPlay();
     }
     else {
-        audio.play();
-        playPauseButton.innerHTML = 
-        `<img src="images/music-player-controls/pause.png" alt="play">`;
+        ToPause()
     }
     isPlaying = !isPlaying;
 });
@@ -65,12 +79,42 @@ volume.addEventListener('input', () => {
     audio.volume = volume.value;
 });
 
-prevButton.addEventListener('click', () => {
+function PlayPrevSongs() {
+    var cnt = 1;
+    while((currentPlaying-cnt) >= 0) {
+        if (songsLibrary[currentPlaying-cnt].added) {
+            currentPlaying -= cnt;
+            break;
+        }
+        else cnt++;
+    }
+    UpdateCurrentMusic(currentPlaying);
+    ToPlay();
+}
 
+function PlayNextSongs() {
+    var cnt = 1;
+    while((currentPlaying+cnt) < songsLibrary.length) {
+        if (songsLibrary[currentPlaying+cnt].added) {
+            currentPlaying += cnt;
+            break;
+        }
+        else cnt++;
+    }
+    UpdateCurrentMusic(currentPlaying);
+    ToPlay();
+}
+
+prevButton.addEventListener('click', () => {
+    PlayPrevSongs();
 });
 
 nextButton.addEventListener('click', () => {
+    PlayNextSongs();
+});
 
+audio.addEventListener("ended", function() {
+    PlayNextSongs();
 });
 
 shuffleButton.addEventListener('click', () => {
