@@ -166,7 +166,7 @@ showPlayerBtn.addEventListener("click", function() {
 
 showPlayerBtn.addEventListener("mouseenter", function() {
     const btnImg = showPlayerBtn.querySelector("img");
-    const imgUrl = "images/Coffee beans black.png";
+    const imgUrl = "images/Coffee beans.png";
     btnImg.src = imgUrl;
 });
 
