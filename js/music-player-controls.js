@@ -16,6 +16,7 @@ let currentPlaying = 0;
 let isPlaying = false;
 
 if (localStorage.getItem("audioSrc") !== null) {
+    currentPlaying = localStorage.getItem("currentPlaying");
     totalTime.innerHTML = localStorage.getItem("totalTime");
     currentMusicArea.querySelector("img").src = localStorage.getItem("currentImg");
     currentMusicArea.querySelector("h4").innerHTML = localStorage.getItem("currentMusicTitle");
@@ -105,6 +106,7 @@ audio.addEventListener('timeupdate', () => {
     progress.value = progressValue;
     UpdateTimeDisplay();
 
+    localStorage.setItem("currentPlaying", currentPlaying);
     localStorage.setItem("totalTime", songsLibrary[currentPlaying].totalTime);
     localStorage.setItem("currentImg", songsLibrary[currentPlaying].image);
     localStorage.setItem("currentMusicTitle", songsLibrary[currentPlaying].title);
