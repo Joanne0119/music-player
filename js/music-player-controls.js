@@ -13,12 +13,26 @@ const showPlayerBtn = document.getElementById('show-player');
 import { songsLibrary } from "./songs.js";
 
 let currentPlaying = 0;
-totalTime.innerHTML = songsLibrary[currentPlaying].totalTime;
-currentMusicArea.querySelector("img").src = songsLibrary[currentPlaying].image;
-currentMusicArea.querySelector("h4").innerHTML = songsLibrary[currentPlaying].title;
-currentMusicArea.querySelector("p").innerHTML = songsLibrary[currentPlaying].singer;
-audio.querySelector("source").src = songsLibrary[currentPlaying].audio;
-audio.load();
+
+if (localStorage.getItem("audioSrc") !== null) {
+
+    totalTime.innerHTML = localStorage.getItem("totalTime");
+    currentMusicArea.querySelector("img").src = localStorage.getItem("currentImg");
+    currentMusicArea.querySelector("h4").innerHTML = localStorage.getItem("currentMusicTitle");
+    currentMusicArea.querySelector("p").innerHTML = localStorage.getItem("currentMusicSinger");
+    audio.querySelector("source").src = localStorage.getItem("audioSrc");
+    audio.load();
+    audio.currentTime = parseFloat(localStorage.getItem("currentTime"));
+    ToPlay();
+}
+else {
+    totalTime.innerHTML = songsLibrary[currentPlaying].totalTime;
+    currentMusicArea.querySelector("img").src = songsLibrary[currentPlaying].image;
+    currentMusicArea.querySelector("h4").innerHTML = songsLibrary[currentPlaying].title;
+    currentMusicArea.querySelector("p").innerHTML = songsLibrary[currentPlaying].singer;
+    audio.querySelector("source").src = songsLibrary[currentPlaying].audio;
+    audio.load();
+}
 
 function UpdateCurrentMusic(musicID) {
     console.log(currentPlaying);
@@ -73,6 +87,13 @@ audio.addEventListener('timeupdate', () => {
     const progressValue = (audio.currentTime / audio.duration) * 100;
     progress.value = progressValue;
     UpdateTimeDisplay();
+
+    localStorage.setItem("totalTime", songsLibrary[currentPlaying].totalTime);
+    localStorage.setItem("currentImg", songsLibrary[currentPlaying].image);
+    localStorage.setItem("currentMusicTitle", songsLibrary[currentPlaying].title);
+    localStorage.setItem("currentMusicSinger", songsLibrary[currentPlaying].singer);
+    localStorage.setItem("audioSrc", songsLibrary[currentPlaying].audio);
+    localStorage.setItem("currentTime", audio.currentTime);
 });
 
 progress.addEventListener('input', () => {
