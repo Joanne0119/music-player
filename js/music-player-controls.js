@@ -30,8 +30,7 @@ function UpdateCurrentMusic(musicID) {
     currentMusicArea.querySelector("h4").innerHTML = songsLibrary[currentPlaying].title;
     currentMusicArea.querySelector("p").innerHTML = songsLibrary[currentPlaying].singer;
     audio.querySelector("source").src = songsLibrary[currentPlaying].audio;
-    audio.load();
-    audio.play();
+    audio.load(); ToPlay();
     totalTime.innerHTML = songsLibrary[currentPlaying].totalTime;
 }
 
