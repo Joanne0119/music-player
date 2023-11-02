@@ -36,8 +36,8 @@ export const songsLibrary = [
     image: "images/閣愛你一擺.jpg",
     title: "閣愛你一擺",
     singer: "茄子蛋",
-    audio: "audio/好不容易-告五人.mp3",
-    totalTime: "05:27",
+    audio: "audio/閣愛你一擺-茄子蛋.mp3",
+    totalTime: "04:36",
     added: true
   },{
     id: "006",
@@ -52,32 +52,32 @@ export const songsLibrary = [
     image: "images/without you.jpg",
     title: "Without You",
     singer: "高爾宣OSN",
-    audio: "audio/好不容易-告五人.mp3",
-    totalTime: "05:27",
+    audio: "audio/Without You.mp3",
+    totalTime: "2:53",
     added: true
   },{
     id: "008",
     image: "images/cruel summer.jpg",
     title: "Cruel Summer",
     singer: "Taylor Swfit",
-    audio: "audio/好不容易-告五人.mp3",
-    totalTime: "05:27",
+    audio: "audio/cruel summer.mp3",
+    totalTime: "02:59",
     added: true
   },{
     id: "009",
     image: "images/one of your girls.jpg",
     title: "One of Your Girls",
     singer: "Troye Sivan",
-    audio: "audio/好不容易-告五人.mp3",
-    totalTime: "05:27",
+    audio: "audio/one of your girls.mp3",
+    totalTime: "03:09",
     added: true
   },{
     id: "010",
     image: "images/想和你看五月的晚霞.jpg",
     title: "想和你看五月的晚霞",
     singer: "陳華",
-    audio: "audio/好不容易-告五人.mp3",
-    totalTime: "05:27",
+    audio: "audio/想和你看五月的晚霞.mp3",
+    totalTime: "03:53",
     added: false
   }
 ]
