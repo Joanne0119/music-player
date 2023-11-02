@@ -11,6 +11,7 @@
     justify-content: space-around;
     flex-direction: column;
     border-radius: 2rem;
+    z-index: 998;
 }
 
 .current-music {
@@ -68,6 +69,7 @@
 }
 
 .player-controls-bottons #shuffle {
+    width: 5%;
     position: absolute;
     left: 3rem;
 }
