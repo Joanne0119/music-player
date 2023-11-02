@@ -15,7 +15,6 @@ import { songsLibrary } from "./songs.js";
 let currentPlaying = 0;
 
 if (localStorage.getItem("audioSrc") !== null) {
-
     totalTime.innerHTML = localStorage.getItem("totalTime");
     currentMusicArea.querySelector("img").src = localStorage.getItem("currentImg");
     currentMusicArea.querySelector("h4").innerHTML = localStorage.getItem("currentMusicTitle");
