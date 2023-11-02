@@ -85,13 +85,13 @@ showPlayerBtn.addEventListener("click", function() {
 
 showPlayerBtn.addEventListener("mouseenter", function() {
     const btnImg = showPlayerBtn.querySelector("img");
-    const imgUrl = "images/music-player-controls/show-player-hover.png";
+    const imgUrl = "images/Coffee beans black.png";
     btnImg.src = imgUrl;
 });
 
 showPlayerBtn.addEventListener("mouseleave", function() {
     const btnImg = showPlayerBtn.querySelector("img");
-    const imgUrl = "images/music-player-controls/show-player.png";
+    const imgUrl = "images/Coffee beans white.png";
     btnImg.src = imgUrl;
 });
 
