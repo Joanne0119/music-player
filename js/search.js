@@ -5,7 +5,7 @@ const noResult = document.getElementById('no-result');
 
 function MarkSearchTerm(string, target) {
 
-    const fId = string.indexOf(target);
+    const fId = string.toLowerCase().indexOf(target);
     if (fId !== -1) {
         return (string.substring(0, fId)
                 + "<span class=\"search-result-highlight\">"
@@ -14,6 +14,7 @@ function MarkSearchTerm(string, target) {
                 + string.substring(fId+target.length));
     }
     else {
+        console.log(string, target, fId);
         return (string);
     }
 }
