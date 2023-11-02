@@ -1,4 +1,5 @@
 const playerSection = document.getElementById("player-section");
+const currentMusicArea = document.getElementById("current-music");
 const audio = document.getElementById('audio');
 const playPauseButton = document.getElementById('play-pause');
 const progress = document.getElementById('progress');
@@ -9,13 +10,19 @@ const shuffleButton = document.getElementById('shuffle');
 const currentTime = document.getElementById('current-time');
 const totalTime = document.getElementById('total-time');
 const showPlayerBtn = document.getElementById('show-player');
+import { songsLibrary } from "./songs.js";
 
-let isPlaying = false;
+function UpdateCurrentMusic(currentPlaying) {
+    currentMusicArea.querySelector("img").src = songsLibrary[currentPlaying].image;
+    currentMusicArea.querySelector("h4").innerHTML = songsLibrary[currentPlaying].title;
+    currentMusicArea.querySelector("p").innerHTML = songsLibrary[currentPlaying].singer;
+    audio.querySelector("source").src = songsLibrary[currentPlaying].audio;
+    totalTime.innerHTML = songsLibrary[currentPlaying].totalTime;
+}
 
-//totalTime.innerHTML = `${Math.floor(audio.duration / 60)}:${Math.floor(audio.duration % 60)}`;
+UpdateCurrentMusic(4);
 
-function updateTimeDisplay() {
-            
+function UpdateTimeDisplay() {
     const currentMinutes =
           (Math.floor(audio.currentTime / 60) < 10)? 
           "0" + Math.floor(audio.currentTime / 60).toString() 
@@ -24,14 +31,10 @@ function updateTimeDisplay() {
           (Math.floor(audio.currentTime % 60) < 10)? 
           "0" + Math.floor(audio.currentTime % 60).toString() 
           : Math.floor(audio.currentTime % 60).toString();
-
-    const totalMinutes = Math.floor(audio.duration / 60);
-    const totalSeconds = Math.floor(audio.duration % 60);
-
     currentTime.innerHTML = `${currentMinutes}:${currentSeconds}`;
-    totalTime.innerHTML = `${totalMinutes}:${totalSeconds}`;
 }
 
+let isPlaying = false;
 playPauseButton.addEventListener('click', () => {
     if (isPlaying) {
         audio.pause();
@@ -49,13 +52,13 @@ playPauseButton.addEventListener('click', () => {
 audio.addEventListener('timeupdate', () => {
     const progressValue = (audio.currentTime / audio.duration) * 100;
     progress.value = progressValue;
-    updateTimeDisplay();
+    UpdateTimeDisplay();
 });
 
 progress.addEventListener('input', () => {
     const seekTime = (progress.value / 100) * audio.duration;
     audio.currentTime = seekTime;
-    updateTimeDisplay();
+    UpdateTimeDisplay();
 });
 
 volume.addEventListener('input', () => {
