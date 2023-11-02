@@ -12,8 +12,11 @@ const totalTime = document.getElementById('total-time');
 const showPlayerBtn = document.getElementById('show-player');
 import { songsLibrary } from "./songs.js";
 
-var currentPlaying;
+let currentPlaying = 0;
+totalTime.innerHTML = songsLibrary[currentPlaying].totalTime;
+
 function UpdateCurrentMusic(musicID) {
+    console.log(currentPlaying);
     if(musicID <= 0 || musicID >= songsLibrary.length) {
         return;
     }
@@ -22,10 +25,12 @@ function UpdateCurrentMusic(musicID) {
     currentMusicArea.querySelector("h4").innerHTML = songsLibrary[currentPlaying].title;
     currentMusicArea.querySelector("p").innerHTML = songsLibrary[currentPlaying].singer;
     audio.querySelector("source").src = songsLibrary[currentPlaying].audio;
+    audio.load();
+    audio.play();
     totalTime.innerHTML = songsLibrary[currentPlaying].totalTime;
 }
 
-UpdateCurrentMusic(4);
+UpdateCurrentMusic(currentPlaying);
 
 function UpdateTimeDisplay() {
     const currentMinutes =
@@ -40,7 +45,6 @@ function UpdateTimeDisplay() {
 }
 
 let isPlaying = false;
-
 function ToPlay() {
     audio.play();
     playPauseButton.innerHTML = 
@@ -80,7 +84,11 @@ volume.addEventListener('input', () => {
 });
 
 function PlayPrevSongs() {
-    var cnt = 1;
+    if(isShuffle) {
+        PlayRandomSongs();
+        return;
+    }
+    let cnt = 1;
     while((currentPlaying-cnt) >= 0) {
         if (songsLibrary[currentPlaying-cnt].added) {
             currentPlaying -= cnt;
@@ -93,7 +101,11 @@ function PlayPrevSongs() {
 }
 
 function PlayNextSongs() {
-    var cnt = 1;
+    if(isShuffle) {
+        PlayRandomSongs();
+        return;
+    }
+    let cnt = 1;
     while((currentPlaying+cnt) < songsLibrary.length) {
         if (songsLibrary[currentPlaying+cnt].added) {
             currentPlaying += cnt;
@@ -117,9 +129,20 @@ audio.addEventListener("ended", function() {
     PlayNextSongs();
 });
 
+let isShuffle = false;
 shuffleButton.addEventListener('click', () => {
-    
+    isShuffle = !isShuffle;
 });
+
+function PlayRandomSongs() {
+    let musicID = currentPlaying;
+    while(musicID < 0 || musicID >= songsLibrary.length || songsLibrary[musicID].added == false || musicID == currentPlaying) {
+        console.log("suffle: ",musicID);
+        musicID = Math.floor(Math.random() * (songsLibrary.length));
+    }
+    UpdateCurrentMusic(musicID);
+    ToPlay();
+}
 
 showPlayerBtn.addEventListener("click", function() {
     if (!playerSection.classList.contains("toShow-player-section")) {
