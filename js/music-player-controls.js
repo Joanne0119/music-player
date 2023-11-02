@@ -14,10 +14,14 @@ import { songsLibrary } from "./songs.js";
 
 let currentPlaying = 0;
 totalTime.innerHTML = songsLibrary[currentPlaying].totalTime;
+currentMusicArea.querySelector("img").src = songsLibrary[currentPlaying].image;
+currentMusicArea.querySelector("h4").innerHTML = songsLibrary[currentPlaying].title;
+currentMusicArea.querySelector("p").innerHTML = songsLibrary[currentPlaying].singer;
+audio.querySelector("source").src = songsLibrary[currentPlaying].audio;
 
 function UpdateCurrentMusic(musicID) {
     console.log(currentPlaying);
-    if(musicID <= 0 || musicID >= songsLibrary.length) {
+    if(musicID < 0 || musicID >= songsLibrary.length) {
         return;
     }
     currentPlaying = musicID;
@@ -29,8 +33,6 @@ function UpdateCurrentMusic(musicID) {
     audio.play();
     totalTime.innerHTML = songsLibrary[currentPlaying].totalTime;
 }
-
-UpdateCurrentMusic(currentPlaying);
 
 function UpdateTimeDisplay() {
     const currentMinutes =
