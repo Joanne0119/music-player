@@ -36,7 +36,7 @@ export const songsLibrary = [
     image: "images/閣愛你一擺.jpg",
     title: "閣愛你一擺",
     singer: "茄子蛋",
-    audio: "audio/閣愛你一擺-茄子蛋.mp3",
+    audio: "audio/閣愛妳一擺-茄子蛋.mp3",
     totalTime: "04:36",
     added: true
   },{
