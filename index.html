@@ -201,7 +201,7 @@
       </div>
     </main>
 
-    <div class="player-section">
+    <div class="player-section" id="player-section">
       <div class="current-music">
           <img src="images/好不容易.jpg" alt="好不容易">
           <div class="current-music-info">
@@ -231,13 +231,19 @@
           </div>
 
           <div class="player-controls-progresses">
-            <span id="current-time">00:00</span>
-            <input id="progress" type="range" min="0" max="100" step="0.01" value="0">
-            <span id="total-time">00:00</span>
-            <img src="images/music-player-controls/volume.png" alt="volume">
-            <input id="volume" type="range" min="0" max="1" step="0.01" value="1">
-        </div>
+              <span id="current-time">00:00</span>
+              <input id="progress" type="range" min="0" max="100" step="0.01" value="0">
+              <span id="total-time">00:00</span>
+              <img src="images/music-player-controls/volume.png" alt="volume">
+              <input id="volume" type="range" min="0" max="1" step="0.01" value="1">
+          </div>
       </div>
+  </div>
+
+  <div class="player-less-than-1250px">
+      <botton id="show-player">
+          <img src="images/music-player-controls/show-player.png" alt="show-player">
+      </botton>
   </div>
   
   <script src="js/loading.js"></script>
