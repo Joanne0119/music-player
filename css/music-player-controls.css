@@ -18,7 +18,7 @@
     position: fixed;
     bottom: 2%;
     right: 8rem;
-    z-index: 998;
+    z-index: 199;
     background-color: rgb(119, 119, 119);
     border-radius: 2rem;
 }
@@ -32,7 +32,7 @@
     .player-section {
         display: none;
         width: 350px;
-        z-index: 997;
+        z-index: 198;
     }
 
     .toShow-player-section {
