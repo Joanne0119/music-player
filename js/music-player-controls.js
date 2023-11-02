@@ -33,6 +33,11 @@ else {
     audio.load();
 }
 
+if(localStorage.getItem("audioVolume") !== null) {
+    audio.volume = parseFloat(localStorage.getItem("audioVolume"));
+    volume.value = parseFloat(localStorage.getItem("audioVolume"));
+}
+
 function UpdateCurrentMusic(musicID) {
     console.log(currentPlaying);
     if(musicID < 0 || musicID >= songsLibrary.length) {
@@ -106,6 +111,7 @@ progress.addEventListener('input', () => {
 
 volume.addEventListener('input', () => {
     audio.volume = volume.value;
+    localStorage.setItem("audioVolume", volume.value);
 });
 
 function PlayPrevSongs() {
