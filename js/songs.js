@@ -60,7 +60,7 @@ export const songsLibrary = [
     image: "images/cruel summer.jpg",
     title: "Cruel Summer",
     singer: "Taylor Swfit",
-    audio: "audio/cruel summer.mp3",
+    audio: "audio/Cruel Summer.mp3",
     totalTime: "02:59",
     added: true
   },{
@@ -68,7 +68,7 @@ export const songsLibrary = [
     image: "images/one of your girls.jpg",
     title: "One of Your Girls",
     singer: "Troye Sivan",
-    audio: "audio/one of your girls.mp3",
+    audio: "audio/One of Your Girls.mp3",
     totalTime: "03:09",
     added: true
   },{
