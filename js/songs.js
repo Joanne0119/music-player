@@ -53,5 +53,11 @@ export const songsLibrary = [
     title: "One of Your Girls",
     singer: "Troye Sivan",
     added: true
+  },{
+    id: "010",
+    image: "images/想和你看五月的晚霞.jpg",
+    title: "想和你看五月的晚霞",
+    singer: "陳華",
+    added: false
   }
 ]
