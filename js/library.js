@@ -20,8 +20,8 @@ songs.forEach((song) => {
 });
 
 let songsLibraryHTML = '';
+let libraryNumber = 1;
 songsLibrary.forEach((song) => {
-  let libraryNumber = 1;
   if(song.added) {
     songsLibraryHTML += `
     <div class="song">
@@ -37,6 +37,7 @@ songsLibrary.forEach((song) => {
   </div>
     `;
   }
+  libraryNumber++;
 });
 
 document.querySelector('.songs-container').innerHTML = songsLibraryHTML;
