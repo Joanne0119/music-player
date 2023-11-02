@@ -13,6 +13,7 @@ const showPlayerBtn = document.getElementById('show-player');
 import { songsLibrary } from "./songs.js";
 
 let currentPlaying = 0;
+let isPlaying = false;
 
 if (localStorage.getItem("audioSrc") !== null) {
     totalTime.innerHTML = localStorage.getItem("totalTime");
@@ -22,7 +23,9 @@ if (localStorage.getItem("audioSrc") !== null) {
     audio.querySelector("source").src = localStorage.getItem("audioSrc");
     audio.load();
     audio.currentTime = parseFloat(localStorage.getItem("currentTime"));
-    ToPlay();
+    if(localStorage.getItem("isPlaying") !== null && localStorage.getItem("isPlaying")) {
+        isPlaying = true;
+    }
 }
 else {
     totalTime.innerHTML = songsLibrary[currentPlaying].totalTime;
@@ -48,7 +51,7 @@ function UpdateCurrentMusic(musicID) {
     currentMusicArea.querySelector("h4").innerHTML = songsLibrary[currentPlaying].title;
     currentMusicArea.querySelector("p").innerHTML = songsLibrary[currentPlaying].singer;
     audio.querySelector("source").src = songsLibrary[currentPlaying].audio;
-    audio.load(); ToPlay();
+    audio.load(); ToPlay(); isPlaying = true;
     totalTime.innerHTML = songsLibrary[currentPlaying].totalTime;
 }
 
@@ -64,7 +67,6 @@ function UpdateTimeDisplay() {
     currentTime.innerHTML = `${currentMinutes}:${currentSeconds}`;
 }
 
-let isPlaying = false;
 function ToPlay() {
     audio.play();
     playPauseButton.innerHTML = 
@@ -79,12 +81,13 @@ function ToPause() {
 
 playPauseButton.addEventListener('click', () => {
     if (isPlaying) {
-        ToPlay();
+        ToPause();
     }
     else {
-        ToPause()
+        ToPlay();
     }
     isPlaying = !isPlaying;
+    localStorage.setItem("isPlaying", isPlaying);
 });
 
 audio.addEventListener('timeupdate', () => {
@@ -128,7 +131,7 @@ function PlayPrevSongs() {
         else cnt++;
     }
     UpdateCurrentMusic(currentPlaying);
-    ToPlay();
+    ToPlay(); isPlaying = true;
 }
 
 function PlayNextSongs() {
@@ -145,7 +148,7 @@ function PlayNextSongs() {
         else cnt++;
     }
     UpdateCurrentMusic(currentPlaying);
-    ToPlay();
+    ToPlay(); isPlaying = true;
 }
 
 prevButton.addEventListener('click', () => {
@@ -178,7 +181,7 @@ function PlayRandomSongs() {
         musicID = Math.floor(Math.random() * (songsLibrary.length));
     }
     UpdateCurrentMusic(musicID);
-    ToPlay();
+    ToPlay(); isPlaying = true;
 }
 
 showPlayerBtn.addEventListener("click", function() {
