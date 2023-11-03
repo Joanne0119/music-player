@@ -120,15 +120,15 @@
 
     </div>
 
-    <div class="player-section">
-        <div class="current-music">
+    <div class="player-section" id="player-section">
+        <div class="current-music" id="current-music">
             <img src="images/好不容易.jpg" alt="好不容易">
             <div class="current-music-info">
                 <h4 class="current-music-title">好不容易</h4>
                 <p class="current-music-text">告五人</p>
             </div>
         </div>
-
+ 
         <div class="player-controls">
             <audio id="audio">
                 <source src="audio/好不容易-告五人.mp3" type="audio/mpeg">
@@ -151,7 +151,7 @@
 
             <div class="player-controls-progresses">
                 <span id="current-time">00:00</span>
-                <input id="progress" type="range" min="0" max="100" step="0.01" value="0">
+                <input id="progress" type="range" min="0" max="100" step="0.0001" value="0">
                 <span id="total-time">00:00</span>
                 <img src="images/music-player-controls/volume.png" alt="volume">
                 <input id="volume" type="range" min="0" max="1" step="0.01" value="1">
@@ -159,10 +159,16 @@
         </div>
     </div>
 
-    <script src="js/music-player-controls.js"></script>
+    <div class="player-less-than-1250px">
+        <botton id="show-player">
+            <img src="images/Coffee beans white.png" alt="show-player">
+        </botton>
+    </div>
+
+    <script type="module" src="js/music-player-controls.js"></script>
     <script src="js/loading.js"></script>
     <script src="js/navbar.js"></script>
     <script src="js/cards.js"></script>
-    <script src="js/search.js"></script>
+    <script type="module" src="js/search.js"></script>
 </body>
 </html>

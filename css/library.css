@@ -24,6 +24,12 @@ body {
   overflow: hidden;
 }
 
+@media (max-width: 1250px) {
+  .library-section {
+    width: 100%;
+  }
+}
+
 .library-section h1 {
   color: #eee;
   font-size: 5rem;

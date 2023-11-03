@@ -13,6 +13,37 @@
     border-radius: 2rem;
 }
 
+.player-less-than-1250px {
+    display: none;
+    position: fixed;
+    bottom: 2%;
+    right: 8rem;
+    z-index: 199;
+    background-color: rgb(119, 119, 119);
+    border-radius: 2rem;
+}
+
+.player-less-than-1250px img {
+    width: 10rem;
+}
+
+@media (max-width: 1250px) {
+
+    .player-section {
+        display: none;
+        width: 350px;
+        z-index: 198;
+    }
+
+    .toShow-player-section {
+        display: flex;
+    }
+
+    .player-less-than-1250px {
+        display: block;
+    }
+}
+
 .current-music {
     width: 100%;
     background-color: #555;
@@ -68,6 +99,7 @@
 }
 
 .player-controls-bottons #shuffle {
+    width: 5%;
     position: absolute;
     left: 3rem;
 }

@@ -36,6 +36,13 @@ main {
   padding-left: 5rem;
 }
 
+@media (max-width: 1250px) {
+  main {
+    width: 100%;
+    padding-right: 5rem;
+  }
+}
+
 .carousel {
   width: 100%;
   overflow: hidden;
