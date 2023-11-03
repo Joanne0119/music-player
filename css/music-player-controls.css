@@ -23,6 +23,10 @@
     border-radius: 2rem;
 }
 
+.player-less-than-1250px #show-player:hover {
+    cursor: pointer;
+}
+
 .player-less-than-1250px img {
     width: 10rem;
 }
