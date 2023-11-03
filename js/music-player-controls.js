@@ -153,6 +153,7 @@ function PlayNextSongs() {
     }
     let cnt = 1;
     while((currentPlaying+cnt) < songsLibrary.length) {
+        console.log(currentPlaying);
         if (songsLibrary[currentPlaying+cnt].added) {
             currentPlaying += cnt;
             break;
