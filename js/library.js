@@ -21,27 +21,62 @@ function addSongHoverEvent(){
   });
 }
 
-let songsLibraryHTML = '';
-let libraryNumber = 1;
-songsLibrary.forEach((song) => {
-  if(song.added) {
-    songsLibraryHTML += `
-    <div class="song">
-    <div class="song-main-info">
-      <div class="number">${libraryNumber}.</div>
-      <img src="${song.image}" alt="${song.title}" class="cover-img">
-      <div class="song-info">
-        <h4 class="title">${song.title}</h4>
-        <p class="singer">${song.singer}</p>
+let libraryNumber;
+let songsLibraryHTML;
+function renderLibrary() {
+  let songsContainer = document.querySelector('.songs-container');
+  songsContainer.innerHTML = '';
+  songsLibraryHTML = '';
+  libraryNumber = 1;
+  songsLibrary.forEach((song) => {
+    if(song.added) {
+      songsLibraryHTML += `
+      <div class="song">
+      <div class="song-main-info">
+        <div class="number">${libraryNumber}.</div>
+        <img src="${song.image}" alt="${song.title}" class="cover-img">
+        <div class="song-info">
+          <h4 class="title">${song.title}</h4>
+          <p class="singer">${song.singer}</p>
+        </div>
       </div>
+      <i class="fa-solid fa-plus delete-btn" id="id${song.id}"></i>
     </div>
-    <i class="fa-solid fa-plus"></i>
-  </div>
-    `;
-  }
-  libraryNumber++;
-});
+      `;
+      libraryNumber++;
+    }
+  });
+  
+  songsContainer.innerHTML = songsLibraryHTML;  
+  addSongHoverEvent();
+  addEventToDeleteButton();
+  console.log(songsLibraryHTML);
+  console.log(songsLibrary)
+}
 
-document.querySelector('.songs-container').innerHTML = songsLibraryHTML;
+function deleteSong(delBtnId) {
+  songsLibrary.forEach((song) => {
+    if(delBtnId === `id${song.id}`){
+      song.added = false;
+      console.log(song);
+    }
+    renderLibrary();
+  })
+  console.log('delete!');
+}
 
-addSongHoverEvent();
+renderLibrary();
+
+function addEventToDeleteButton() {
+  const delBtns = document.querySelectorAll('.delete-btn');
+  console.log(delBtns)
+  
+  delBtns.forEach((delBtn) => {
+    delBtn.addEventListener('click', () => {
+      const delBtnId = String(delBtn.id);
+      console.log(delBtnId);
+      deleteSong(delBtnId);
+    })
+  })
+}
+
