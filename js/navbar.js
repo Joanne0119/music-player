@@ -1,5 +1,7 @@
 const navbar = document.querySelector('nav');
 const logoImg = document.querySelector('.logo-img');
+const toggleButton = document.getElementsByClassName('toggle-button')[0];
+const navbarLinks = document.getElementsByClassName('navbar-links')[0];
 
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('sticky', window.scrollY > 0);
@@ -11,3 +13,7 @@ window.addEventListener('scroll', () => {
   }
   
 })
+
+toggleButton.addEventListener('click', () => {
+  navbarLinks.classList.toggle('active')
+});
