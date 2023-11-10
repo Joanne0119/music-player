@@ -74,19 +74,6 @@ nav.sticky a.brand-title:hover, nav.sticky div ul .nav-item a:hover  {
   font-weight: bold;
 }
 
-.navbar-toggler-icon {
-  color: #eee;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: -60vw;
-  font-size: 1.4rem;
-}
-
-nav.sticky .navbar-toggler-icon {
-  color: #333;
-}
-
 
 .toggle-button {
   position: absolute;
@@ -99,11 +86,20 @@ nav.sticky .navbar-toggler-icon {
   height: 21px;
 }
 
+.toggle-button:hover {
+  color: #e0e0e0;
+  transform: scale(110%);
+}
+
 .toggle-button .bar {
-  height: 3px;
+  height: 0.3rem;
   width: 100%;
-  background-color: white;
-  border-radius: 10px;
+  background-color: #eeee;
+  border-radius: 1rem;
+}
+
+nav.sticky .toggle-button .bar {
+  background-color: #333
 }
 
 @media (max-width: 800px) {
