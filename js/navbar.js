@@ -15,5 +15,5 @@ window.addEventListener('scroll', () => {
 })
 
 toggleButton.addEventListener('click', () => {
-  navbarLinks.classList.toggle('active')
+  navbarLinks.classList.toggle('active');
 });

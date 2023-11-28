@@ -110,6 +110,7 @@ nav.sticky .toggle-button .bar {
 
   .toggle-button {
       display: flex;
+      padding: 0.2rem 0.5rem;
   }
 
   .navbar-links {
