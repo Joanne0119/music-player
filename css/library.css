@@ -12,8 +12,8 @@ html {
 
 body {
   background-color: #333 !important;
-  padding: 1.2rem;
-  overflow: hidden;
+  padding: 1.2rem 1.2rem 0 1.2rem;
+  /* overflow: hidden; */
 }
 
 .library-section {
