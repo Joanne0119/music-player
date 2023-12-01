@@ -28,6 +28,18 @@
   position: relative;
 }
 
+.card-title {
+  overflow: hidden;
+  white-space: nowrap; 
+  text-overflow: ellipsis; 
+}
+
+.card-text {
+  overflow: hidden;
+  white-space: nowrap; 
+  text-overflow: ellipsis;
+}
+
 .card:hover {
   cursor: pointer;
 }
