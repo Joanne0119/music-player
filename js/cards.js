@@ -1,3 +1,5 @@
+import { songsLibrary } from "./songs.js";
+
 function AddEventToCard() {
   const cards = document.querySelectorAll('.card');
   cards.forEach((card) => {
@@ -28,9 +30,10 @@ function cardScroll(){
     const rightBtn = cardSection.querySelector('.right-btn');
     const cardsWidth = Number(cards.scrollWidth);
     const cardsSectionWidth = Number(cardSection.offsetWidth);
-    const cardWidth = Number(card[0].offsetWidth);
+    const cardWidth = (card.length > 0)?(Number(card[0].offsetWidth)) : 0;
     console.log(cardsWidth);
     console.log(cardsSectionWidth);
+    console.log(cardWidth);
     console.log(rightBtn);
     if(cardsWidth >= (cardsSectionWidth + 5)) {
       rightBtn.classList.remove('display-none');
@@ -52,6 +55,41 @@ function cardScroll(){
   });
 }
 
+let cardsHTML;
+const typeArr = ['mandopop', 'englishpop'];
+
+function cardRender()
+{
+  let cardsContainer = document.querySelectorAll('.cards');
+  let i = 0;
+  cardsContainer.forEach((cardContainer) => {
+    cardContainer.innerHTML = '';
+    cardContainer.innerHTML = genCardHTML(typeArr[i]);
+    console.log(typeArr[i]);
+    i++;
+  })
+}
+
+function genCardHTML(type){
+  cardsHTML = '';
+  songsLibrary.forEach((song) => {
+    if(song.type === type){
+      cardsHTML += 
+      `<div class="card border-0 p-3">
+        <img class="card-image rounded" src="${song.image}" alt="${song.title}">
+        <i class="fa-solid fa-plus"></i>
+        <i class="fa-solid fa-play"></i>
+        <div class="card-body">
+          <h4 class="card-title text-light song-title">${song.title}</h4>
+          <p class="card-text text-light singer">${song.singer}</p>
+        </div>
+      </div>`
+    }
+  })
+  return cardsHTML;
+}
+
+cardRender();
 cardScroll();
 window.onresize = cardScroll;
 AddEventToCard();

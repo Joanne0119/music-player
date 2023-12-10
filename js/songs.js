@@ -24,7 +24,7 @@ export const songsLibrary = [
     singer: "POPO J",
     audio: "audio/LMF-POPO J.mp3",
     totalTime: "02:53",
-    type: "englishopop",
+    type: "englishpop",
     added: true
   },{
     id: "004",
@@ -69,7 +69,7 @@ export const songsLibrary = [
     singer: "Taylor Swfit",
     audio: "audio/Cruel Summer.mp3",
     totalTime: "02:59",
-    type: "englishopop",
+    type: "englishpop",
     added: true
   },{
     id: "009",
@@ -78,7 +78,7 @@ export const songsLibrary = [
     singer: "Troye Sivan",
     audio: "audio/One of Your Girls.mp3",
     totalTime: "03:09",
-    type: "englishopop",
+    type: "englishpop",
     added: true
   },{
     id: "010",
