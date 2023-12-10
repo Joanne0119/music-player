@@ -25,7 +25,7 @@ function cardScroll(){
 
   cardsSection.forEach((cardSection) => {
     const cards = cardSection.querySelector('.cards');
-    const card = cards.querySelectorAll('.card') || '';
+    const card = cards.querySelectorAll('.card');
     const leftBtn = cardSection.querySelector('.left-btn');
     const rightBtn = cardSection.querySelector('.right-btn');
     const cardsWidth = Number(cards.scrollWidth);
