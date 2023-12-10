@@ -20,11 +20,12 @@ export function AddEventToCard() {
   })
 }
 
-function cardScroll(){
+export function cardScroll(){
   const cardsSection = document.querySelectorAll('.cards-section');
-
+  console.log(cardsSection.length);
   cardsSection.forEach((cardSection) => {
     const cards = cardSection.querySelector('.cards');
+    if(!cards) return;
     const card = cards.querySelectorAll('.card');
     const leftBtn = cardSection.querySelector('.left-btn');
     const rightBtn = cardSection.querySelector('.right-btn');

@@ -1,9 +1,9 @@
 const searchInput = document.getElementById('search-input');
-const searchResults = document.getElementById('search-results');
 const resultsList = document.getElementById('results-list');
 const noResult = document.getElementById('no-result');
 import { songsLibrary } from "./songs.js";
 import { AddEventToCard } from "./cards.js";
+import { cardScroll } from "./cards.js";
 
 function MarkSearchTerm(string, target) {
 
@@ -23,14 +23,13 @@ function MarkSearchTerm(string, target) {
 searchInput.addEventListener('input', function () {
 
     const searchTerm = searchInput.value.toLowerCase();
-
     resultsList.innerHTML = '';
     const filteredResults = songsLibrary.filter(item =>
         item.title.toLocaleLowerCase().includes(searchTerm) || item.singer.toLocaleLowerCase().includes(searchTerm)
     );
 
     if (filteredResults.length > 0 && filteredResults.length != songsLibrary.length) {
-        searchResults.style.display = "block";
+        resultsList.classList.add("cards");
         filteredResults.forEach(result => {
             const htmlString = `
                 <div class="card border-0 p-3" >
@@ -44,11 +43,13 @@ searchInput.addEventListener('input', function () {
                 </div>
             `;
             resultsList.innerHTML += htmlString;
-            AddEventToCard();
         });
         noResult.style.display = "none";
+        AddEventToCard();
+        cardScroll();
     } 
     else {
+        resultsList.classList.remove("cards");
         noResult.style.display = "block";
     }
 });
