@@ -89,5 +89,50 @@ export const songsLibrary = [
     totalTime: "03:53",
     type: "mandopop",
     added: false
+  },{
+    id: "011",
+    image: "images/嘉宾_张远.jpg",
+    title: "嘉宾",
+    singer: "张远",
+    audio: "audio/張遠-嘉賓.mp3",
+    totalTime: "05:33",
+    type: "mandopop",
+    added: false
+  },{
+    id: "012",
+    image: "images/終究還是因為愛.jpg",
+    title: "終究還是因為愛",
+    singer: "TRASH",
+    audio: "audio/終究還是因為愛-TRASH.mp3",
+    totalTime: "04:45",
+    type: "mandopop",
+    added: false
+  },{
+    id: "013",
+    image: "images/I Like me better.jpg",
+    title: "I Like Me Better",
+    singer: "Lauv",
+    audio: "audio/I Like Me Better-Lauv.mp3",
+    totalTime: "03:17",
+    type: "englishpop",
+    added: false
+  },{
+    id: "014",
+    image: "images/too much.webp",
+    title: "TOO MUCH",
+    singer: "The Kid LAROI, Jung Kook, Central Cee",
+    audio: "audio/TOO MUCH.mp3",
+    totalTime: "03:22",
+    type: "englishpop",
+    added: false
+  },{
+    id: "014",
+    image: "images/First person shooter.webp",
+    title: "First Person Shooter",
+    singer: "Drake ft. J. Cole",
+    audio: "audio/First Person Shooter.mp3",
+    totalTime: "04:07",
+    type: "englishpop",
+    added: false
   }
 ]
