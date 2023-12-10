@@ -3,6 +3,7 @@ const searchResults = document.getElementById('search-results');
 const resultsList = document.getElementById('results-list');
 const noResult = document.getElementById('no-result');
 import { songsLibrary } from "./songs.js";
+import { AddEventToCard } from "./cards.js";
 
 function MarkSearchTerm(string, target) {
 

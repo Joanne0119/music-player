@@ -1,6 +1,6 @@
 import { songsLibrary } from "./songs.js";
 
-function AddEventToCard() {
+export function AddEventToCard() {
   const cards = document.querySelectorAll('.card');
   cards.forEach((card) => {
     const playIcons = card.querySelectorAll('i');
