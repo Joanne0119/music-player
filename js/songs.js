@@ -1,4 +1,4 @@
-export const songsLibrary = [
+export const songsLibrary =  JSON.parse(localStorage.getItem('songsLibrary')) || [
   {
     id: "001",
     image: "images/披星戴月的想你.jpg",
