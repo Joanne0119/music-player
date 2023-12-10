@@ -63,6 +63,8 @@ function deleteSong(delBtnId) {
     renderLibrary();
   })
   console.log('delete!');
+  localStorage.setItem('songsLibrary', JSON.stringify(songsLibrary));
+  console.log(songsLibrary);
 }
 
 renderLibrary();
