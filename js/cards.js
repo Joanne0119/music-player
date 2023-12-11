@@ -45,13 +45,25 @@ export function cardScroll(){
       rightBtn.classList.add('display-none');
     }
     let totAdded = 0
+    let spaceToScroll = cards.scrollWidth - cards.offsetWidth;
+    console.log("spaceToScroll: ", spaceToScroll);
     rightBtn.addEventListener('click', () => {
+      console.log(cardWidth);
       totAdded -= cardWidth;
       cards.style.transform = `translateX(${totAdded}px)`;
+      if((totAdded)*-1 > spaceToScroll + cardWidth)  {
+        setTimeout(()=>{cards.style.transform = `translateX(0px)`;}, 300);
+        totAdded = 0;
+      }
     });
     leftBtn.addEventListener('click', () => {
+      console.log(cardWidth);
       totAdded += cardWidth;
       cards.style.transform = `translateX(${totAdded}px)`;
+      if(totAdded > 0)  {
+        setTimeout(()=>{cards.style.transform = `translateX(0px)`;}, 300);
+        totAdded = 0;
+      }
     })
   });
 }
