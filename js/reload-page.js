@@ -1,7 +1,7 @@
-const reloadContent = document.getElementById('reload-content');
-const navHome = document.getElementById('nav-home');
-const navLibrary = document.getElementById('nav-library');
-const navSearch = document.getElementById('nav-search');
+const reloadContent = document.querySelector('#reload-content');
+const navHome = document.querySelector('.nav-home');
+const navLibrary = document.querySelector('.nav-library');
+const navSearch = document.querySelector('.nav-search');
 
 import { AddEventToCard } from "./cards.js";
 import { cardScroll } from "./cards.js";
@@ -120,15 +120,10 @@ const searchHtml = `
 
 navHome.addEventListener('click', () => {
     reloadContent.innerHTML = homeHtml;
-    if(!navHome.classList.contains("active")) {
-        navHome.classList.add("active");
-    }
-    if(navLibrary.classList.contains("active")) {
-        navHome.classList.remove("active");
-    }
-    if(navSearch.classList.contains("active")) {
-        navHome.classList.remove("active");
-    }
+    navHome.classList.remove("active");
+    navLibrary.classList.remove("active");
+    navSearch.classList.remove("active");
+    navHome.classList.add("active");
     cardRender();
     cardScroll();
     AddEventToCard();
@@ -136,29 +131,19 @@ navHome.addEventListener('click', () => {
 
 navLibrary.addEventListener('click', () => {
     reloadContent.innerHTML = libraryHtml;
-    if(navHome.classList.contains("active")) {
-        navHome.classList.remove("active");
-    }
-    if(!navLibrary.classList.contains("active")) {
-        navHome.classList.add("active");
-    }
-    if(navSearch.classList.contains("active")) {
-        navHome.classList.remove("active");
-    }
+    navHome.classList.remove("active");
+    navLibrary.classList.remove("active");
+    navSearch.classList.remove("active");
+    navLibrary.classList.add("active");
     renderLibrary();
 });
 
 navSearch.addEventListener('click', () => {
     reloadContent.innerHTML = searchHtml;
-    if(navHome.classList.contains("active")) {
-        navHome.classList.remove("active");
-    }
-    if(navLibrary.classList.contains("active")) {
-        navHome.classList.remove("active");
-    }
-    if(!navSearch.classList.contains("active")) {
-        navHome.classList.add("active");
-    }
+    navHome.classList.remove("active");
+    navLibrary.classList.remove("active");
+    navSearch.classList.remove("active");
+    navSearch.classList.add("active");
     cardRender();
     cardScroll();
     AddEventToCard();
