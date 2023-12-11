@@ -18,7 +18,7 @@ function MarkSearchTerm(string, target) {
     }
 }
 
-function activateSearch() {
+export function activateSearch() {
     const searchInput = document.getElementById('search-input');
     const resultsList = document.getElementById('results-list');
     const noResult = document.getElementById('no-result');
@@ -61,4 +61,3 @@ function activateSearch() {
     });
 }
 
-activateSearch();

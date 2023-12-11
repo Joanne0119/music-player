@@ -59,7 +59,7 @@ export function cardScroll(){
 let cardsHTML;
 const typeArr = ['mandopop', 'englishpop'];
 
-function cardRender()
+export function cardRender()
 {
   let cardsContainer = document.querySelectorAll('.cards');
   let i = 0;

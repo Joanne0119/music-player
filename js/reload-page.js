@@ -1,4 +1,13 @@
 const reloadContent = document.getElementById('reload-content');
+const navHome = document.getElementById('nav-home');
+const navLibrary = document.getElementById('nav-library');
+const navSearch = document.getElementById('nav-search');
+
+import { AddEventToCard } from "./cards.js";
+import { cardScroll } from "./cards.js";
+import { cardRender } from "./cards.js";
+import { renderLibrary } from "./library.js";
+import { activateSearch } from "./search.js";
 
 const libraryHtml = `
     <div class="library-section">
@@ -108,4 +117,53 @@ const searchHtml = `
         </div>
     </div>
 `;
+
+navHome.addEventListener('click', () => {
+    reloadContent.innerHTML = homeHtml;
+    if(!navHome.classList.contains("active")) {
+        navHome.classList.add("active");
+    }
+    if(navLibrary.classList.contains("active")) {
+        navHome.classList.remove("active");
+    }
+    if(navSearch.classList.contains("active")) {
+        navHome.classList.remove("active");
+    }
+    cardRender();
+    cardScroll();
+    AddEventToCard();
+});
+
+navLibrary.addEventListener('click', () => {
+    reloadContent.innerHTML = libraryHtml;
+    if(navHome.classList.contains("active")) {
+        navHome.classList.remove("active");
+    }
+    if(!navLibrary.classList.contains("active")) {
+        navHome.classList.add("active");
+    }
+    if(navSearch.classList.contains("active")) {
+        navHome.classList.remove("active");
+    }
+    renderLibrary();
+});
+
+navSearch.addEventListener('click', () => {
+    reloadContent.innerHTML = searchHtml;
+    if(navHome.classList.contains("active")) {
+        navHome.classList.remove("active");
+    }
+    if(navLibrary.classList.contains("active")) {
+        navHome.classList.remove("active");
+    }
+    if(!navSearch.classList.contains("active")) {
+        navHome.classList.add("active");
+    }
+    cardRender();
+    cardScroll();
+    AddEventToCard();
+    activateSearch();
+});
+
+
 

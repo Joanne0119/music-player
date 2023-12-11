@@ -23,7 +23,7 @@ function addSongHoverEvent(){
 
 let libraryNumber;
 let songsLibraryHTML;
-function renderLibrary() {
+export function renderLibrary() {
   let songsContainer = document.querySelector('.songs-container');
   songsContainer.innerHTML = '';
   songsLibraryHTML = '';
@@ -67,7 +67,7 @@ function deleteSong(delBtnId) {
   console.log(songsLibrary);
 }
 
-renderLibrary();
+
 
 function addEventToDeleteButton() {
   const delBtns = document.querySelectorAll('.delete-btn');
