@@ -19,7 +19,7 @@ link.addEventListener('click', () => {
   if(!SignUpOrNot){ //Sign up
     usernameBox.classList.remove('username-not-show');
     usernameBox.innerHTML = `
-      <input class="js-username-input" type="text" placeholder="使用者名稱" required>
+      <input class="js-username-input" type="text" placeholder="請輸入您的使用者名稱" required>
       <i class="fa-solid fa-user"></i>
     `
     rememberForgot.classList.add('not-show');
@@ -34,7 +34,7 @@ link.addEventListener('click', () => {
     usernameBox.classList.add('username-not-show');
     rememberForgot.classList.remove('not-show');
     usernameBox.innerHTML = `
-      <input class="js-username-input" type="text" placeholder="使用者名稱">
+      <input class="js-username-input" type="text" placeholder="請輸入您的使用者名稱">
       <i class="fa-solid fa-user"></i>
     `
     formTitle.innerHTML = `登入`;

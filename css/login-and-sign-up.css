@@ -29,26 +29,26 @@ body{
     background-color: #333;
 }
 .wrapper {
-    width: 420px;
+    width: 42rem;
     background: #555;
     border:none ;
     box-shadow: 0 0 0.8rem rgba(0,0,0,0.5);
-    box-shadow: 0 0 10px rgba(0 , 0 , 0 , .2);
+    box-shadow: 0 0 1rem rgba(0 , 0 , 0 , 0.2);
     color: #fff;
-    border-radius: 10px;
-    padding: 30px 40px;
+    border-radius: 1rem;
+    padding: 3rem 4rem;
     z-index: 50;
     transition-duration: 0.5s;
 }
 .wrapper h1{
-    font-size: 36px;
+    font-size: 3.6rem;
     text-align: center;
 }
 .wrapper .input-box {
     position: relative;
     width: 100%;
-    height: 50px;
-    margin: 30px 0;
+    height: 5rem;
+    margin: 3rem 0;
 }
 
 form {
@@ -72,28 +72,29 @@ form {
     background: transparent;
     border: none;
     outline: none;
-    border: 2px solid #888;
-    border-radius: 40px;
-    font-size: 16px;
+    border: 0.2rem solid #cecece;
+    border-radius: 4rem;
+    font-size: 1.6rem;
     color: #fff;
-    padding: 20px 45px 20px 20px;
+    padding: 2rem 4.5rem 2rem 2rem;
 }
 .input-box input::placeholder{
-    color: #fff;
+    color: #999;
+    font-size: 1.5rem;
 }
 .input-box i{
     position: absolute;
-    right: 20px;
+    right: 2rem;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 20px;
+    font-size: 2rem;
 
 }
 .wrapper .remember-forgot{
     display: flex;
     justify-content: space-between;
-    font-size: 14.5px;
-    margin: -15px 0 15px;
+    font-size: 1.45rem;
+    margin: -1.5rem 0 1.5rem;
     opacity: 1;
     position: relative;
     transform: scaleY(100%);
@@ -101,7 +102,7 @@ form {
 }
 .remember-forgot label input{
     accent-color: #fff;
-    margin-right: 3px;
+    margin-right: 0.3rem;
 }
 .remember-forgot label:hover{
     cursor: pointer;
@@ -116,21 +117,21 @@ form {
 }
 .wrapper .summit-btn{
     width: 100%;
-    height: 45px;
-    border-radius: 40px;
+    height: 4.5rem;
+    border-radius: 4rem;
     border: none;
     outline: none;
     background: #fff;
-    box-shadow: 0 0 10px rgba(0 , 0 , 0 , .1);
+    box-shadow: 0 0 10px rgba(0 , 0 , 0 , 0.1);
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1.6rem;
     color: #333;
     font-weight: 600;
 }
 .wrapper .register-link{
    text-align: center;
-    font-size: 14.5px;
-    margin:20px 0 15px;
+    font-size: 1.45rem;
+    margin:2rem 0 1.5rem;
 }
 .register-link p .link{
     color: #fff;
@@ -166,8 +167,8 @@ form {
     position: relative;
     transform: scaleY(100%);
     width: 100%;
-    height: 50px;
-    margin: 30px 0;
+    height: 5rem;
+    margin: 3rem 0;
     opacity: 1;
     transition-duration: 0.5s;
 }
