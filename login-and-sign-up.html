@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/login-and-sign-up.css">
+  <link rel="stylesheet" href="css/loading.css">
+
+  <!-- Font Awesome CDN -->
+  <script src="https://kit.fontawesome.com/2d437fa4ad.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- loading-container -->
+  <div class="loading-container"></div>
+  <!-- navbar -->
+  <nav class="navbar">
+    <a class="brand-title" href="index.html"><img class="logo-img" src="images/Coffee beans white.png" alt="Coffee beans"> Wayne Music</a>
+    <a href="#" class="toggle-button">
+      <span class="bar b1"></span>
+      <span class="bar b2"></span>
+      <span class="bar b3"></span>
+    </a>
+    <div class="navbar-links">
+      <ul>
+        <li class="nav-item">
+          <a class="nav-link active" href="index.html">首頁</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="library.html">播放清單</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="search.html">搜尋</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- login  -->
+  <div class="wrapper">
+    <form action="">
+        <div class="title-section">
+          <img src="images/Coffee beans white.png">
+          <h1 class="form-title">登入</h1>
+        </div>
+        <div class="input-box username-box username-not-show">
+          <input class="js-username-input" type="text" placeholder="使用者名稱" required>
+          <i class="fa-solid fa-user"></i>
+        </div>
+        <div class="input-box email-box">
+            <input class="js-email-input" type="email" placeholder="電子郵件" required>
+            <i class="fa-solid fa-envelope"></i>
+        </div>
+        <div class="input-box password-box">
+            <input class="js-password-input" type="password" placeholder="密碼" required>
+            <i class="fa-solid fa-lock"></i>
+        </div>
+        <div class="remember-forgot">
+            <label><input type="checkbox">記住我
+            </label>
+            <a href="#">忘記密碼?</a>
+        </div>
+        <button type="submit" class="summit-btn">Login</button>
+        <div class="register-link">
+            <p><span class="question-text">還沒有帳號? </span><span class="link">註冊</span></p>
+        </div>
+    </form>
+  </div>
+  <script src="js/navbar.js"></script>
+  <script src="js/loading.js"></script>
+  <script src="js/login-and-sign-up.js"></script>
+</body>
+</html>
