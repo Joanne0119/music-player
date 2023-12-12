@@ -51,9 +51,9 @@ export function cardScroll(){
       console.log(cardWidth);
       totAdded -= cardWidth;
       cards.style.transform = `translateX(${totAdded}px)`;
-      if((totAdded)*-1 > spaceToScroll + cardWidth)  {
-        setTimeout(()=>{cards.style.transform = `translateX(0px)`;}, 300);
-        totAdded = 0;
+      if((totAdded)*-1 >= spaceToScroll)  {
+        setTimeout(()=>{cards.style.transform = `translateX(${spaceToScroll*-1}px)`;}, 200);
+        totAdded = spaceToScroll*-1;
       }
     });
     leftBtn.addEventListener('click', () => {
@@ -61,7 +61,7 @@ export function cardScroll(){
       totAdded += cardWidth;
       cards.style.transform = `translateX(${totAdded}px)`;
       if(totAdded > 0)  {
-        setTimeout(()=>{cards.style.transform = `translateX(0px)`;}, 300);
+        setTimeout(()=>{cards.style.transform = `translateX(0px)`;}, 150);
         totAdded = 0;
       }
     })
