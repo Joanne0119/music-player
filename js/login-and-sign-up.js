@@ -26,6 +26,7 @@ const rememberForgot = document.querySelector('.remember-forgot');
 
 let SignUpOrNot = false; 
 let username = '';
+let usersRef = db.collection('users');;
 
 function loginSummit(){
   console.log('login summit');
@@ -45,7 +46,7 @@ function loginSummit(){
 function signUpSummit(){
   console.log('sign up summit');
   auth.createUserWithEmailAndPassword(emailInput.value, passwordInput.value)
-    .then((res) => {
+    .then((res, user) => {
       console.log(res);
       console.log(emailInput.value + ' ' + passwordInput.value);
       username = usernameInput.value;
@@ -54,6 +55,15 @@ function signUpSummit(){
         SignUpAndLoginPageSwitch();
         passwordInput.value = '';
       }, 1500);
+
+      //create user database
+      user = res.user;
+      usersRef.add({
+        uid: user.uid,
+        name: username,
+        email: user.email,
+        playlist: []
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -113,8 +123,22 @@ function summitBtnFun(){
   }
 }
 
+
 auth.onAuthStateChanged((user) => {
-  
+  if(user){
+    console.log(user);
+
+    //query and update
+    usersRef.where('uid', '==', user.uid).onSnapshot(querySnapshot => {
+      console.log(querySnapshot.docs);
+      querySnapshot.forEach(doc => {
+        console.log(doc.data().name, doc.data().uid);
+      });
+    })
+
+  }else{
+    console.log('not log in...');
+  }
 });
 
 summitBtn.addEventListener('click', () => {
