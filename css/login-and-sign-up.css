@@ -25,8 +25,10 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background-color: #333;
+    background-color: #333 !important;
+    padding: 1.2rem;
+    width: 100%;
+    height: 100%;
 }
 .wrapper {
     width: 42rem;
@@ -49,6 +51,7 @@ body{
     width: 100%;
     height: 5rem;
     margin: 3rem 0;
+    transform: translateX(0);
 }
 
 form {
@@ -77,6 +80,7 @@ form {
     font-size: 1.6rem;
     color: #fff;
     padding: 2rem 4.5rem 2rem 2rem;
+    letter-spacing: 0.1rem;
 }
 .input-box input::placeholder{
     color: #999;
@@ -114,6 +118,7 @@ form {
 }
 .remember-forgot a:hover{
     text-decoration: underline;
+    color: #fff;
 }
 .wrapper .summit-btn{
     width: 100%;
@@ -122,11 +127,18 @@ form {
     border: none;
     outline: none;
     background: #fff;
-    box-shadow: 0 0 10px rgba(0 , 0 , 0 , 0.1);
+    border: 0.2rem solid #fff;
+    box-shadow: 0 0 1rem rgba(0 , 0 , 0 , 0.1);
     cursor: pointer;
     font-size: 1.6rem;
     color: #333;
     font-weight: 600;
+    transition-duration: 0.5s;
+}
+.wrapper .summit-btn:hover{
+    color: #fff;
+    background-color: #333;
+    border: 0.2rem solid #cecece;
 }
 .wrapper .register-link{
    text-align: center;
@@ -171,4 +183,26 @@ form {
     margin: 3rem 0;
     opacity: 1;
     transition-duration: 0.5s;
+}
+
+.wrapper form div.input-box.incorrect {
+    animation: wrong-wiggle 100ms ease-in-out infinite;
+}
+
+@keyframes wrong-wiggle {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(0.8rem);
+    }
+    50% {
+        transform: translateX(0);
+    }
+    75% {
+        transform: translateX(-0.8rem);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }
