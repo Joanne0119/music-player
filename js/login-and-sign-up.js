@@ -25,7 +25,7 @@ const link = document.querySelector('.link');
 const rememberForgot = document.querySelector('.remember-forgot');
 
 let SignUpOrNot = false; 
-const username = '';
+let username = '';
 
 function loginSummit(){
   console.log('login summit');
@@ -50,10 +50,15 @@ function signUpSummit(){
       console.log(emailInput.value + ' ' + passwordInput.value);
       username = usernameInput.value;
       console.log(username);
+      setTimeout(() => {
+        SignUpAndLoginPageSwitch();
+        passwordInput.value = '';
+      }, 1500);
     })
     .catch((err) => {
       console.log(err);
       console.log('格式錯誤');
+      incorrectPasswordOrAcount();
     })
 }
 
@@ -65,6 +70,7 @@ function incorrectPasswordOrAcount(){
   inputBox.forEach((box) => {
     box.classList.add('incorrect');
   });
+  usernameInput.value = '';
   emailInput.value = '';
   passwordInput.value = '';
   setTimeout(() => {
@@ -77,10 +83,7 @@ function incorrectPasswordOrAcount(){
 function SignUpAndLoginPageSwitch(){
   if(!SignUpOrNot){ //Sign up
     usernameBox.classList.remove('username-not-show');
-    usernameBox.innerHTML = `
-      <input class="js-username-input" type="text" placeholder="請輸入您的使用者名稱" required>
-      <i class="fa-solid fa-user"></i>
-    `
+    usernameInput.attributes.required = true;
     rememberForgot.classList.add('not-show');
     formTitle.innerHTML = `註冊`;
     summitBtn.innerHTML = `註冊`;
@@ -92,10 +95,7 @@ function SignUpAndLoginPageSwitch(){
   else { //Login
     usernameBox.classList.add('username-not-show');
     rememberForgot.classList.remove('not-show');
-    usernameBox.innerHTML = `
-      <input class="js-username-input" type="text" placeholder="請輸入您的使用者名稱">
-      <i class="fa-solid fa-user"></i>
-    `
+    usernameInput.attributes.required = false;
     formTitle.innerHTML = `登入`;
     summitBtn.innerHTML = `登入`;
     questionText.innerHTML = `還沒有帳號? `;
