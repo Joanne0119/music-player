@@ -46,23 +46,38 @@ export function cardScroll(){
     }
     let totAdded = 0
     let spaceToScroll = cards.scrollWidth - cards.offsetWidth;
+    let edgeScrollSpace = cardWidth;
     console.log("spaceToScroll: ", spaceToScroll);
     rightBtn.addEventListener('click', () => {
       console.log(cardWidth);
-      totAdded -= cardWidth;
-      cards.style.transform = `translateX(${totAdded}px)`;
-      if((totAdded)*-1 >= spaceToScroll)  {
-        setTimeout(()=>{cards.style.transform = `translateX(${spaceToScroll*-1}px)`;}, 200);
-        totAdded = spaceToScroll*-1;
+      if(totAdded == spaceToScroll*-1) {
+        cards.style.transform = `translateX(${edgeScrollSpace}px)`;
+        setTimeout(()=>{cards.style.transform = `translateX(${spaceToScroll*-1}px)`;}, 220);
+      }
+      else {
+        totAdded -= cardWidth;
+        cards.style.transform = `translateX(${totAdded}px)`;
+        if((totAdded)*-1 > spaceToScroll)  {
+          setTimeout(()=>{cards.style.transform = `translateX(${spaceToScroll*-1}px)`;}, 250);
+          edgeScrollSpace = totAdded;
+          totAdded = spaceToScroll*-1;
+        }
       }
     });
     leftBtn.addEventListener('click', () => {
       console.log(cardWidth);
-      totAdded += cardWidth;
-      cards.style.transform = `translateX(${totAdded}px)`;
-      if(totAdded > 0)  {
-        setTimeout(()=>{cards.style.transform = `translateX(0px)`;}, 150);
-        totAdded = 0;
+      if(totAdded == 0) {
+        cards.style.transform = `translateX(${edgeScrollSpace}px)`;
+        setTimeout(()=>{cards.style.transform = `translateX(0px)`;}, 220);
+      }
+      else {
+        totAdded += cardWidth;
+        cards.style.transform = `translateX(${totAdded}px)`;
+        if(totAdded > 0)  {
+          setTimeout(()=>{cards.style.transform = `translateX(0px)`;}, 250);
+          edgeScrollSpace = totAdded;
+          totAdded = 0;
+        }
       }
     })
   });
