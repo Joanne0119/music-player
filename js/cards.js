@@ -52,13 +52,13 @@ export function cardScroll(){
       console.log(cardWidth);
       if(totAdded == spaceToScroll*-1) {
         cards.style.transform = `translateX(${edgeScrollSpace}px)`;
-        setTimeout(()=>{cards.style.transform = `translateX(${spaceToScroll*-1}px)`;}, 220);
+        setTimeout(()=>{cards.style.transform = `translateX(${spaceToScroll*-1}px)`;}, 190);
       }
       else {
         totAdded -= cardWidth;
         cards.style.transform = `translateX(${totAdded}px)`;
         if((totAdded)*-1 > spaceToScroll)  {
-          setTimeout(()=>{cards.style.transform = `translateX(${spaceToScroll*-1}px)`;}, 250);
+          setTimeout(()=>{cards.style.transform = `translateX(${spaceToScroll*-1}px)`;}, 220);
           edgeScrollSpace = totAdded;
           totAdded = spaceToScroll*-1;
         }
@@ -68,13 +68,13 @@ export function cardScroll(){
       console.log(cardWidth);
       if(totAdded == 0) {
         cards.style.transform = `translateX(${edgeScrollSpace}px)`;
-        setTimeout(()=>{cards.style.transform = `translateX(0px)`;}, 220);
+        setTimeout(()=>{cards.style.transform = `translateX(0px)`;}, 190);
       }
       else {
         totAdded += cardWidth;
         cards.style.transform = `translateX(${totAdded}px)`;
         if(totAdded > 0)  {
-          setTimeout(()=>{cards.style.transform = `translateX(0px)`;}, 250);
+          setTimeout(()=>{cards.style.transform = `translateX(0px)`;}, 220);
           edgeScrollSpace = totAdded;
           totAdded = 0;
         }
