@@ -36,7 +36,7 @@ export function activateSearch() {
             resultsList.classList.add("cards");
             filteredResults.forEach(result => {
                 const htmlString = `
-                    <div class="card border-0 p-3" >
+                    <div class="card border-0 p-3" id="${result.id}">
                         <img class="card-image rounded" src="${result.image}" alt="${result.title}">
                         <i class="fa-solid fa-plus"></i>
                         <i class="fa-solid fa-play"></i>
