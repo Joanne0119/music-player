@@ -1,5 +1,6 @@
 import { songsLibrary } from "./songs.js";
-console.log(songsLibrary);
+import { removeFromSongsList } from "./db.js";
+import { songsList } from "./db.js";
 
 function addSongHoverEvent(){
   const songs = document.querySelectorAll('.song');
@@ -7,13 +8,11 @@ function addSongHoverEvent(){
     const deleteIcons = song.querySelectorAll('i');
     
     song.addEventListener('mouseenter', () => {
-      console.log('mouse Enter');
       deleteIcons.forEach((deleteIcon) => {
         deleteIcon.classList.add('toDelete');
       });
     })
     song.addEventListener('mouseleave', () => {
-      console.log('mouse Leave');
       deleteIcons.forEach((deleteIcon) => {
         deleteIcon.classList.remove('toDelete');
       });
@@ -28,55 +27,45 @@ export function renderLibrary() {
   songsContainer.innerHTML = '';
   songsLibraryHTML = '';
   libraryNumber = 1;
-  songsLibrary.forEach((song) => {
-    if(song.added) {
+  songsList.forEach((song) => {
+    
       songsLibraryHTML += `
       <div class="song">
       <div class="song-main-info">
         <div class="number">${libraryNumber}.</div>
-        <img src="${song.image}" alt="${song.title}" class="cover-img">
+        <img src="${songsLibrary[song].image}" alt="${songsLibrary[song].title}" class="cover-img">
         <div class="song-info">
-          <h4 class="title">${song.title}</h4>
-          <p class="singer">${song.singer}</p>
+          <h4 class="title">${songsLibrary[song].title}</h4>
+          <p class="singer">${songsLibrary[song].singer}</p>
         </div>
       </div>
-      <i class="fa-solid fa-plus delete-btn" id="id${song.id}"></i>
+      <i class="fa-solid fa-plus delete-btn" id="${song}"></i>
     </div>
       `;
       libraryNumber++;
-    }
+      
   });
   
   songsContainer.innerHTML = songsLibraryHTML;  
   addSongHoverEvent();
   addEventToDeleteButton();
-  console.log(songsLibraryHTML);
-  console.log(songsLibrary)
 }
 
 function deleteSong(delBtnId) {
-  songsLibrary.forEach((song) => {
-    if(delBtnId === `id${song.id}`){
-      song.added = false;
-      console.log(song);
-    }
-    renderLibrary();
-  })
-  console.log('delete!');
-  console.log(songsLibrary);
+  removeFromSongsList(delBtnId);
+  renderLibrary();
 }
 
 
 
 function addEventToDeleteButton() {
   const delBtns = document.querySelectorAll('.delete-btn');
-  console.log(delBtns)
   
   delBtns.forEach((delBtn) => {
     delBtn.addEventListener('click', () => {
-      const delBtnId = String(delBtn.id);
-      console.log(delBtnId);
+      const delBtnId = parseInt(delBtn.id);
       deleteSong(delBtnId);
+      
     })
   })
 }

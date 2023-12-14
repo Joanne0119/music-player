@@ -22,12 +22,7 @@ export function addToSongsList(id) {
 }
 
 export function removeFromSongsList(id) {
-    songsList.forEach(song => {
-        if(song == id) {
-            songsList = songsList.filter(item => item !== song);
-            return;
-        }
-    });
+    songsList = songsList.filter(item => item !== id);
     if(isLogin) {
         // db
     }
