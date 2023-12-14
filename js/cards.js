@@ -1,4 +1,5 @@
 import { songsLibrary } from "./songs.js";
+import { addToPlayerFromCard } from "./music-player-controls.js";
 
 export function AddEventToCard() {
   const cards = document.querySelectorAll('.card');
@@ -16,6 +17,11 @@ export function AddEventToCard() {
       playIcons.forEach((playIcon) => {
         playIcon.classList.remove('toPlay');
       });
+    })
+
+    const playBtn = card.querySelector(".fa-play");
+    playBtn.addEventListener('click', ()=>{
+      addToPlayerFromCard(card.id);
     })
   })
 }
@@ -100,7 +106,7 @@ function genCardHTML(type){
   songsLibrary.forEach((song) => {
     if(song.type === type){
       cardsHTML += 
-      `<div class="card border-0 p-3">
+      `<div class="card border-0 p-3" id="${song.id}">
         <img class="card-image rounded" src="${song.image}" alt="${song.title}">
         <i class="fa-solid fa-plus"></i>
         <i class="fa-solid fa-play"></i>

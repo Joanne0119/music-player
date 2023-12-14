@@ -44,6 +44,21 @@ export function addToPlayerFromList(id) {
     totalTime.innerHTML = songsLibrary[id].totalTime;
 }
 
+export function addToPlayerFromCard(id) {
+    songsLibrary.forEach(song => {
+        console.log(song.id, id);
+        if(song.id == id) {
+            currentMusicArea.querySelector("img").src = song.image;
+            currentMusicArea.querySelector("h4").innerHTML = song.title;
+            currentMusicArea.querySelector("p").innerHTML = song.singer;
+            audio.querySelector("source").src = song.audio;
+            audio.load(); ToPlay();
+            totalTime.innerHTML = song.totalTime;
+            return;
+        }
+    });
+}
+
 function UpdateCurrentMusic(musicID) {
     if(musicID < 0) {
         updateCurrentPlaying(songsList.length - 1);
