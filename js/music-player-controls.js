@@ -11,33 +11,45 @@ const currentTime = document.getElementById('current-time');
 const totalTime = document.getElementById('total-time');
 const showPlayerBtn = document.getElementById('show-player');
 import { songsLibrary } from "./songs.js";
+import { songsList } from "./db.js";
+import { currentPlaying } from "./db.js";
+import { currentPlayingTime } from "./db.js";
+import { updateCurrentPlaying } from "./db.js";
 
-let currentPlaying = 0;
 let isPlaying = false;
 
-currentMusicArea.querySelector("img").src = songsLibrary[currentPlaying].image;
-currentMusicArea.querySelector("h4").innerHTML = songsLibrary[currentPlaying].title;
-currentMusicArea.querySelector("p").innerHTML = songsLibrary[currentPlaying].singer;
-audio.querySelector("source").src = songsLibrary[currentPlaying].audio;
+currentMusicArea.querySelector("img").src = songsLibrary[songsList[currentPlaying]].image;
+currentMusicArea.querySelector("h4").innerHTML = songsLibrary[songsList[currentPlaying]].title;
+currentMusicArea.querySelector("p").innerHTML = songsLibrary[songsList[currentPlaying]].singer;
+audio.querySelector("source").src = songsLibrary[songsList[currentPlaying]].audio;
 audio.load();
+audio.currentTime = currentPlayingTime;
+
 // ToPlay();
 // ToPause();
 // let totTime = (audio.duration/60).toString() + ":" + (audio.duration%60);
 // console.log("audio.duration: ", audio.duration);
-totalTime.innerHTML = songsLibrary[currentPlaying].totalTime;
+totalTime.innerHTML = songsLibrary[songsList[currentPlaying]].totalTime;
 
-export function UpdateCurrentMusic(musicID) {
-    console.log(currentPlaying);
-    if(musicID < 0 || musicID >= songsLibrary.length) {
-        return;
+console.log(currentPlaying);
+
+function UpdateCurrentMusic(musicID) {
+    if(musicID < 0) {
+        updateCurrentPlaying(songsList.length - 1);
     }
-    currentPlaying = musicID;
-    currentMusicArea.querySelector("img").src = songsLibrary[currentPlaying].image;
-    currentMusicArea.querySelector("h4").innerHTML = songsLibrary[currentPlaying].title;
-    currentMusicArea.querySelector("p").innerHTML = songsLibrary[currentPlaying].singer;
-    audio.querySelector("source").src = songsLibrary[currentPlaying].audio;
+    else if(musicID >= songsList.length) {
+        updateCurrentPlaying(0);
+    }
+    else {
+        updateCurrentPlaying(musicID);
+    }
+    //currentPlaying = musicID;
+    currentMusicArea.querySelector("img").src = songsLibrary[songsList[currentPlaying]].image;
+    currentMusicArea.querySelector("h4").innerHTML = songsLibrary[songsList[currentPlaying]].title;
+    currentMusicArea.querySelector("p").innerHTML = songsLibrary[songsList[currentPlaying]].singer;
+    audio.querySelector("source").src = songsLibrary[songsList[currentPlaying]].audio;
     audio.load(); ToPlay();
-    totalTime.innerHTML = songsLibrary[currentPlaying].totalTime;
+    totalTime.innerHTML = songsLibrary[songsList[currentPlaying]].totalTime;
 }
 
 function UpdateTimeDisplay() {
@@ -64,7 +76,6 @@ function ToPause() {
     playPauseButton.innerHTML = 
     `<img src="images/music-player-controls/play.png" alt="play">`;
     isPlaying = false;
-    console.log("audio.duration: ", audio.duration);
 }
 
 playPauseButton.addEventListener('click', () => {
@@ -96,16 +107,7 @@ function PlayPrevSongs() {
         PlayRandomSongs();
         return;
     }
-    let cnt = 1;
-    while((currentPlaying-cnt) >= 0) {
-        if (songsLibrary[currentPlaying-cnt].added) {
-            currentPlaying -= cnt;
-            break;
-        }
-        else cnt++;
-    }
-    UpdateCurrentMusic(currentPlaying);
-    ToPlay();
+    UpdateCurrentMusic(currentPlaying-1);
 }
 
 function PlayNextSongs() {
@@ -113,17 +115,7 @@ function PlayNextSongs() {
         PlayRandomSongs();
         return;
     }
-    let cnt = 1;
-    while((currentPlaying+cnt) < songsLibrary.length) {
-        console.log(currentPlaying);
-        if (songsLibrary[currentPlaying+cnt].added) {
-            currentPlaying += cnt;
-            break;
-        }
-        else cnt++;
-    }
-    UpdateCurrentMusic(currentPlaying);
-    ToPlay();
+    UpdateCurrentMusic(currentPlaying+1);
 }
 
 prevButton.addEventListener('click', () => {
@@ -151,12 +143,10 @@ shuffleButton.addEventListener('click', () => {
 
 function PlayRandomSongs() {
     let musicID = currentPlaying;
-    while(musicID < 0 || musicID >= songsLibrary.length || songsLibrary[musicID].added == false || musicID == currentPlaying) {
-        console.log("suffle: ",musicID);
-        musicID = Math.floor(Math.random() * (songsLibrary.length));
+    while(musicID < 0 || musicID >= songsList.length || musicID == currentPlaying) {
+        musicID = Math.floor(Math.random() * (songsList.length));
     }
     UpdateCurrentMusic(musicID);
-    ToPlay();
 }
 
 showPlayerBtn.addEventListener("click", function() {

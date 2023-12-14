@@ -1,7 +1,7 @@
 let isLogin = true;
-export const songsList = [];
-export let currentPlaying;
-export let currentPlayingTime;
+export let songsList = [];
+export let currentPlaying = 0;
+export let currentPlayingTime = 0;
 
 if(isLogin) {
     songsList = [1,3,5,7];
@@ -10,7 +10,7 @@ if(isLogin) {
 }
 else {
     songsList = [];
-    currentPlaying = 0;
+    currentPlaying = -1;
     currentPlayingTime = 0;
 }
 
@@ -28,6 +28,13 @@ export function removeFromSongsList(id) {
             return;
         }
     });
+    if(isLogin) {
+        // db
+    }
+}
+
+export function updateCurrentPlaying(id) {
+    currentPlaying = id;
     if(isLogin) {
         // db
     }
