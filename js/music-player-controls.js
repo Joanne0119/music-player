@@ -26,7 +26,7 @@ audio.load();
 // console.log("audio.duration: ", audio.duration);
 totalTime.innerHTML = songsLibrary[currentPlaying].totalTime;
 
-function UpdateCurrentMusic(musicID) {
+export function UpdateCurrentMusic(musicID) {
     console.log(currentPlaying);
     if(musicID < 0 || musicID >= songsLibrary.length) {
         return;
@@ -68,12 +68,8 @@ function ToPause() {
 }
 
 playPauseButton.addEventListener('click', () => {
-    if (isPlaying) {
-        ToPause();
-    }
-    else {
-        ToPlay();
-    }
+    if (isPlaying) ToPause();
+    else ToPlay();
 });
 
 audio.addEventListener('timeupdate', () => {
@@ -84,7 +80,7 @@ audio.addEventListener('timeupdate', () => {
 
 progress.addEventListener('input', () => {
     const seekTime = (progress.value / 100) * audio.duration;
-    if(seekTime >= audio.duration * 0.9999) {
+    if(seekTime >= audio.duration * 0.99999) {
         return;
     }
     audio.currentTime = seekTime;
@@ -171,7 +167,6 @@ showPlayerBtn.addEventListener("click", function() {
         playerSection.classList.remove("toShow-player-section");
     }
 });
-
 
 let isShowingPlayer = false;
 
