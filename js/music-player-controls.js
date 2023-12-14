@@ -15,39 +15,16 @@ import { songsLibrary } from "./songs.js";
 let currentPlaying = 0;
 let isPlaying = false;
 
-if (localStorage.getItem("audioSrc") !== null) {
-    currentPlaying = localStorage.getItem("currentPlaying");
-    totalTime.innerHTML = localStorage.getItem("totalTime");
-    currentMusicArea.querySelector("img").src = localStorage.getItem("currentImg");
-    currentMusicArea.querySelector("h4").innerHTML = localStorage.getItem("currentMusicTitle");
-    currentMusicArea.querySelector("p").innerHTML = localStorage.getItem("currentMusicSinger");
-    audio.querySelector("source").src = localStorage.getItem("audioSrc");
-    audio.load();
-    audio.currentTime = parseFloat(localStorage.getItem("currentTime"));
-}
-else {
-    totalTime.innerHTML = songsLibrary[currentPlaying].totalTime;
-    currentMusicArea.querySelector("img").src = songsLibrary[currentPlaying].image;
-    currentMusicArea.querySelector("h4").innerHTML = songsLibrary[currentPlaying].title;
-    currentMusicArea.querySelector("p").innerHTML = songsLibrary[currentPlaying].singer;
-    audio.querySelector("source").src = songsLibrary[currentPlaying].audio;
-    audio.load();
-}
-
-if(localStorage.getItem("audioVolume") !== null) {
-    audio.volume = parseFloat(localStorage.getItem("audioVolume"));
-    volume.value = parseFloat(localStorage.getItem("audioVolume"));
-}
-
-console.log(localStorage.getItem("isPlaying"));
-
-if(localStorage.getItem("isPlaying") === 'true') {
-    ToPlay();
-    playPauseButton.innerHTML = `<img src="images/music-player-controls/pause.png" alt="pause">`;
-} else {
-    ToPause();
-    playPauseButton.innerHTML = `<img src="images/music-player-controls/play.png" alt="play">`;
-}
+currentMusicArea.querySelector("img").src = songsLibrary[currentPlaying].image;
+currentMusicArea.querySelector("h4").innerHTML = songsLibrary[currentPlaying].title;
+currentMusicArea.querySelector("p").innerHTML = songsLibrary[currentPlaying].singer;
+audio.querySelector("source").src = songsLibrary[currentPlaying].audio;
+audio.load();
+// ToPlay();
+// ToPause();
+// let totTime = (audio.duration/60).toString() + ":" + (audio.duration%60);
+// console.log("audio.duration: ", audio.duration);
+totalTime.innerHTML = songsLibrary[currentPlaying].totalTime;
 
 function UpdateCurrentMusic(musicID) {
     console.log(currentPlaying);
@@ -80,7 +57,6 @@ function ToPlay() {
     playPauseButton.innerHTML = 
     `<img src="images/music-player-controls/pause.png" alt="pause">`;
     isPlaying = true;
-    localStorage.setItem("isPlaying", true);
 }
 
 function ToPause() {
@@ -88,7 +64,7 @@ function ToPause() {
     playPauseButton.innerHTML = 
     `<img src="images/music-player-controls/play.png" alt="play">`;
     isPlaying = false;
-    localStorage.setItem("isPlaying", false);
+    console.log("audio.duration: ", audio.duration);
 }
 
 playPauseButton.addEventListener('click', () => {
@@ -98,21 +74,12 @@ playPauseButton.addEventListener('click', () => {
     else {
         ToPlay();
     }
-    console.log(localStorage.getItem("isPlaying"));
 });
 
 audio.addEventListener('timeupdate', () => {
     const progressValue = (audio.currentTime / audio.duration) * 100;
     progress.value = progressValue;
     UpdateTimeDisplay();
-
-    localStorage.setItem("currentPlaying", currentPlaying);
-    localStorage.setItem("totalTime", songsLibrary[currentPlaying].totalTime);
-    localStorage.setItem("currentImg", songsLibrary[currentPlaying].image);
-    localStorage.setItem("currentMusicTitle", songsLibrary[currentPlaying].title);
-    localStorage.setItem("currentMusicSinger", songsLibrary[currentPlaying].singer);
-    localStorage.setItem("audioSrc", songsLibrary[currentPlaying].audio);
-    localStorage.setItem("currentTime", audio.currentTime);
 });
 
 progress.addEventListener('input', () => {
@@ -126,7 +93,6 @@ progress.addEventListener('input', () => {
 
 volume.addEventListener('input', () => {
     audio.volume = volume.value;
-    localStorage.setItem("audioVolume", volume.value);
 });
 
 function PlayPrevSongs() {
@@ -222,4 +188,3 @@ showPlayerBtn.addEventListener("click", function() {
     }
     isShowingPlayer = !isShowingPlayer;
 });
-
