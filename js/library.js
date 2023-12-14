@@ -1,6 +1,7 @@
 import { songsLibrary } from "./songs.js";
 import { removeFromSongsList } from "./db.js";
 import { songsList } from "./db.js";
+import { addToPlayerFromList } from "./music-player-controls.js";
 
 function addSongHoverEvent(){
   const songs = document.querySelectorAll('.song');
@@ -20,6 +21,16 @@ function addSongHoverEvent(){
   });
 }
 
+function addSongPlayingEvent() {
+  const songs = document.querySelectorAll('.song');
+  songs.forEach((song) => {
+    
+    song.addEventListener('click', () => {
+      addToPlayerFromList(parseInt(song.id));
+    });
+  });
+}
+
 let libraryNumber;
 let songsLibraryHTML;
 export function renderLibrary() {
@@ -30,7 +41,7 @@ export function renderLibrary() {
   songsList.forEach((song) => {
     
       songsLibraryHTML += `
-      <div class="song">
+      <div class="song" id="${libraryNumber-1}">
       <div class="song-main-info">
         <div class="number">${libraryNumber}.</div>
         <img src="${songsLibrary[song].image}" alt="${songsLibrary[song].title}" class="cover-img">
@@ -45,10 +56,10 @@ export function renderLibrary() {
       libraryNumber++;
       
   });
-  
   songsContainer.innerHTML = songsLibraryHTML;  
   addSongHoverEvent();
   addEventToDeleteButton();
+  addSongPlayingEvent();
 }
 
 function deleteSong(delBtnId) {

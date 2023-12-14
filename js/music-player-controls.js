@@ -33,6 +33,17 @@ totalTime.innerHTML = songsLibrary[songsList[currentPlaying]].totalTime;
 
 console.log(currentPlaying);
 
+export function addToPlayerFromList(id) {
+    updateCurrentPlaying(id);
+    id = songsList[id];
+    currentMusicArea.querySelector("img").src = songsLibrary[id].image;
+    currentMusicArea.querySelector("h4").innerHTML = songsLibrary[id].title;
+    currentMusicArea.querySelector("p").innerHTML = songsLibrary[id].singer;
+    audio.querySelector("source").src = songsLibrary[id].audio;
+    audio.load(); ToPlay();
+    totalTime.innerHTML = songsLibrary[id].totalTime;
+}
+
 function UpdateCurrentMusic(musicID) {
     if(musicID < 0) {
         updateCurrentPlaying(songsList.length - 1);
