@@ -15,6 +15,7 @@ import { songsList } from "./db.js";
 import { currentPlaying } from "./db.js";
 import { currentPlayingTime } from "./db.js";
 import { updateCurrentPlaying } from "./db.js";
+import { updateCurPlayingTime } from "./db.js";
 
 let isPlaying = false;
 
@@ -103,6 +104,7 @@ function ToPause() {
 playPauseButton.addEventListener('click', () => {
     if (isPlaying) ToPause();
     else ToPlay();
+    updateCurPlayingTime(audio.currentTime);
 });
 
 audio.addEventListener('timeupdate', () => {
