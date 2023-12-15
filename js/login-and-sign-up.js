@@ -136,9 +136,7 @@ function updataPlayerlistData(){
 let userData;
 
 function test(playlist) {
-  console.log("in");
   if(!userData) return;
-  console.log("go");
   usersRef.where('uid', '==', userData.uid).onSnapshot(querySnapshot => {
     console.log(querySnapshot.docs);
     querySnapshot.forEach(doc => {
@@ -181,68 +179,6 @@ auth.onAuthStateChanged((user) => {
         console.log(docId, dataName, dataUid, dataEmail);
         let userdocRef = usersRef.doc(docId);
         console.log(userdocRef);
-
-        //add click addBtn event
-        formTitle.addEventListener('click', () => {
-          userdocRef.set({
-            uid: dataUid,
-            name: dataName,
-            email: dataEmail,
-            playlist: updataPlayerlistData()
-          });
-        
-          // //delet playlist data
-          // userdocRef.update({
-          //   playlist: firebase.firestore.FieldValue.delete()
-          // }).then(() => {
-          //   console.log('dlete data successful');
-          // })
-          // .catch((err) => {
-          //   console.log(err);
-          //   console.log('錯誤');
-          // });
-          
-          // //updata playlist data
-          // userdocRef.update({
-          //   playlist: updataPlayerlistData()
-          // }).then(() => {
-          //   console.log('update data successful');
-          // })
-          // .catch((err) => {
-          //   console.log(err);
-          //   console.log('錯誤');
-          // });
-        });
-
-        test(a);
-        console.log("here");
-        // let userdocRef2 = usersRef.doc('2WJC4u1NOw1fdB71Vv5n');
-        
-        // summitBtn.addEventListener('click', () => {
-        //   //delet playlist data
-        //   userdocRef2.update({
-        //     playlist: firebase.firestore.FieldValue.delete()
-        //   }).then(() => {
-        //     console.log('dlete data successful');
-        //   })
-        //   .catch((err) => {
-        //     console.log(err);
-        //     console.log('錯誤');
-        //     incorrectPasswordOrAcount();
-        //   });
-          
-        //   //updata playlist data
-        //   userdocRef2.update({
-        //     playlist: updataPlayerlistData()
-        //   }).then(() => {
-        //     console.log('update data successful');
-        //   })
-        //   .catch((err) => {
-        //     console.log(err);
-        //     console.log('錯誤');
-        //     incorrectPasswordOrAcount();
-        //   });
-        // })
       });
     })
 
