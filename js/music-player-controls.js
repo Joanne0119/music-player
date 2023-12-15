@@ -18,20 +18,17 @@ import { updateCurrentPlaying } from "./db.js";
 
 let isPlaying = false;
 
-currentMusicArea.querySelector("img").src = songsLibrary[songsList[currentPlaying]].image;
-currentMusicArea.querySelector("h4").innerHTML = songsLibrary[songsList[currentPlaying]].title;
-currentMusicArea.querySelector("p").innerHTML = songsLibrary[songsList[currentPlaying]].singer;
-audio.querySelector("source").src = songsLibrary[songsList[currentPlaying]].audio;
-audio.load();
-audio.currentTime = currentPlayingTime;
-
-// ToPlay();
-// ToPause();
-// let totTime = (audio.duration/60).toString() + ":" + (audio.duration%60);
-// console.log("audio.duration: ", audio.duration);
-totalTime.innerHTML = songsLibrary[songsList[currentPlaying]].totalTime;
-
-console.log(currentPlaying);
+export function loadPlayer() {
+    if(currentPlaying != -1) {
+        currentMusicArea.querySelector("img").src = songsLibrary[songsList[currentPlaying]].image;
+        currentMusicArea.querySelector("h4").innerHTML = songsLibrary[songsList[currentPlaying]].title;
+        currentMusicArea.querySelector("p").innerHTML = songsLibrary[songsList[currentPlaying]].singer;
+        audio.querySelector("source").src = songsLibrary[songsList[currentPlaying]].audio;
+        audio.load();
+        audio.currentTime = currentPlayingTime;
+        totalTime.innerHTML = songsLibrary[songsList[currentPlaying]].totalTime;
+    }
+}
 
 export function addToPlayerFromList(id) {
     updateCurrentPlaying(id);

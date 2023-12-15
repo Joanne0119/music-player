@@ -128,17 +128,31 @@ function summitBtnFun(){
 let userData;
 
 export function getDataFromDB() {
-  if(!userData) return([], -1, 0);
-  let playlist, currentPlaying, currentPlayingTime;
-  usersRef.where('uid', '==', userData.uid).onSnapshot(querySnapshot => {
-    console.log(querySnapshot.docs);
-    querySnapshot.forEach(doc => {
-      playlist = doc.data().playlist;
-      currentPlaying = doc.data().curID;
-      currentPlayingTime = doc.data().curTime;
+  console.log("hi");
+  if(!userData) {
+    console.log("no login");
+    return [[], -1, 0];
+  }
+  else {
+    return new Promise((resolve, reject) => {
+      usersRef.where('uid', '==', userData.uid).get()
+        .then(querySnapshot => {
+          const userData = [];
+          querySnapshot.forEach(doc => {
+            userData.push({
+              playlist: doc.data().playlist,
+              currentPlaying: doc.data().currentPlaying,
+              currentPlayingTime: doc.data().currentPlayingTime,
+            });
+          });
+          resolve(userData);
+        })
+        .catch(error => {
+          console.error('查詢出錯：', error);
+          reject([[], -1, 0]);
+        });
     });
-  });
-  return (playlist, currentPlaying, currentPlayingTime);
+  }
 }
 
 export function addToDB(playlist, curID, curTime) {
@@ -166,39 +180,58 @@ export function addToDB(playlist, curID, curTime) {
   });
 }
 
-
-import { loginBehavior } from "./db.js";
+import { loadDataFromDB } from "./db.js";
 auth.onAuthStateChanged((user) => {
   userData = user;
+  loadDataFromDB();
   if(user){
     console.log(user);
 
-    // //query and update
-    // usersRef.where('uid', '==', user.uid).onSnapshot(querySnapshot => {
-    //   console.log(querySnapshot.docs);
-    //   querySnapshot.forEach(doc => {
-    //     let docId = doc.id;
-    //     let dataName = doc.data().name;
-    //     let dataUid = doc.data().uid;
-    //     let dataEmail = doc.data().email;
-    //     console.log(docId, dataName, dataUid, dataEmail);
-    //     let userdocRef = usersRef.doc(docId);
-    //     console.log(userdocRef);
-    //   });
-    // })
+    //query and update
+    usersRef.where('uid', '==', user.uid).onSnapshot(querySnapshot => {
+      console.log(querySnapshot.docs);
+      querySnapshot.forEach(doc => {
+        let docId = doc.id;
+        let dataName = doc.data().name;
+        let dataUid = doc.data().uid;
+        let dataEmail = doc.data().email;
+        console.log(docId, dataName, dataUid, dataEmail);
+        let playlist = doc.data().playlist;
+        let currentPlaying = doc.data().currentPlaying;
+        let currentPlayingTime = doc.data().currentPlayingTime;
+        console.log(playlist, currentPlaying, currentPlayingTime);
+        let userdocRef = usersRef.doc(docId);
+        console.log(userdocRef);
+      });
+    })
 
-    loginBehavior(true);
+    usersRef.where('uid', '==', userData.uid).get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          let a = doc.data().playlist;
+          let b = doc.data().currentPlaying;
+          let c = doc.data().currentPlayingTime;
+          console.log(a, b, c);
+        });
+      })
+      .catch(error => {
+        console.error('查詢出錯：', error);
+      });
+
   }
   else {
     console.log('not log in...');
-    loginBehavior(false);
   }
 });
 
-summitBtn.addEventListener('click', () => {
-  summitBtnFun();
-});
+if(summitBtn) {
+  summitBtn.addEventListener('click', () => {
+    summitBtnFun();
+  });
+}
 
-link.addEventListener('click', () => {
-  SignUpAndLoginPageSwitch();
-});
+if(link) {
+  link.addEventListener('click', () => {
+    SignUpAndLoginPageSwitch();
+  });
+}
