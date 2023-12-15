@@ -14,24 +14,45 @@ else {
     currentPlayingTime = 0;
 }
 
+import { getDataFromDB } from "./login-and-sign-up.js";
+import { addToDB } from "./login-and-sign-up.js";
+
+export function loginBehavior(isLogin) {
+    if(isLogin) {
+        songsList, currentPlaying, currentPlayingTime = getDataFromDB();
+    }
+    else {
+        songsList = [];
+        currentPlaying = -1;
+        currentPlayingTime = 0;
+    }
+}
+
 export function addToSongsList(id) {
     songsList.push(id);
     console.log(songsList);
     if(isLogin) {
-        // db
+        addToDB(songsList, currentPlaying, currentPlayingTime);
     }
 }
 
 export function removeFromSongsList(id) {
     songsList = songsList.filter(item => item !== id);
     if(isLogin) {
-        // db
+        addToDB(songsList, currentPlaying, currentPlayingTime);
     }
 }
 
 export function updateCurrentPlaying(id) {
     currentPlaying = id;
     if(isLogin) {
-        // db
+        addToDB(songsList, currentPlaying, currentPlayingTime);
+    }
+}
+
+export function updateCurPlayingTime(time) {
+    currentPlayingTime = time;
+    if(isLogin) {
+        addToDB(songsList, currentPlaying, currentPlayingTime);
     }
 }

@@ -73,7 +73,7 @@ function signUpSummit(){
 }
 
 function goToHomepage(){
-  //window.location.href = '../index.html';
+  window.location.href = '../index.html';
 }
 
 function incorrectPasswordOrAcount(){
@@ -125,7 +125,21 @@ function summitBtnFun(){
 
 let userData;
 
-function test(playlist) {
+export function getDataFromDB() {
+  if(!userData) return([], -1, 0);
+  let playlist, currentPlaying, currentPlayingTime;
+  usersRef.where('uid', '==', userData.uid).onSnapshot(querySnapshot => {
+    console.log(querySnapshot.docs);
+    querySnapshot.forEach(doc => {
+      playlist = doc.data().playlist;
+      currentPlaying = doc.data().curID;
+      currentPlayingTime = doc.data().curTime;
+    });
+  });
+  return (playlist, currentPlaying, currentPlayingTime);
+}
+
+export function addToDB(playlist, curID, curTime) {
   if(!userData) return;
   usersRef.where('uid', '==', userData.uid).onSnapshot(querySnapshot => {
     console.log(querySnapshot.docs);
@@ -139,37 +153,43 @@ function test(playlist) {
       console.log(userdocRef);
 
       userdocRef.set({
-          uid: dataUid,
-          name: dataName,
-          email: dataEmail,
-          playlist: playlist
-        });
-        
+        uid: dataUid,
+        name: dataName,
+        email: dataEmail,
+        playlist: playlist,
+        currentPlaying: curID,
+        currentPlayingTime: curTime
       });
+    });
   });
 }
 
+
+import { loginBehavior } from "./db.js";
 auth.onAuthStateChanged((user) => {
   userData = user;
   if(user){
     console.log(user);
 
-    //query and update
-    usersRef.where('uid', '==', user.uid).onSnapshot(querySnapshot => {
-      console.log(querySnapshot.docs);
-      querySnapshot.forEach(doc => {
-        let docId = doc.id;
-        let dataName = doc.data().name;
-        let dataUid = doc.data().uid;
-        let dataEmail = doc.data().email;
-        console.log(docId, dataName, dataUid, dataEmail);
-        let userdocRef = usersRef.doc(docId);
-        console.log(userdocRef);
-      });
-    })
+    // //query and update
+    // usersRef.where('uid', '==', user.uid).onSnapshot(querySnapshot => {
+    //   console.log(querySnapshot.docs);
+    //   querySnapshot.forEach(doc => {
+    //     let docId = doc.id;
+    //     let dataName = doc.data().name;
+    //     let dataUid = doc.data().uid;
+    //     let dataEmail = doc.data().email;
+    //     console.log(docId, dataName, dataUid, dataEmail);
+    //     let userdocRef = usersRef.doc(docId);
+    //     console.log(userdocRef);
+    //   });
+    // })
 
-  }else{
+    loginBehavior(true);
+  }
+  else {
     console.log('not log in...');
+    loginBehavior(false);
   }
 });
 
