@@ -160,9 +160,6 @@ function test(playlist) {
   });
 }
 
-
-
-a = [1,2,3];
 auth.onAuthStateChanged((user) => {
   userData = user;
   if(user){
