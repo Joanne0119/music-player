@@ -62,7 +62,9 @@ function signUpSummit(){
         uid: user.uid,
         name: username,
         email: user.email,
-        playlist: []
+        playlist: [],
+        currentPlaying: 0,
+        currentPlayingTime: 0
       });
     })
     .catch((err) => {
