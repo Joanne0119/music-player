@@ -123,6 +123,15 @@ function summitBtnFun(){
   }
 }
 
+function updataPlayerlistData(){
+  let playlist = [];
+  playlist.push('01');
+  playlist.push('02');
+  playlist.push('12');
+  playlist.push('16');
+  playlist.splice(1, 1);
+  return (playlist);
+}
 
 auth.onAuthStateChanged((user) => {
   if(user){
@@ -132,7 +141,72 @@ auth.onAuthStateChanged((user) => {
     usersRef.where('uid', '==', user.uid).onSnapshot(querySnapshot => {
       console.log(querySnapshot.docs);
       querySnapshot.forEach(doc => {
-        console.log(doc.data().name, doc.data().uid);
+        let docId = doc.id;
+        let dataName = doc.data().name;
+        let dataUid = doc.data().uid;
+        let dataEmail = doc.data().email;
+        console.log(docId, dataName, dataUid, dataEmail);
+        let userdocRef = usersRef.doc(docId);
+        console.log(userdocRef);
+
+        //add click addBtn event
+        formTitle.addEventListener('click', () => {
+          userdocRef.set({
+            uid: dataUid,
+            name: dataName,
+            email: dataEmail,
+            playlist: updataPlayerlistData()
+          });
+          // //delet playlist data
+          // userdocRef.update({
+          //   playlist: firebase.firestore.FieldValue.delete()
+          // }).then(() => {
+          //   console.log('dlete data successful');
+          // })
+          // .catch((err) => {
+          //   console.log(err);
+          //   console.log('錯誤');
+          // });
+          
+          // //updata playlist data
+          // userdocRef.update({
+          //   playlist: updataPlayerlistData()
+          // }).then(() => {
+          //   console.log('update data successful');
+          // })
+          // .catch((err) => {
+          //   console.log(err);
+          //   console.log('錯誤');
+          // });
+        });
+
+        // let userdocRef2 = usersRef.doc('2WJC4u1NOw1fdB71Vv5n');
+        
+        // summitBtn.addEventListener('click', () => {
+        //   //delet playlist data
+        //   userdocRef2.update({
+        //     playlist: firebase.firestore.FieldValue.delete()
+        //   }).then(() => {
+        //     console.log('dlete data successful');
+        //   })
+        //   .catch((err) => {
+        //     console.log(err);
+        //     console.log('錯誤');
+        //     incorrectPasswordOrAcount();
+        //   });
+          
+        //   //updata playlist data
+        //   userdocRef2.update({
+        //     playlist: updataPlayerlistData()
+        //   }).then(() => {
+        //     console.log('update data successful');
+        //   })
+        //   .catch((err) => {
+        //     console.log(err);
+        //     console.log('錯誤');
+        //     incorrectPasswordOrAcount();
+        //   });
+        // })
       });
     })
 
