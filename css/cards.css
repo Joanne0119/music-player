@@ -16,12 +16,11 @@
 
 .cards {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   padding: 1.8rem 0;
   grid-column-gap: 0.6rem;
   grid-row-gap: 1rem;
   white-space: nowrap;
-  grid-auto-flow: row;
+  grid-auto-flow: column;
   transition-duration: 0.8s;
 }
 
