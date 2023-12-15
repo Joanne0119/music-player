@@ -123,16 +123,6 @@ function summitBtnFun(){
   }
 }
 
-function updataPlayerlistData(){
-  let playlist = [];
-  playlist.push('01');
-  playlist.push('02');
-  playlist.push('12');
-  playlist.push('16');
-  playlist.splice(1, 1);
-  return (playlist);
-}
-
 let userData;
 
 function test(playlist) {
@@ -148,7 +138,6 @@ function test(playlist) {
       let userdocRef = usersRef.doc(docId);
       console.log(userdocRef);
 
-      //add click addBtn event
       userdocRef.set({
           uid: dataUid,
           name: dataName,
