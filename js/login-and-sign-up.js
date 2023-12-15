@@ -73,7 +73,7 @@ function signUpSummit(){
 }
 
 function goToHomepage(){
-  window.location.href = '../index.html';
+  //window.location.href = '../index.html';
 }
 
 function incorrectPasswordOrAcount(){
@@ -133,7 +133,40 @@ function updataPlayerlistData(){
   return (playlist);
 }
 
+let userData;
+
+function test(playlist) {
+  console.log("in");
+  if(!userData) return;
+  console.log("go");
+  usersRef.where('uid', '==', userData.uid).onSnapshot(querySnapshot => {
+    console.log(querySnapshot.docs);
+    querySnapshot.forEach(doc => {
+      let docId = doc.id;
+      let dataName = doc.data().name;
+      let dataUid = doc.data().uid;
+      let dataEmail = doc.data().email;
+      console.log(docId, dataName, dataUid, dataEmail);
+      let userdocRef = usersRef.doc(docId);
+      console.log(userdocRef);
+
+      //add click addBtn event
+      userdocRef.set({
+          uid: dataUid,
+          name: dataName,
+          email: dataEmail,
+          playlist: playlist
+        });
+        
+      });
+  });
+}
+
+
+
+a = [1,2,3];
 auth.onAuthStateChanged((user) => {
+  userData = user;
   if(user){
     console.log(user);
 
@@ -157,6 +190,7 @@ auth.onAuthStateChanged((user) => {
             email: dataEmail,
             playlist: updataPlayerlistData()
           });
+        
           // //delet playlist data
           // userdocRef.update({
           //   playlist: firebase.firestore.FieldValue.delete()
@@ -180,6 +214,8 @@ auth.onAuthStateChanged((user) => {
           // });
         });
 
+        test(a);
+        console.log("here");
         // let userdocRef2 = usersRef.doc('2WJC4u1NOw1fdB71Vv5n');
         
         // summitBtn.addEventListener('click', () => {
