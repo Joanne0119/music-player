@@ -24,7 +24,7 @@ export const songsLibrary = [
     singer: "POPO J",
     audio: "audio/LMF-POPO J.mp3",
     totalTime: "02:53",
-    type: "englishpop",
+    type: "mandopop",
     added: true
   },{
     id: "004",
