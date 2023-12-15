@@ -1,5 +1,14 @@
-export const songsLibrary =  JSON.parse(localStorage.getItem('songsLibrary')) || [
+export const songsLibrary = [
   {
+    id: "000",
+    image: "images/First person shooter.webp",
+    title: "First Person Shooter",
+    singer: "Drake ft. J. Cole",
+    audio: "audio/First Person Shooter.mp3",
+    totalTime: "04:07",
+    type: "englishpop",
+    added: false
+  },{
     id: "001",
     image: "images/披星戴月的想你.jpg",
     title: "披星戴月的想你",
@@ -24,7 +33,7 @@ export const songsLibrary =  JSON.parse(localStorage.getItem('songsLibrary')) ||
     singer: "POPO J",
     audio: "audio/LMF-POPO J.mp3",
     totalTime: "02:53",
-    type: "englishpop",
+    type: "mandopop",
     added: true
   },{
     id: "004",
@@ -123,15 +132,6 @@ export const songsLibrary =  JSON.parse(localStorage.getItem('songsLibrary')) ||
     singer: "The Kid LAROI, Jung Kook, Central Cee",
     audio: "audio/TOO MUCH.mp3",
     totalTime: "03:22",
-    type: "englishpop",
-    added: false
-  },{
-    id: "014",
-    image: "images/First person shooter.webp",
-    title: "First Person Shooter",
-    singer: "Drake ft. J. Cole",
-    audio: "audio/First Person Shooter.mp3",
-    totalTime: "04:07",
     type: "englishpop",
     added: false
   }

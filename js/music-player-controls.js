@@ -11,56 +11,70 @@ const currentTime = document.getElementById('current-time');
 const totalTime = document.getElementById('total-time');
 const showPlayerBtn = document.getElementById('show-player');
 import { songsLibrary } from "./songs.js";
+import { songsList } from "./db.js";
+import { currentPlaying } from "./db.js";
+import { currentPlayingTime } from "./db.js";
+import { updateCurrentPlaying } from "./db.js";
 
-let currentPlaying = 0;
 let isPlaying = false;
 
-if (localStorage.getItem("audioSrc") !== null) {
-    currentPlaying = localStorage.getItem("currentPlaying");
-    totalTime.innerHTML = localStorage.getItem("totalTime");
-    currentMusicArea.querySelector("img").src = localStorage.getItem("currentImg");
-    currentMusicArea.querySelector("h4").innerHTML = localStorage.getItem("currentMusicTitle");
-    currentMusicArea.querySelector("p").innerHTML = localStorage.getItem("currentMusicSinger");
-    audio.querySelector("source").src = localStorage.getItem("audioSrc");
-    audio.load();
-    audio.currentTime = parseFloat(localStorage.getItem("currentTime"));
-}
-else {
-    totalTime.innerHTML = songsLibrary[currentPlaying].totalTime;
-    currentMusicArea.querySelector("img").src = songsLibrary[currentPlaying].image;
-    currentMusicArea.querySelector("h4").innerHTML = songsLibrary[currentPlaying].title;
-    currentMusicArea.querySelector("p").innerHTML = songsLibrary[currentPlaying].singer;
-    audio.querySelector("source").src = songsLibrary[currentPlaying].audio;
-    audio.load();
+currentMusicArea.querySelector("img").src = songsLibrary[songsList[currentPlaying]].image;
+currentMusicArea.querySelector("h4").innerHTML = songsLibrary[songsList[currentPlaying]].title;
+currentMusicArea.querySelector("p").innerHTML = songsLibrary[songsList[currentPlaying]].singer;
+audio.querySelector("source").src = songsLibrary[songsList[currentPlaying]].audio;
+audio.load();
+audio.currentTime = currentPlayingTime;
+
+// ToPlay();
+// ToPause();
+// let totTime = (audio.duration/60).toString() + ":" + (audio.duration%60);
+// console.log("audio.duration: ", audio.duration);
+totalTime.innerHTML = songsLibrary[songsList[currentPlaying]].totalTime;
+
+console.log(currentPlaying);
+
+export function addToPlayerFromList(id) {
+    updateCurrentPlaying(id);
+    id = songsList[id];
+    currentMusicArea.querySelector("img").src = songsLibrary[id].image;
+    currentMusicArea.querySelector("h4").innerHTML = songsLibrary[id].title;
+    currentMusicArea.querySelector("p").innerHTML = songsLibrary[id].singer;
+    audio.querySelector("source").src = songsLibrary[id].audio;
+    audio.load(); ToPlay();
+    totalTime.innerHTML = songsLibrary[id].totalTime;
 }
 
-if(localStorage.getItem("audioVolume") !== null) {
-    audio.volume = parseFloat(localStorage.getItem("audioVolume"));
-    volume.value = parseFloat(localStorage.getItem("audioVolume"));
-}
-
-console.log(localStorage.getItem("isPlaying"));
-
-if(localStorage.getItem("isPlaying") === 'true') {
-    ToPlay();
-    playPauseButton.innerHTML = `<img src="images/music-player-controls/pause.png" alt="pause">`;
-} else {
-    ToPause();
-    playPauseButton.innerHTML = `<img src="images/music-player-controls/play.png" alt="play">`;
+export function addToPlayerFromCard(id) {
+    songsLibrary.forEach(song => {
+        if(song.id == id) {
+            currentMusicArea.querySelector("img").src = song.image;
+            currentMusicArea.querySelector("h4").innerHTML = song.title;
+            currentMusicArea.querySelector("p").innerHTML = song.singer;
+            audio.querySelector("source").src = song.audio;
+            audio.load(); ToPlay();
+            totalTime.innerHTML = song.totalTime;
+            return;
+        }
+    });
 }
 
 function UpdateCurrentMusic(musicID) {
-    console.log(currentPlaying);
-    if(musicID < 0 || musicID >= songsLibrary.length) {
-        return;
+    if(musicID < 0) {
+        updateCurrentPlaying(songsList.length - 1);
     }
-    currentPlaying = musicID;
-    currentMusicArea.querySelector("img").src = songsLibrary[currentPlaying].image;
-    currentMusicArea.querySelector("h4").innerHTML = songsLibrary[currentPlaying].title;
-    currentMusicArea.querySelector("p").innerHTML = songsLibrary[currentPlaying].singer;
-    audio.querySelector("source").src = songsLibrary[currentPlaying].audio;
+    else if(musicID >= songsList.length) {
+        updateCurrentPlaying(0);
+    }
+    else {
+        updateCurrentPlaying(musicID);
+    }
+    //currentPlaying = musicID;
+    currentMusicArea.querySelector("img").src = songsLibrary[songsList[currentPlaying]].image;
+    currentMusicArea.querySelector("h4").innerHTML = songsLibrary[songsList[currentPlaying]].title;
+    currentMusicArea.querySelector("p").innerHTML = songsLibrary[songsList[currentPlaying]].singer;
+    audio.querySelector("source").src = songsLibrary[songsList[currentPlaying]].audio;
     audio.load(); ToPlay();
-    totalTime.innerHTML = songsLibrary[currentPlaying].totalTime;
+    totalTime.innerHTML = songsLibrary[songsList[currentPlaying]].totalTime;
 }
 
 function UpdateTimeDisplay() {
@@ -80,7 +94,6 @@ function ToPlay() {
     playPauseButton.innerHTML = 
     `<img src="images/music-player-controls/pause.png" alt="pause">`;
     isPlaying = true;
-    localStorage.setItem("isPlaying", true);
 }
 
 function ToPause() {
@@ -88,36 +101,22 @@ function ToPause() {
     playPauseButton.innerHTML = 
     `<img src="images/music-player-controls/play.png" alt="play">`;
     isPlaying = false;
-    localStorage.setItem("isPlaying", false);
 }
 
 playPauseButton.addEventListener('click', () => {
-    if (isPlaying) {
-        ToPause();
-    }
-    else {
-        ToPlay();
-    }
-    console.log(localStorage.getItem("isPlaying"));
+    if (isPlaying) ToPause();
+    else ToPlay();
 });
 
 audio.addEventListener('timeupdate', () => {
     const progressValue = (audio.currentTime / audio.duration) * 100;
     progress.value = progressValue;
     UpdateTimeDisplay();
-
-    localStorage.setItem("currentPlaying", currentPlaying);
-    localStorage.setItem("totalTime", songsLibrary[currentPlaying].totalTime);
-    localStorage.setItem("currentImg", songsLibrary[currentPlaying].image);
-    localStorage.setItem("currentMusicTitle", songsLibrary[currentPlaying].title);
-    localStorage.setItem("currentMusicSinger", songsLibrary[currentPlaying].singer);
-    localStorage.setItem("audioSrc", songsLibrary[currentPlaying].audio);
-    localStorage.setItem("currentTime", audio.currentTime);
 });
 
 progress.addEventListener('input', () => {
     const seekTime = (progress.value / 100) * audio.duration;
-    if(seekTime >= audio.duration * 0.9999) {
+    if(seekTime >= audio.duration * 0.99999) {
         return;
     }
     audio.currentTime = seekTime;
@@ -126,7 +125,6 @@ progress.addEventListener('input', () => {
 
 volume.addEventListener('input', () => {
     audio.volume = volume.value;
-    localStorage.setItem("audioVolume", volume.value);
 });
 
 function PlayPrevSongs() {
@@ -134,16 +132,7 @@ function PlayPrevSongs() {
         PlayRandomSongs();
         return;
     }
-    let cnt = 1;
-    while((currentPlaying-cnt) >= 0) {
-        if (songsLibrary[currentPlaying-cnt].added) {
-            currentPlaying -= cnt;
-            break;
-        }
-        else cnt++;
-    }
-    UpdateCurrentMusic(currentPlaying);
-    ToPlay();
+    UpdateCurrentMusic(currentPlaying-1);
 }
 
 function PlayNextSongs() {
@@ -151,17 +140,7 @@ function PlayNextSongs() {
         PlayRandomSongs();
         return;
     }
-    let cnt = 1;
-    while((currentPlaying+cnt) < songsLibrary.length) {
-        console.log(currentPlaying);
-        if (songsLibrary[currentPlaying+cnt].added) {
-            currentPlaying += cnt;
-            break;
-        }
-        else cnt++;
-    }
-    UpdateCurrentMusic(currentPlaying);
-    ToPlay();
+    UpdateCurrentMusic(currentPlaying+1);
 }
 
 prevButton.addEventListener('click', () => {
@@ -189,12 +168,10 @@ shuffleButton.addEventListener('click', () => {
 
 function PlayRandomSongs() {
     let musicID = currentPlaying;
-    while(musicID < 0 || musicID >= songsLibrary.length || songsLibrary[musicID].added == false || musicID == currentPlaying) {
-        console.log("suffle: ",musicID);
-        musicID = Math.floor(Math.random() * (songsLibrary.length));
+    while(musicID < 0 || musicID >= songsList.length || musicID == currentPlaying) {
+        musicID = Math.floor(Math.random() * (songsList.length));
     }
     UpdateCurrentMusic(musicID);
-    ToPlay();
 }
 
 showPlayerBtn.addEventListener("click", function() {
@@ -205,7 +182,6 @@ showPlayerBtn.addEventListener("click", function() {
         playerSection.classList.remove("toShow-player-section");
     }
 });
-
 
 let isShowingPlayer = false;
 
@@ -222,4 +198,3 @@ showPlayerBtn.addEventListener("click", function() {
     }
     isShowingPlayer = !isShowingPlayer;
 });
-

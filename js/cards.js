@@ -1,4 +1,6 @@
 import { songsLibrary } from "./songs.js";
+import { addToPlayerFromCard } from "./music-player-controls.js";
+import { addToSongsList } from "./db.js";
 
 export function AddEventToCard() {
   const cards = document.querySelectorAll('.card');
@@ -16,6 +18,17 @@ export function AddEventToCard() {
       playIcons.forEach((playIcon) => {
         playIcon.classList.remove('toPlay');
       });
+    })
+
+    const playBtn = card.querySelector(".fa-play");
+    playBtn.addEventListener('click', ()=>{
+      addToPlayerFromCard(card.id);
+    })
+
+    const plusBtn = card.querySelector(".fa-plus");
+    plusBtn.addEventListener('click', ()=>{
+      console.log(parseInt(card.id));
+      addToSongsList(parseInt(card.id));
     })
   })
 }
@@ -45,13 +58,37 @@ export function cardScroll(){
       rightBtn.classList.add('display-none');
     }
     let totAdded = 0
+    let spaceToScroll = cards.scrollWidth - cards.offsetWidth;
+    console.log("spaceToScroll: ", spaceToScroll);
     rightBtn.addEventListener('click', () => {
-      totAdded -= cardWidth;
-      cards.style.transform = `translateX(${totAdded}px)`;
+      console.log(cardWidth);
+      if(totAdded == spaceToScroll*-1) {
+        cards.style.transform = `translateX(${totAdded-cardWidth}px)`;
+        setTimeout(()=>{cards.style.transform = `translateX(${spaceToScroll*-1}px)`;}, 190);
+      }
+      else {
+        totAdded -= cardWidth;
+        cards.style.transform = `translateX(${totAdded}px)`;
+        if((totAdded)*-1 > spaceToScroll + cardWidth/2)  {
+          setTimeout(()=>{cards.style.transform = `translateX(${spaceToScroll*-1}px)`;}, 270);
+          totAdded = spaceToScroll*-1;
+        }
+      }
     });
     leftBtn.addEventListener('click', () => {
-      totAdded += cardWidth;
-      cards.style.transform = `translateX(${totAdded}px)`;
+      console.log(cardWidth);
+      if(totAdded == 0) {
+        cards.style.transform = `translateX(${cardWidth}px)`;
+        setTimeout(()=>{cards.style.transform = `translateX(0px)`;}, 190);
+      }
+      else {
+        totAdded += cardWidth;
+        cards.style.transform = `translateX(${totAdded}px)`;
+        if(totAdded > cardWidth/2)  {
+          setTimeout(()=>{cards.style.transform = `translateX(0px)`;}, 270);
+          totAdded = 0;
+        }
+      }
     })
   });
 }
@@ -59,7 +96,7 @@ export function cardScroll(){
 let cardsHTML;
 const typeArr = ['mandopop', 'englishpop'];
 
-function cardRender()
+export function cardRender()
 {
   let cardsContainer = document.querySelectorAll('.cards');
   let i = 0;
@@ -76,7 +113,7 @@ function genCardHTML(type){
   songsLibrary.forEach((song) => {
     if(song.type === type){
       cardsHTML += 
-      `<div class="card border-0 p-3">
+      `<div class="card border-0 p-3" id="${song.id}">
         <img class="card-image rounded" src="${song.image}" alt="${song.title}">
         <i class="fa-solid fa-plus"></i>
         <i class="fa-solid fa-play"></i>

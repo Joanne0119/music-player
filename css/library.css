@@ -10,6 +10,18 @@ html {
   height: 100vh;
 }
 
+@media screen and (min-width: 800px) and (max-width: 1000px) {
+  html {
+    font-size: 8px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  html {
+    font-size: 6px;
+  }
+}
+
 body {
   background-color: #333 !important;
   padding: 1.2rem 1.2rem 0 1.2rem;

@@ -6,12 +6,14 @@
   <title>Music Player</title>
   <link rel="shortcut icon" href="images/coffeeBeansIcon.ico" type="image/x-icon">
   <!-- from css floder -->
-  <link rel="stylesheet" href="css/hompage.css">
-  <link rel="stylesheet" href="css/navbar.css">
   <link rel="stylesheet" href="css/cards.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/hompage.css">
+  <link rel="stylesheet" href="css/library.css">
   <link rel="stylesheet" href="css/loading.css">
   <link rel="stylesheet" href="css/music-player-controls.css">
-  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/search.css">
 
   <!-- Bootstrap CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
@@ -34,22 +36,19 @@
     <div class="navbar-links">
       <ul>
         <li class="nav-item">
-          <a class="nav-link active" href="index.html">首頁</a>
+          <a class="nav-link active nav-home" href="#">首頁</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="library.html">播放清單</a>
+          <a class="nav-link nav-library" href="#">播放清單</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="search.html">搜尋</a>
+          <a class="nav-link nav-search" href="#">搜尋</a>
         </li>
       </ul>
     </div>
   </nav>
-  <!-- left-section -->
-  <div class="left-section">
-      
-  </div>
-    <!-- contain carousel and cards section -->
+
+  <div id="reload-content">
     <main> 
       <!-- carousel -->
       <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -98,7 +97,7 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
-  
+    
       <!--cards mandopop -->
       <div class="cards-section mandopop">
         <h3 class="card-mandopop-title">華語流行</h3>
@@ -108,7 +107,7 @@
           <div class="cards"></div>
         </div>
       </div>
-  
+    
       <!-- english pop -->
       <div class="cards-section pop">
         <h3 class="card-englishpop-title">西洋流行</h3>
@@ -119,6 +118,7 @@
         </div>
       </div>
     </main>
+  </div>
 
     <div class="player-section" id="player-section">
       <div class="current-music" id="current-music">
@@ -184,11 +184,14 @@
     </ul>
   </footer>
 
-
-  <script src="js/loading.js"></script>
-  <script src="js/homepage.js"></script>
-  <script src="js/navbar.js"></script>
   <script type="module" src="js/cards.js"></script>
+  <script type="module" src="js/db.js"></script>
+  <script src="js/homepage.js"></script>
+  <script type="module" src="js/library.js"></script>
+  <script src="js/loading.js"></script>
   <script type="module" src="js/music-player-controls.js"></script>
+  <script src="js/navbar.js"></script>
+  <script type="module" src="js/reload-page.js"></script>
+  <script type="module" src="js/search.js"></script>
 </body>
 </html>
