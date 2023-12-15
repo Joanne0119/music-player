@@ -16,6 +16,7 @@ else {
 
 export function addToSongsList(id) {
     songsList.push(id);
+    console.log(songsList);
     if(isLogin) {
         // db
     }

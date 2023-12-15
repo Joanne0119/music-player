@@ -1,5 +1,6 @@
 import { songsLibrary } from "./songs.js";
 import { addToPlayerFromCard } from "./music-player-controls.js";
+import { addToSongsList } from "./db.js";
 
 export function AddEventToCard() {
   const cards = document.querySelectorAll('.card');
@@ -22,6 +23,12 @@ export function AddEventToCard() {
     const playBtn = card.querySelector(".fa-play");
     playBtn.addEventListener('click', ()=>{
       addToPlayerFromCard(card.id);
+    })
+
+    const plusBtn = card.querySelector(".fa-plus");
+    plusBtn.addEventListener('click', ()=>{
+      console.log(parseInt(card.id));
+      addToSongsList(parseInt(card.id));
     })
   })
 }
