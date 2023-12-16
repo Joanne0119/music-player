@@ -1,11 +1,11 @@
 firebase.initializeApp( {
-  apiKey: "AIzaSyAHp8UT50gr_00_R4qqPFcVYzmqqHnt3cA",
-  authDomain: "music-player-4b448.firebaseapp.com",
-  projectId: "music-player-4b448",
-  storageBucket: "music-player-4b448.appspot.com",
-  messagingSenderId: "647887233294",
-  appId: "1:647887233294:web:4f9c838756d55ba81e775f",
-  measurementId: "G-DGCPQYPQ1M"
+  apiKey: "AIzaSyCF3s-mPifwQF5mHLhF6pnPGEOXldPG24s",
+  authDomain: "music-6716e.firebaseapp.com",
+  projectId: "music-6716e",
+  storageBucket: "music-6716e.appspot.com",
+  messagingSenderId: "985965400915",
+  appId: "1:985965400915:web:3495b9196029e01b3e87a6",
+  measurementId: "G-J51M0SKZLK"
 });
 
 // Initialize Firebase
