@@ -5,9 +5,15 @@ footer {
   /* height: 70%; */
   padding: 2.5rem 5rem;
   display: grid;
-  grid-template-columns: 0.3fr 1fr 1fr 1fr;
+  grid-template-columns: 0.3fr 1fr;
   grid-column-gap: 0.6rem;
   border-top: solid #555 0.3rem;
+}
+
+footer .footer-link-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 0.6rem;
 }
 
 footer img {
@@ -49,9 +55,22 @@ footer ul.footer-section.icon li:hover {
   font-size: 1.5rem;
 }
 
-@media (max-width: 1250px) {
+@media screen and (min-width: 756px) and (max-width: 1250px) {
   footer {
     width: 100%;
     padding-right: 5rem;
+    grid-template-columns: 0.2fr 1fr 0.4fr;
+  }
+}
+
+@media screen and (max-width: 756px) {
+  footer {
+    width: 100%;
+    padding-right: 5rem;
+    grid-template-columns: 0.2fr 1fr 0.4fr;
+  }
+  footer .footer-link-section {
+    grid-template-columns: 1fr 1fr;
+    grid-row-gap: 1.2rem;
   }
 }
