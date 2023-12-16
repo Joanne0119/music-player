@@ -2,6 +2,7 @@ const reloadContent = document.querySelector('#reload-content');
 const navHome = document.querySelector('.nav-home');
 const navLibrary = document.querySelector('.nav-library');
 const navSearch = document.querySelector('.nav-search');
+const navLogin = document.querySelector('.nav-login');
 
 import { AddEventToCard } from "./cards.js";
 import { cardScroll } from "./cards.js";
