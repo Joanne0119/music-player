@@ -22,7 +22,9 @@ import { updateCurPlayingTime } from "./db.js";
 let isPlaying = false;
 
 export function loadPlayer() {
-    if(currentPlaying != -1) {
+    if (currentPlaying != -1) {
+    }
+    else {
         currentMusicArea.querySelector("img").src = songsLibrary[songsList[currentPlaying]].image;
         currentMusicArea.querySelector("h4").innerHTML = songsLibrary[songsList[currentPlaying]].title;
         currentMusicArea.querySelector("p").innerHTML = songsLibrary[songsList[currentPlaying]].singer;
@@ -74,7 +76,6 @@ function UpdateCurrentMusic(musicID) {
     else {
         updateCurrentPlaying(musicID);
     }
-    //currentPlaying = musicID;
     currentMusicArea.querySelector("img").src = songsLibrary[songsList[currentPlaying]].image;
     currentMusicArea.querySelector("h4").innerHTML = songsLibrary[songsList[currentPlaying]].title;
     currentMusicArea.querySelector("p").innerHTML = songsLibrary[songsList[currentPlaying]].singer;
