@@ -128,9 +128,7 @@ function summitBtnFun(){
 let userData;
 
 export function getDataFromDB() {
-  console.log("hi");
   if(!userData) {
-    console.log("no login");
     return [[], -1, 0];
   }
   else {
@@ -148,7 +146,7 @@ export function getDataFromDB() {
           resolve(userData);
         })
         .catch(error => {
-          console.error('查詢出錯：', error);
+          console.error('fail to getDataFromDB()：', error);
           reject([[], -1, 0]);
         });
     });
@@ -184,27 +182,7 @@ auth.onAuthStateChanged((user) => {
   userData = user;
   loadDataFromDB();
   if(user){
-    console.log(user);
-
-    //query and update
-    usersRef.where('uid', '==', user.uid).onSnapshot(querySnapshot => {
-      console.log("2");
-      // console.log(querySnapshot.docs);
-      querySnapshot.forEach(doc => {
-        let docId = doc.id;
-        let dataName = doc.data().name;
-        let dataUid = doc.data().uid;
-        let dataEmail = doc.data().email;
-        // console.log(docId, dataName, dataUid, dataEmail);
-        let playlist = doc.data().playlist;
-        let currentPlaying = doc.data().currentPlaying;
-        let currentPlayingTime = doc.data().currentPlayingTime;
-        // console.log(playlist, currentPlaying, currentPlayingTime);
-        let userdocRef = usersRef.doc(docId);
-        // console.log(userdocRef);
-      });
-    })
-
+    console.log("hi,", user);
   }
   else {
     console.log('not log in...');

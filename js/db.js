@@ -8,7 +8,6 @@ import { loadPlayer } from "./music-player-controls.js";
 
 export function loadDataFromDB() {
     getDataFromDB().then(userData => {
-        console.log(userData);
         songsList = userData[0].playlist;
         currentPlaying = userData[0].currentPlaying;
         currentPlayingTime = userData[0].currentPlayingTime;
@@ -22,7 +21,6 @@ export function loadDataFromDB() {
 
 export function addToSongsList(id) {
     songsList.push(id);
-    console.log(songsList);
     addToDB(songsList, currentPlaying, currentPlayingTime);
 }
 
@@ -38,6 +36,5 @@ export function updateCurrentPlaying(id) {
 
 export function updateCurPlayingTime(time) {
     currentPlayingTime = time;
-    console.log(246);
     addToDB(songsList, currentPlaying, currentPlayingTime);
 }
