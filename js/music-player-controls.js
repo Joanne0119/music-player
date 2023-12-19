@@ -10,6 +10,8 @@ const shuffleButton = document.getElementById('shuffle');
 const currentTime = document.getElementById('current-time');
 const totalTime = document.getElementById('total-time');
 const showPlayerBtn = document.getElementById('show-player');
+const pullBtn = document.querySelector('.pulloutBtn');
+const playerLessThen1250px = document.querySelector('.player-less-than-1250px')
 import { songsLibrary } from "./songs.js";
 import { songsList } from "./db.js";
 import { currentPlaying } from "./db.js";
@@ -172,6 +174,15 @@ function PlayRandomSongs() {
     }
     UpdateCurrentMusic(musicID);
 }
+
+pullBtn.addEventListener('click', function(){
+    if(!playerLessThen1250px.classList.contains("to-show-player-icon")){
+        playerLessThen1250px.classList.add("to-show-player-icon");
+    }
+    else{
+        playerLessThen1250px.classList.remove("to-show-player-icon");
+    }
+})
 
 showPlayerBtn.addEventListener("click", function() {
     if (!playerSection.classList.contains("toShow-player-section")) {

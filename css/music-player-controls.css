@@ -17,10 +17,11 @@
     display: none;
     position: fixed;
     bottom: 2%;
-    right: 8rem;
+    right: -10rem;
     z-index: 199;
     background-color: rgb(119, 119, 119);
     border-radius: 2rem;
+    transition-duration: 0.5s;
 }
 
 .player-less-than-1250px #show-player:hover {
@@ -29,6 +30,40 @@
 
 .player-less-than-1250px img {
     width: 10rem;
+}
+
+.player-less-than-1250px i {
+    transform: rotate(180deg) translateX(0);
+    color: #fff;
+    font-size: 1.8rem;
+    padding: 6rem 0.8rem 6rem 1.2rem;
+    background-color: rgb(119, 119, 119);
+    border-radius:  0 2rem 2rem 0;
+    transition-duration: 0.5s;
+}
+
+.player-less-than-1250px i:hover{
+    cursor: pointer;
+    background-color: #fff;
+    color: rgb(119, 119, 119);
+    transform: rotate(180deg) translateX(1rem);
+}
+
+.player-less-than-1250px.to-show-player-icon{
+    right: 2rem;
+}
+
+.player-less-than-1250px.to-show-player-icon i{
+    transform: rotate(0deg) translateX(0);
+    border-radius:  2rem 0 0 2rem;
+}
+
+.player-less-than-1250px.to-show-player-icon i:hover{
+    cursor: pointer;
+    background-color: #fff;
+    color: rgb(119, 119, 119);
+    padding-left: 0.8rem;
+    /* transform: rotate(0) translateX(0.5rem); */
 }
 
 @media (max-width: 1250px) {
