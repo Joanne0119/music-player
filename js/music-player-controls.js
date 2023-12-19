@@ -23,8 +23,6 @@ let isPlaying = false;
 
 export function loadPlayer() {
     if (currentPlaying != -1) {
-    }
-    else {
         currentMusicArea.querySelector("img").src = songsLibrary[songsList[currentPlaying]].image;
         currentMusicArea.querySelector("h4").innerHTML = songsLibrary[songsList[currentPlaying]].title;
         currentMusicArea.querySelector("p").innerHTML = songsLibrary[songsList[currentPlaying]].singer;
@@ -32,6 +30,8 @@ export function loadPlayer() {
         audio.load();
         audio.currentTime = currentPlayingTime;
         totalTime.innerHTML = songsLibrary[songsList[currentPlaying]].totalTime;
+        isPlaying = false;
+        ToPause();
     }
 }
 
@@ -58,6 +58,7 @@ export function addToPlayerFromCard(id) {
             return;
         }
     });
+    currentPlaying = -1;
 }
 
 const toDo_Per1Sec = setInterval(updateTimeToDB, 1000);
@@ -67,6 +68,7 @@ function updateTimeToDB() {
 }
 
 function UpdateCurrentMusic(musicID) {
+    if(currentPlaying == -1) return;
     if(musicID < 0) {
         updateCurrentPlaying(songsList.length - 1);
     }

@@ -67,16 +67,14 @@ function deleteSong(delBtnId) {
   renderLibrary();
 }
 
-
-
 function addEventToDeleteButton() {
   const delBtns = document.querySelectorAll('.delete-btn');
   
   delBtns.forEach((delBtn) => {
-    delBtn.addEventListener('click', () => {
+    delBtn.addEventListener('click', function(event) {
+      event.stopPropagation();
       const delBtnId = parseInt(delBtn.id);
       deleteSong(delBtnId);
-      
     })
   })
 }

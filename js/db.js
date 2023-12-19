@@ -1,5 +1,5 @@
 export let songsList = [];
-export let currentPlaying = 0;
+export let currentPlaying = -1;
 export let currentPlayingTime = 0;
 
 import { getDataFromDB } from "./login-and-sign-up.js";
@@ -20,12 +20,22 @@ export function loadDataFromDB() {
 }
 
 export function addToSongsList(id) {
-    songsList.push(id);
+    if(!songsList.includes(id)) {
+        songsList.push(id);
+    }
+    if(songsList.length == 1) {
+        currentPlaying = 0;
+        loadPlayer();
+    }
     addToDB(songsList, currentPlaying, currentPlayingTime);
 }
 
 export function removeFromSongsList(id) {
     songsList = songsList.filter(item => item !== id);
+    if(songsList.length == 0) {
+        currentPlaying = -1;
+        currentPlayingTime = 0;
+    }
     addToDB(songsList, currentPlaying, currentPlayingTime);
 }
 
@@ -35,6 +45,7 @@ export function updateCurrentPlaying(id) {
 }
 
 export function updateCurPlayingTime(time) {
+    if(songsList.length == 0) return;
     currentPlayingTime = time;
     addToDB(songsList, currentPlaying, currentPlayingTime);
 }
