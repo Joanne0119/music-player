@@ -20,6 +20,7 @@ import { updateCurrentPlaying } from "./db.js";
 import { updateCurPlayingTime } from "./db.js";
 
 let isPlaying = false;
+let isPlayingOther = false;
 
 export function loadPlayer() {
     if (currentPlaying != -1) {
@@ -32,6 +33,7 @@ export function loadPlayer() {
         totalTime.innerHTML = songsLibrary[songsList[currentPlaying]].totalTime;
         isPlaying = false;
         ToPause();
+        isPlayingOther = false;
     }
 }
 
@@ -44,6 +46,7 @@ export function addToPlayerFromList(id) {
     audio.querySelector("source").src = songsLibrary[id].audio;
     audio.load(); ToPlay();
     totalTime.innerHTML = songsLibrary[id].totalTime;
+    isPlayingOther = false;
 }
 
 export function addToPlayerFromCard(id) {
@@ -58,12 +61,13 @@ export function addToPlayerFromCard(id) {
             return;
         }
     });
-    currentPlaying = -1;
+    isPlayingOther = true;
 }
 
 const toDo_Per1Sec = setInterval(updateTimeToDB, 1000);
 
 function updateTimeToDB() {
+    if(isPlayingOther) return;
     if(isPlaying) updateCurPlayingTime(audio.currentTime);
 }
 
@@ -84,6 +88,7 @@ function UpdateCurrentMusic(musicID) {
     audio.querySelector("source").src = songsLibrary[songsList[currentPlaying]].audio;
     audio.load(); ToPlay();
     totalTime.innerHTML = songsLibrary[songsList[currentPlaying]].totalTime;
+    isPlayingOther = false;
 }
 
 function UpdateTimeDisplay() {
@@ -137,6 +142,7 @@ volume.addEventListener('input', () => {
 });
 
 function PlayPrevSongs() {
+    if(isPlayingOther) return;
     if(isShuffle) {
         PlayRandomSongs();
         return;
@@ -145,6 +151,7 @@ function PlayPrevSongs() {
 }
 
 function PlayNextSongs() {
+    if(isPlayingOther) return;
     if(isShuffle) {
         PlayRandomSongs();
         return;
@@ -161,6 +168,7 @@ nextButton.addEventListener('click', () => {
 });
 
 audio.addEventListener("ended", function() {
+    ToPause();
     PlayNextSongs();
 });
 
