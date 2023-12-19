@@ -26,7 +26,7 @@ const rememberForgot = document.querySelector('.remember-forgot');
 
 let SignUpOrNot = false; 
 let username = '';
-let usersRef = db.collection('users');;
+let usersRef = db.collection('users');
 
 function loginSummit(){
   console.log('login summit');
@@ -157,27 +157,26 @@ export function getDataFromDB() {
 
 export function addToDB(playlist, curID, curTime) {
   if(!userData) return;
-  usersRef.where('uid', '==', userData.uid).onSnapshot(querySnapshot => {
-    console.log(querySnapshot.docs);
-    querySnapshot.forEach(doc => {
-      let docId = doc.id;
-      let dataName = doc.data().name;
-      let dataUid = doc.data().uid;
-      let dataEmail = doc.data().email;
-      console.log(docId, dataName, dataUid, dataEmail);
-      let userdocRef = usersRef.doc(docId);
-      console.log(userdocRef);
-
-      userdocRef.set({
-        uid: dataUid,
-        name: dataName,
-        email: dataEmail,
-        playlist: playlist,
-        currentPlaying: curID,
-        currentPlayingTime: curTime
+  usersRef.where('uid', '==', userData.uid).get()
+    .then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        let userdocRef = usersRef.doc(doc.id);
+        userdocRef.update({
+          playlist: playlist,
+          currentPlaying: curID,
+          currentPlayingTime: curTime
+        })
+        .then(() => {
+          console.log("Document successfully updated!");
+        })
+        .catch(error => {
+          console.error("Error updating document: ", error);
+        });
       });
+    })
+    .catch(error => {
+      console.error("Error fetching documents: ", error);
     });
-  });
 }
 
 import { loadDataFromDB } from "./db.js";
@@ -189,34 +188,22 @@ auth.onAuthStateChanged((user) => {
 
     //query and update
     usersRef.where('uid', '==', user.uid).onSnapshot(querySnapshot => {
-      console.log(querySnapshot.docs);
+      console.log("2");
+      // console.log(querySnapshot.docs);
       querySnapshot.forEach(doc => {
         let docId = doc.id;
         let dataName = doc.data().name;
         let dataUid = doc.data().uid;
         let dataEmail = doc.data().email;
-        console.log(docId, dataName, dataUid, dataEmail);
+        // console.log(docId, dataName, dataUid, dataEmail);
         let playlist = doc.data().playlist;
         let currentPlaying = doc.data().currentPlaying;
         let currentPlayingTime = doc.data().currentPlayingTime;
-        console.log(playlist, currentPlaying, currentPlayingTime);
+        // console.log(playlist, currentPlaying, currentPlayingTime);
         let userdocRef = usersRef.doc(docId);
-        console.log(userdocRef);
+        // console.log(userdocRef);
       });
     })
-
-    usersRef.where('uid', '==', userData.uid).get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(doc => {
-          let a = doc.data().playlist;
-          let b = doc.data().currentPlaying;
-          let c = doc.data().currentPlayingTime;
-          console.log(a, b, c);
-        });
-      })
-      .catch(error => {
-        console.error('查詢出錯：', error);
-      });
 
   }
   else {

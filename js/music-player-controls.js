@@ -58,6 +58,12 @@ export function addToPlayerFromCard(id) {
     });
 }
 
+const toDo_Per1Sec = setInterval(updateTimeToDB, 1000);
+
+function updateTimeToDB() {
+    if(isPlaying) updateCurPlayingTime(audio.currentTime);
+}
+
 function UpdateCurrentMusic(musicID) {
     if(musicID < 0) {
         updateCurrentPlaying(songsList.length - 1);
@@ -106,7 +112,6 @@ function ToPause() {
 playPauseButton.addEventListener('click', () => {
     if (isPlaying) ToPause();
     else ToPlay();
-    updateCurPlayingTime(audio.currentTime);
 });
 
 audio.addEventListener('timeupdate', () => {

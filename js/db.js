@@ -16,7 +16,7 @@ export function loadDataFromDB() {
         loadPlayer();
     })
     .catch(error => {
-        console.error('處理資料時出錯：', error);
+        console.error('DB loading wrong：', error);
     });
 }
 
@@ -38,5 +38,6 @@ export function updateCurrentPlaying(id) {
 
 export function updateCurPlayingTime(time) {
     currentPlayingTime = time;
+    console.log(246);
     addToDB(songsList, currentPlaying, currentPlayingTime);
 }
