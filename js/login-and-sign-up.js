@@ -128,11 +128,10 @@ function summitBtnFun(){
 let userData;
 
 export function getDataFromDB() {
-  if(!userData) {
-    return [[], -1, 0];
-  }
-  else {
-    return new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
+    if (!userData) {
+      resolve([[], -1, 0]);
+    } else {
       usersRef.where('uid', '==', userData.uid).get()
         .then(querySnapshot => {
           const userData = [];
@@ -146,11 +145,11 @@ export function getDataFromDB() {
           resolve(userData);
         })
         .catch(error => {
-          console.error('fail to getDataFromDB()：', error);
+          console.error('fail to getDataFromDB():', error);
           reject([[], -1, 0]);
         });
-    });
-  }
+    }
+  });
 }
 
 export function addToDB(playlist, curID, curTime) {
@@ -180,9 +179,9 @@ export function addToDB(playlist, curID, curTime) {
 import { loadDataFromDB } from "./db.js";
 auth.onAuthStateChanged((user) => {
   userData = user;
-  loadDataFromDB();
   if(user){
     console.log("hi,", user);
+    loadDataFromDB();
   }
   else {
     console.log('not log in...');

@@ -117,30 +117,6 @@ function ToPause() {
     isPlaying = false;
 }
 
-playPauseButton.addEventListener('click', () => {
-    if (isPlaying) ToPause();
-    else ToPlay();
-});
-
-audio.addEventListener('timeupdate', () => {
-    const progressValue = (audio.currentTime / audio.duration) * 100;
-    progress.value = progressValue;
-    UpdateTimeDisplay();
-});
-
-progress.addEventListener('input', () => {
-    const seekTime = (progress.value / 100) * audio.duration;
-    if(seekTime >= audio.duration * 0.99999) {
-        return;
-    }
-    audio.currentTime = seekTime;
-    UpdateTimeDisplay();
-});
-
-volume.addEventListener('input', () => {
-    audio.volume = volume.value;
-});
-
 function PlayPrevSongs() {
     if(isPlayingOther) return;
     if(isShuffle) {
@@ -159,30 +135,7 @@ function PlayNextSongs() {
     UpdateCurrentMusic(currentPlaying+1);
 }
 
-prevButton.addEventListener('click', () => {
-    PlayPrevSongs();
-});
-
-nextButton.addEventListener('click', () => {
-    PlayNextSongs();
-});
-
-audio.addEventListener("ended", function() {
-    ToPause();
-    PlayNextSongs();
-});
-
 let isShuffle = false;
-shuffleButton.addEventListener('click', () => {
-    isShuffle = !isShuffle;
-    if(isShuffle) {
-        shuffleButton.querySelector("img").src = "images/music-player-controls/random-hover.png";
-    }
-    else {
-        shuffleButton.querySelector("img").src = "images/music-player-controls/random.png";
-    }
-});
-
 function PlayRandomSongs() {
     let musicID = currentPlaying;
     while(musicID < 0 || musicID >= songsList.length || musicID == currentPlaying) {
@@ -191,36 +144,84 @@ function PlayRandomSongs() {
     UpdateCurrentMusic(musicID);
 }
 
-pullBtn.addEventListener('click', function(){
-    if(!playerLessThen1250px.classList.contains("to-show-player-icon")){
-        playerLessThen1250px.classList.add("to-show-player-icon");
-    }
-    else{
-        playerLessThen1250px.classList.remove("to-show-player-icon");
-    }
-})
 
-showPlayerBtn.addEventListener("click", function() {
-    if (!playerSection.classList.contains("toShow-player-section")) {
-        playerSection.classList.add("toShow-player-section");
-    }
-    else {
-        playerSection.classList.remove("toShow-player-section");
-    }
-});
 
 let isShowingPlayer = false;
 
-showPlayerBtn.addEventListener("click", function() {
-    if (isShowingPlayer) {
-        const btnImg = showPlayerBtn.querySelector("img");
-        const imgUrl = "images/Coffee beans white.png";
-        btnImg.src = imgUrl;
-    }
-    else {
-        const btnImg = showPlayerBtn.querySelector("img");
-        const imgUrl = "images/Coffee beans black.png";
-        btnImg.src = imgUrl;
-    }
-    isShowingPlayer = !isShowingPlayer;
-});
+if(playerSection) {
+    playPauseButton.addEventListener('click', () => {
+        if (isPlaying) ToPause();
+        else ToPlay();
+    });
+    
+    audio.addEventListener('timeupdate', () => {
+        const progressValue = (audio.currentTime / audio.duration) * 100;
+        progress.value = progressValue;
+        UpdateTimeDisplay();
+    });
+    
+    progress.addEventListener('input', () => {
+        const seekTime = (progress.value / 100) * audio.duration;
+        if(seekTime >= audio.duration * 0.99999) {
+            return;
+        }
+        audio.currentTime = seekTime;
+        UpdateTimeDisplay();
+    });
+    
+    volume.addEventListener('input', () => {
+        audio.volume = volume.value;
+    });
+    prevButton.addEventListener('click', () => {
+        PlayPrevSongs();
+    });
+    
+    nextButton.addEventListener('click', () => {
+        PlayNextSongs();
+    });
+    
+    audio.addEventListener("ended", function() {
+        ToPause();
+        PlayNextSongs();
+    });
+    shuffleButton.addEventListener('click', () => {
+        isShuffle = !isShuffle;
+        if(isShuffle) {
+            shuffleButton.querySelector("img").src = "images/music-player-controls/random-hover.png";
+        }
+        else {
+            shuffleButton.querySelector("img").src = "images/music-player-controls/random.png";
+        }
+    });
+    pullBtn.addEventListener('click', function(){
+        if(!playerLessThen1250px.classList.contains("to-show-player-icon")){
+            playerLessThen1250px.classList.add("to-show-player-icon");
+        }
+        else{
+            playerLessThen1250px.classList.remove("to-show-player-icon");
+        }
+    })
+    
+    showPlayerBtn.addEventListener("click", function() {
+        if (!playerSection.classList.contains("toShow-player-section")) {
+            playerSection.classList.add("toShow-player-section");
+        }
+        else {
+            playerSection.classList.remove("toShow-player-section");
+        }
+    });
+    showPlayerBtn.addEventListener("click", function() {
+        if (isShowingPlayer) {
+            const btnImg = showPlayerBtn.querySelector("img");
+            const imgUrl = "images/Coffee beans white.png";
+            btnImg.src = imgUrl;
+        }
+        else {
+            const btnImg = showPlayerBtn.querySelector("img");
+            const imgUrl = "images/Coffee beans black.png";
+            btnImg.src = imgUrl;
+        }
+        isShowingPlayer = !isShowingPlayer;
+    });
+}
+
