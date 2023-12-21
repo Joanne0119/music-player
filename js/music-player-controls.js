@@ -30,7 +30,6 @@ export function loadPlayer() {
         audio.querySelector("source").src = songsLibrary[songsList[currentPlaying]].audio;
         audio.load();
         audio.currentTime = currentPlayingTime;
-        totalTime.innerHTML = songsLibrary[songsList[currentPlaying]].totalTime;
         isPlaying = false;
         ToPause();
         isPlayingOther = false;
@@ -45,7 +44,6 @@ export function addToPlayerFromList(id) {
     currentMusicArea.querySelector("p").innerHTML = songsLibrary[id].singer;
     audio.querySelector("source").src = songsLibrary[id].audio;
     audio.load(); ToPlay();
-    totalTime.innerHTML = songsLibrary[id].totalTime;
     isPlayingOther = false;
 }
 
@@ -57,7 +55,6 @@ export function addToPlayerFromCard(id) {
             currentMusicArea.querySelector("p").innerHTML = song.singer;
             audio.querySelector("source").src = song.audio;
             audio.load(); ToPlay();
-            totalTime.innerHTML = song.totalTime;
             return;
         }
     });
@@ -101,6 +98,18 @@ function UpdateTimeDisplay() {
           "0" + Math.floor(audio.currentTime % 60).toString() 
           : Math.floor(audio.currentTime % 60).toString();
     currentTime.innerHTML = `${currentMinutes}:${currentSeconds}`;
+}
+
+function GetTotTime(totTIme) {
+    const minutes =
+          (Math.floor(totTIme / 60) < 10)? 
+          "0" + Math.floor(totTIme / 60).toString() 
+          : Math.floor(totTIme / 60).toString();
+    const seconds =
+          (Math.floor(totTIme % 60) < 10)? 
+          "0" + Math.floor(totTIme % 60).toString() 
+          : Math.floor(totTIme % 60).toString();
+    totalTime.innerHTML = `${minutes}:${seconds}`;
 }
 
 function ToPlay() {
@@ -153,10 +162,14 @@ if(playerSection) {
         if (isPlaying) ToPause();
         else ToPlay();
     });
+
+    audio.addEventListener('loadedmetadata', function () {
+        GetTotTime(audio.duration);
+    });
     
     audio.addEventListener('timeupdate', () => {
         const progressValue = (audio.currentTime / audio.duration) * 100;
-        progress.value = progressValue;
+        if(progressValue) progress.value = progressValue;
         UpdateTimeDisplay();
     });
     
