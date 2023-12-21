@@ -23,6 +23,7 @@ let isPlaying = false;
 let isPlayingOther = false;
 
 export function loadPlayer() {
+    if(!playerSection) return;
     if (currentPlaying != -1) {
         currentMusicArea.querySelector("img").src = songsLibrary[songsList[currentPlaying]].image;
         currentMusicArea.querySelector("h4").innerHTML = songsLibrary[songsList[currentPlaying]].title;
