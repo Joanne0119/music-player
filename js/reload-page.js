@@ -116,6 +116,16 @@ const searchHtml = `
                 <div class="cards"></div>
             </div>
         </div>
+
+        <div class="cards-section">
+            <h3 class="card-mandopop-title">其他人都在聽</h3>
+            <div class="left-btn display-none"><i class="fa-solid fa-angle-left"></i></div>
+            <div class="right-btn display-none"><i class="fa-solid fa-angle-right"></i></div>
+            <div class="cards-container">
+                <div class="cards"></div>
+            </div>
+        </div>
+
     </div>
 `;
 
