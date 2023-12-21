@@ -1,6 +1,8 @@
+export let name = "";
 export let songsList = [];
 export let currentPlaying = -1;
 export let currentPlayingTime = 0;
+export let playCounts = {};
 
 import { getDataFromDB } from "./login-and-sign-up.js";
 import { addToDB } from "./login-and-sign-up.js";1
@@ -8,10 +10,12 @@ import { loadPlayer } from "./music-player-controls.js";
 
 export function loadDataFromDB() {
     getDataFromDB().then(userData => {
+        name = userData[0].name;
         songsList = userData[0].playlist;
         currentPlaying = userData[0].currentPlaying;
         currentPlayingTime = userData[0].currentPlayingTime;
-        console.log(songsList, currentPlaying, currentPlayingTime);
+        playCounts = userData[0].playCounts;
+        console.log(name, songsList, currentPlaying, currentPlayingTime, playCounts);
         loadPlayer();
     })
     .catch(error => {

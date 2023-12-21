@@ -63,8 +63,12 @@ function signUpSummit(){
         name: username,
         email: user.email,
         playlist: [],
-        currentPlaying: 0,
-        currentPlayingTime: 0
+        currentPlaying: -1,
+        currentPlayingTime: 0,
+        playCounts: {
+          mandopop: 0,
+          englishpop: 0,
+        }
       });
     })
     .catch((err) => {
@@ -130,23 +134,25 @@ let userData;
 export function getDataFromDB() {
   return new Promise((resolve, reject) => {
     if (!userData) {
-      resolve([[], -1, 0]);
+      resolve(["", [], -1, 0, {}]);
     } else {
       usersRef.where('uid', '==', userData.uid).get()
         .then(querySnapshot => {
           const userData = [];
           querySnapshot.forEach(doc => {
             userData.push({
+              name: doc.data().name,
               playlist: doc.data().playlist,
               currentPlaying: doc.data().currentPlaying,
               currentPlayingTime: doc.data().currentPlayingTime,
+              playCounts: doc.data().playCounts
             });
           });
           resolve(userData);
         })
         .catch(error => {
           console.error('fail to getDataFromDB():', error);
-          reject([[], -1, 0]);
+          reject(["", [], -1, 0, {}]);
         });
     }
   });
