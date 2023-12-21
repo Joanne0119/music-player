@@ -7,6 +7,7 @@ export let playCounts = {};
 import { getDataFromDB } from "./login-and-sign-up.js";
 import { addToDB } from "./login-and-sign-up.js";1
 import { loadPlayer } from "./music-player-controls.js";
+import { loadWebContent } from "./reload-page.js";
 
 export function loadDataFromDB() {
     getDataFromDB().then(userData => {
@@ -17,6 +18,7 @@ export function loadDataFromDB() {
         playCounts = userData[0].playCounts;
         console.log(name, songsList, currentPlaying, currentPlayingTime, playCounts);
         loadPlayer();
+        loadWebContent();
     })
     .catch(error => {
         console.error('DB loading wrong：', error);

@@ -183,6 +183,8 @@ export function addToDB(playlist, curID, curTime) {
 }
 
 import { loadDataFromDB } from "./db.js";
+import { loadWebContent } from "./reload-page.js";
+
 auth.onAuthStateChanged((user) => {
   userData = user;
   if(user){
@@ -191,6 +193,7 @@ auth.onAuthStateChanged((user) => {
   }
   else {
     console.log('not log in...');
+    loadWebContent();
   }
 });
 
