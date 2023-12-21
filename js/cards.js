@@ -8,13 +8,11 @@ export function AddEventToCard() {
     const playIcons = card.querySelectorAll('i');
     
     card.addEventListener('mouseenter', () => {
-      console.log('mouse Enter');
       playIcons.forEach((playIcon) => {
         playIcon.classList.add('toPlay');
       });
     })
     card.addEventListener('mouseleave', () => {
-      console.log('mouse Leave');
       playIcons.forEach((playIcon) => {
         playIcon.classList.remove('toPlay');
       });
@@ -27,7 +25,6 @@ export function AddEventToCard() {
 
     const plusBtn = card.querySelector(".fa-plus");
     plusBtn.addEventListener('click', ()=>{
-      console.log(parseInt(card.id));
       addToSongsList(parseInt(card.id));
     })
   })
@@ -35,7 +32,6 @@ export function AddEventToCard() {
 
 export function cardScroll(){
   const cardsSection = document.querySelectorAll('.cards-section');
-  console.log(cardsSection.length);
   cardsSection.forEach((cardSection) => {
     const cards = cardSection.querySelector('.cards');
     if(!cards) return;
@@ -45,10 +41,6 @@ export function cardScroll(){
     const cardsWidth = Number(cards.scrollWidth);
     const cardsSectionWidth = Number(cardSection.offsetWidth);
     const cardWidth = (card.length > 0)?(Number(card[0].offsetWidth)) : 0;
-    console.log(cardsWidth);
-    console.log(cardsSectionWidth);
-    console.log(cardWidth);
-    console.log(rightBtn);
     if(cardsWidth >= (cardsSectionWidth + 5)) {
       rightBtn.classList.remove('display-none');
       leftBtn.classList.remove('display-none');
@@ -59,9 +51,7 @@ export function cardScroll(){
     }
     let totAdded = 0
     let spaceToScroll = cards.scrollWidth - cards.offsetWidth;
-    console.log("spaceToScroll: ", spaceToScroll);
     rightBtn.addEventListener('click', () => {
-      console.log(cardWidth);
       if(totAdded == spaceToScroll*-1) {
         cards.style.transform = `translateX(${totAdded-cardWidth}px)`;
         setTimeout(()=>{cards.style.transform = `translateX(${spaceToScroll*-1}px)`;}, 190);
@@ -76,7 +66,6 @@ export function cardScroll(){
       }
     });
     leftBtn.addEventListener('click', () => {
-      console.log(cardWidth);
       if(totAdded == 0) {
         cards.style.transform = `translateX(${cardWidth}px)`;
         setTimeout(()=>{cards.style.transform = `translateX(0px)`;}, 190);
@@ -103,7 +92,6 @@ export function cardRender()
   cardsContainer.forEach((cardContainer) => {
     cardContainer.innerHTML = '';
     cardContainer.innerHTML = genCardHTML(typeArr[i]);
-    console.log(typeArr[i]);
     i++;
   })
 }
