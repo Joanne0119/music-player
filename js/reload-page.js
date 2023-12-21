@@ -119,7 +119,24 @@ const searchHtml = `
     </div>
 `;
 
-navHome.addEventListener('click', () => {
+const urlParams = new URLSearchParams(window.location.search);
+const toload = urlParams.get('toload');
+
+switch (toload) {
+    case 'home':
+        loadHomePage();
+        break;
+    case 'library':
+        loadLibraryPage();
+        break;
+    case 'search':
+        loadSearchPage();
+        break;
+    default:
+        loadHomePage();
+}
+
+function loadHomePage() {
     reloadContent.innerHTML = homeHtml;
     navHome.classList.remove("active");
     navLibrary.classList.remove("active");
@@ -128,18 +145,18 @@ navHome.addEventListener('click', () => {
     cardRender();
     cardScroll();
     AddEventToCard();
-});
+}
 
-navLibrary.addEventListener('click', () => {
+function loadLibraryPage() {
     reloadContent.innerHTML = libraryHtml;
     navHome.classList.remove("active");
     navLibrary.classList.remove("active");
     navSearch.classList.remove("active");
     navLibrary.classList.add("active");
     renderLibrary();
-});
+}
 
-navSearch.addEventListener('click', () => {
+function loadSearchPage() {
     reloadContent.innerHTML = searchHtml;
     navHome.classList.remove("active");
     navLibrary.classList.remove("active");
@@ -149,6 +166,18 @@ navSearch.addEventListener('click', () => {
     cardScroll();
     AddEventToCard();
     activateSearch();
+}
+
+navHome.addEventListener('click', () => {
+    loadHomePage();
+});
+
+navLibrary.addEventListener('click', () => {
+    loadLibraryPage();
+});
+
+navSearch.addEventListener('click', () => {
+    loadSearchPage();
 });
 
 
