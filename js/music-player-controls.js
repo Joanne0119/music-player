@@ -200,6 +200,9 @@ if(playerSection) {
         else{
             playerLessThen1250px.classList.remove("to-show-player-icon");
         }
+        if (playerSection.classList.contains("toShow-player-section")){
+            playerSection.classList.remove("toShow-player-section");
+        }
     })
     
     showPlayerBtn.addEventListener("click", function() {

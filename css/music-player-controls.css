@@ -4,8 +4,7 @@
     width: 25%;
     background-color: #222;
     position: fixed;
-    top: 0;
-    bottom: 0;
+    bottom: 1rem;
     right: 5rem;
     display: flex;
     justify-content: space-around;
@@ -70,8 +69,20 @@
 
     .player-section {
         display: none;
-        width: 350px;
-        z-index: 198;
+        width: 300px;
+        z-index: 199;
+        padding: 10rem 3rem 17rem 3rem;
+        animation: expand 0.2s ease-out;
+        transform-origin: right;
+    }
+
+    @keyframes expand {
+        from {
+            transform: scaleX(0);
+        }
+        to {
+            transform: scaleX(1);
+        }
     }
 
     .toShow-player-section {
@@ -80,6 +91,15 @@
 
     .player-less-than-1250px {
         display: block;
+    }
+    .player-controls-progresses #volume {
+        display: none;
+    }
+    .player-controls-progresses img {
+        display: none;
+    }
+    .player-controls-progresses #progress {
+        width: 100%;
     }
 }
 
@@ -150,8 +170,6 @@
 .player-controls-bottons #next {
     margin-right: 3rem;
 }
-
-
 
 .player-controls-progresses {
     margin-top: 1rem;
