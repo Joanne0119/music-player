@@ -73,8 +73,8 @@ export function loadWebContent() {
     </div>
 
     <!--cards mandopop -->
-    <div class="cards-section mandopop">
-      <h3 class="card-mandopop-title">華語流行</h3>
+    <div class="cards-section" id="mandopop-cards">
+      <h3 class="card-title">華語流行</h3>
       <div class="left-btn display-none"><i class="fa-solid fa-angle-left"></i></div>
       <div class="right-btn display-none"><i class="fa-solid fa-angle-right"></i></div>
       <div class="cards-container">
@@ -83,8 +83,8 @@ export function loadWebContent() {
     </div>
 
     <!-- english pop -->
-    <div class="cards-section pop">
-      <h3 class="card-englishpop-title">西洋流行</h3>
+    <div class="cards-section" id="englishpop-cards">
+      <h3 class="card-title">西洋流行</h3>
       <div class="left-btn display-none"><i class="fa-solid fa-angle-left"></i></div>
       <div class="right-btn display-none"><i class="fa-solid fa-angle-right"></i></div>
       <div class="cards-container">
@@ -102,7 +102,7 @@ export function loadWebContent() {
                   <input type="text" id="search-input" placeholder="搜尋喜歡的歌名、歌手...">
               </div>
 
-              <div id="search-results" class="cards-section">
+              <div class="cards-section" id="search-results">
                   <h1 id="no-result" class="card-mandopop-title">我們好像沒有這首歌：(</h1>
                   <div class="left-btn display-none"><i class="fa-solid fa-angle-left"></i></div>
                   <div class="right-btn display-none"><i class="fa-solid fa-angle-right"></i></div>
@@ -112,8 +112,8 @@ export function loadWebContent() {
               </div>
           </div>
           
-          <div class="cards-section">
-              <h3 class="card-mandopop-title">專為 ${name.length == 0 ? "未登入的使用者":name } 打造的推薦歌單</h3>
+          <div class="cards-section" id="personal-recommendation-cards">
+              <h3 class="card-title">專為 ${name.length == 0 ? "未登入的使用者":name } 打造的推薦歌單</h3>
               <div class="left-btn display-none"><i class="fa-solid fa-angle-left"></i></div>
               <div class="right-btn display-none"><i class="fa-solid fa-angle-right"></i></div>
               <div class="cards-container">
@@ -121,8 +121,8 @@ export function loadWebContent() {
               </div>
           </div>
 
-          <div class="cards-section">
-              <h3 class="card-mandopop-title">其他人都在聽</h3>
+          <div class="cards-section" id="recommendation-cards">
+              <h3 class="card-title">其他人都在聽</h3>
               <div class="left-btn display-none"><i class="fa-solid fa-angle-left"></i></div>
               <div class="right-btn display-none"><i class="fa-solid fa-angle-right"></i></div>
               <div class="cards-container">
