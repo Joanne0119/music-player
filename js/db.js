@@ -8,6 +8,7 @@ import { getDataFromDB } from "./login-and-sign-up.js";
 import { addToDB } from "./login-and-sign-up.js";1
 import { loadPlayer } from "./music-player-controls.js";
 import { loadWebContent } from "./reload-page.js";
+import { songsLibrary } from "./songs.js";
 
 export function loadDataFromDB() {
     getDataFromDB().then(userData => {
@@ -29,10 +30,19 @@ export function addToSongsList(id) {
     if(!songsList.includes(id)) {
         songsList.push(id);
     }
+    else {
+        return;
+    }
     if(songsList.length == 1) {
         currentPlaying = 0;
         loadPlayer();
     }
+    songsLibrary.forEach(song => {
+        if(song.id == id) {
+            song.views += 1;
+            return;
+        }
+    });
     addToDB(songsList, currentPlaying, currentPlayingTime);
 }
 

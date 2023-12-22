@@ -51,6 +51,7 @@ export function addToPlayerFromList(id) {
 export function addToPlayerFromCard(id) {
     songsLibrary.forEach(song => {
         if(song.id == id) {
+            song.views += 1;
             currentMusicArea.querySelector("img").src = song.image;
             currentMusicArea.querySelector("h4").innerHTML = song.title;
             currentMusicArea.querySelector("p").innerHTML = song.singer;
