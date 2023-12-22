@@ -56,6 +56,9 @@ function signUpSummit(){
         passwordInput.value = '';
       }, 1500);
 
+      if(username.length == 0) {
+        username = "user";
+      }
       //create user database
       user = res.user;
       usersRef.add({
