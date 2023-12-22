@@ -36,7 +36,7 @@ function imageUpload(){
   
 }
 
-function aduioUpload(){
+function audioUpload(){
   audioFileInput.addEventListener('change', (event) => {
     const blobType = 'audio';
     const selectedFile = event.target.files[0]; // Get the first selected file

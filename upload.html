@@ -53,45 +53,48 @@
     </div>
   </nav>
 
-  <main>
-    <div class="wrapper">
-      <form action="">
-          <div class="title-section">
-            <h1 class="form-title">上傳您的音樂</h1>
+  <div class="wrapper">
+    <form action="">
+        <div class="title-section">
+          <img src="images/Coffee beans white.png">
+          <h1 class="form-title">上傳您的音樂</h1>
+        </div>
+        <div class="dataInfo">
+          <div class="input-box file-name-box">
+            <input class="inputText" id="fileName" type="text" placeholder="請輸入您的音樂名稱">
           </div>
-          <div class="dataInfo">
-            <div class="input-box file-name-box">
-              <input id="fileName" type="text" placeholder="請輸入您的音樂名稱">
+          <div class="input-box file-creater-box">
+            <input class="inputText" id="fileCreater" type="text" placeholder="請輸入您的創作者名稱">
+          </div>
+          <div class="input-box file-type-box">
+            <input class="inputText" id="typeName" type="text" placeholder="請輸入您的音樂類型">
+          </div>
+          <div class="input-box image-file-box">
+            <input class="inputFile" type="file" id="imageFileInput" accept="image/*">
+            <label type="button" for="imageFileInput" class="uploadStyle">
+              + 選擇封面相片
+            </label>
+            <div class="imgBox">
+              <img src="" alt=" 封面相片" id="previewImage">
             </div>
-            <div class="input-box file-creater-box">
-              <input id="fileCreater" type="text" placeholder="請輸入您的創作者名稱">
-            </div>
-            <div class="input-box image-file-box">
-              <input type="file" id="imageFileInput">
-              <img src="" alt="Preview Image" id="previewImage" style="max-width: 300px; display: none;">
-            </div>
-            <div class="input-box arduio-file-box">
-              <input type="file" id="audioFileInput">
-              <audio id="previewAudio" style="display: none;">
-                <source id="previewAudioSource" src="" type="audio/mpeg">
+          </div>
+          <div class="input-box audio-file-box">
+            <input class="inputFile" type="file" id="audioFileInput" accept="audio/*">
+            <label type="button" for="audioFileInput" class="uploadStyle">
+              + 選擇音檔
+            </label>
+            <div class="audioBox">
+              <audio id="previewAudio" controls>
+                <source id="previewAudioSource" src="audio/想和你看五月的晚霞.mp3" type="audio/mpeg">
+                音樂檔案
               </audio>
             </div>
           </div>
-          
-          <button type="button" class="summit-btn">上傳</button>
-      </form>
-    </div>
-    <!-- <input type="text" id="fileName">
-    <input type="file" id="imageFileInput">
-    <img src="" alt="Preview Image" id="previewImage" style="max-width: 300px; display: none;">
-    <p id="nameShow"></p>
-    <input type="file" id="audioFileInput">
-    <audio id="previewAudio" style="display: none;">
-      <source id="previewAudioSource" src="" type="audio/mpeg">
-    </audio> -->
-  </main>
-  
-
+        </div>
+        
+      <button type="button" class="summit-btn">上傳</button>
+    </form>
+  </div>
   <footer>
     <img src="images/Coffee beans white.png">
     <div class="footer-link-section">

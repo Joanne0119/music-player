@@ -58,10 +58,10 @@ form {
   position: relative;
 }
 
-.dataInfo {
+/* .dataInfo {
   display: grid;
   grid-template-columns: 1fr;
-}
+} */
 
 .title-section {
   display: flex;
@@ -73,12 +73,13 @@ form {
   width: 4.5rem;
   margin: 0 1rem;
 }
-
-.input-box input{
+.input-box{
+  margin: 2rem 0;
+}
+.input-box .inputText{
   width: 100%;
   height: 100%;
   background: transparent;
-  border: none;
   outline: none;
   border: 0.2rem solid #cecece;
   border-radius: 4rem;
@@ -90,6 +91,48 @@ form {
 .input-box input::placeholder{
   color: #999;
   font-size: 1.5rem;
+}
+.input-box .inputFile{
+  display: none;
+}
+.input-box.image-file-box, .input-box.audio-file-box{
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  grid-column-gap: 1.2rem;
+}
+.input-box .imgBox, .input-box .audioBox{
+  border: 0.2rem solid #cecece;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.input-box .audioBox audio {
+  width: 90%;
+  height: 80%;
+}
+.input-box .uploadStyle{
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #fff;
+  border: 0.2rem solid #cecece;
+  border-radius: 4rem 1rem 1rem 4rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  transition-duration: 0.5s;
+  text-align: center;
+  padding: 1.5rem;
+  letter-spacing: 0.1rem;
+}
+.input-box .uploadStyle:hover{
+  background: #fff;
+  color: #333;
+  cursor: pointer;
 }
 .wrapper .summit-btn{
   width: 100%;
