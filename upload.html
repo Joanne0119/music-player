@@ -71,7 +71,7 @@
           </div>
           <div class="input-box image-file-box">
             <input class="inputFile" type="file" id="imageFileInput" accept="image/*">
-            <label type="button" for="imageFileInput" class="uploadStyle">
+            <label type="button" for="imageFileInput" class="uploadStyle" id="imageFileStyle">
               + 選擇封面相片
             </label>
             <div class="imgBox">
@@ -80,19 +80,19 @@
           </div>
           <div class="input-box audio-file-box">
             <input class="inputFile" type="file" id="audioFileInput" accept="audio/*">
-            <label type="button" for="audioFileInput" class="uploadStyle">
+            <label type="button" for="audioFileInput" class="uploadStyle" id="audioFileStyle">
               + 選擇音檔
             </label>
             <div class="audioBox">
               <audio id="previewAudio" controls>
-                <source id="previewAudioSource" src="audio/想和你看五月的晚霞.mp3" type="audio/mpeg">
+                <source id="previewAudioSource" src="" type="audio/mpeg">
                 音樂檔案
               </audio>
             </div>
           </div>
         </div>
         
-      <button type="button" class="summit-btn">上傳</button>
+      <button type="button" class="upload-btn">上傳</button>
     </form>
   </div>
   <footer>
@@ -117,7 +117,6 @@
     </div>
   </footer>
 
-  <script type="module" src="js/db.js"></script>
   <script src="js/loading.js"></script>
   <script src="js/navbar.js"></script>
   <script type="module" src="js/upload.js"></script>

@@ -99,6 +99,7 @@ form {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
   grid-column-gap: 1.2rem;
+  height: 100%;
 }
 .input-box .imgBox, .input-box .audioBox{
   border: 0.2rem solid #cecece;
@@ -112,6 +113,10 @@ form {
 .input-box .audioBox audio {
   width: 90%;
   height: 80%;
+}
+.input-box .imgBox img {
+  width: 80%;
+  border-radius: 0.5rem;
 }
 .input-box .uploadStyle{
   width: 100%;
@@ -134,7 +139,7 @@ form {
   color: #333;
   cursor: pointer;
 }
-.wrapper .summit-btn{
+.wrapper .upload-btn{
   width: 100%;
   height: 4.5rem;
   border-radius: 4rem;
@@ -149,7 +154,7 @@ form {
   font-weight: 600;
   transition-duration: 0.5s;
 }
-.wrapper .summit-btn:hover{
+.wrapper .upload-btn:hover{
   color: #fff;
   background-color: #333;
   border: 0.2rem solid #cecece;
