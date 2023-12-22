@@ -81,6 +81,11 @@ function signUpSummit(){
     })
 }
 
+export function signOut() {
+  console.log('sign out');
+  auth.signOut();
+}
+
 function goToHomepage(){
   window.location.href = '../index.html';
 }
