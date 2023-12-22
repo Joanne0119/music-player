@@ -209,13 +209,17 @@ if(playerSection) {
     pullBtn.addEventListener('click', function(){
         if(!playerLessThen1250px.classList.contains("to-show-player-icon")){
             playerLessThen1250px.classList.add("to-show-player-icon");
+            if (!playerSection.classList.contains("toShow-player-section")){
+                playerSection.classList.add("toShow-player-section");
+            }
         }
         else{
             playerLessThen1250px.classList.remove("to-show-player-icon");
+            if (playerSection.classList.contains("toShow-player-section")){
+                playerSection.classList.remove("toShow-player-section");
+            }
         }
-        if (playerSection.classList.contains("toShow-player-section")){
-            playerSection.classList.remove("toShow-player-section");
-        }
+        
     })
     
     showPlayerBtn.addEventListener("click", function() {
