@@ -1,7 +1,6 @@
 .player-section {
     margin-top: 6.2rem;
     padding: 10rem 3rem;
-    height: 90%;
     width: 25%;
     background-color: #222;
     position: fixed;
@@ -106,7 +105,6 @@
 }
 
 .current-music {
-    height: 100%;
     background-color: #555;
     padding: 2rem;
     border-radius: 1rem;
@@ -119,7 +117,6 @@
 }
 
 .current-music-info {
-    width: 100%;
     background-color: #555;
     margin-top: 1rem;
 }
