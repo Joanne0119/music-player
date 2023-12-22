@@ -10,6 +10,7 @@ import { cardRender } from "./cards.js";
 import { renderLibrary } from "./library.js";
 import { activateSearch } from "./search.js";
 import { name } from "./db.js";
+import { signOut } from "./login-and-sign-up.js";
 
 export function loadWebContent() {
 
@@ -162,9 +163,9 @@ export function loadWebContent() {
     });
 
     navLogin.innerHTML = name.length == 0 ? "登入":"登出";
-    navLogin.href = "index.html";
+    navLogin.href = name.length == 0 ? "login-and-sign-up.html":"index.html";;
     navLogin.addEventListener('click', () => {
-        loadSearchPage(searchHtml);
+        signOut();
     });
 }
 
