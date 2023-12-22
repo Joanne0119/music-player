@@ -18,6 +18,7 @@ import { currentPlaying } from "./db.js";
 import { currentPlayingTime } from "./db.js";
 import { updateCurrentPlaying } from "./db.js";
 import { updateCurPlayingTime } from "./db.js";
+import { playCounts } from "./db.js";
 
 let isPlaying = false;
 let isPlayingOther = false;
@@ -52,6 +53,7 @@ export function addToPlayerFromCard(id) {
     songsLibrary.forEach(song => {
         if(song.id == id) {
             song.views += 1;
+            playCounts[song.type] = (playCounts[song.type] || 0) + 1;
             currentMusicArea.querySelector("img").src = song.image;
             currentMusicArea.querySelector("h4").innerHTML = song.title;
             currentMusicArea.querySelector("p").innerHTML = song.singer;

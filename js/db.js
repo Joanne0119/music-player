@@ -40,6 +40,7 @@ export function addToSongsList(id) {
     songsLibrary.forEach(song => {
         if(song.id == id) {
             song.views += 1;
+            playCounts[song.type] = (playCounts[song.type] || 0) + 1;
             return;
         }
     });
