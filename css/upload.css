@@ -1,0 +1,113 @@
+*
+{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+html {
+  font-size: 10px;
+  width: 100%;
+  height: 100%;
+}
+@media screen and (min-width: 800px) and (max-width: 1000px) {
+  html {
+    font-size: 8px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  html {
+    font-size: 6px;
+  }
+}
+body{
+    background-color: #333 !important;
+    padding: 1.2rem;
+    width: 100%;
+    height: 100%;
+}
+.wrapper {
+  width: 42rem;
+  background: #555;
+  border:none ;
+  box-shadow: 0 0 0.8rem rgba(0,0,0,0.5);
+  box-shadow: 0 0 1rem rgba(0 , 0 , 0 , 0.2);
+  color: #fff;
+  border-radius: 1rem;
+  padding: 3rem 4rem;
+  z-index: 50;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10rem;
+  transition-duration: 0.5s;
+}
+.wrapper h1{
+  font-size: 3.6rem;
+  text-align: center;
+}
+.wrapper .input-box {
+  position: relative;
+  width: 100%;
+  height: 5rem;
+  margin: 3rem 0;
+  transform: translateX(0);
+}
+
+form {
+  position: relative;
+}
+
+.dataInfo {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.title-section {
+  display: flex;
+  justify-content: center;
+  transform: translateX(-1rem);
+}
+
+.title-section img {
+  width: 4.5rem;
+  margin: 0 1rem;
+}
+
+.input-box input{
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 0.2rem solid #cecece;
+  border-radius: 4rem;
+  font-size: 1.6rem;
+  color: #fff;
+  padding: 2rem 4.5rem 2rem 2rem;
+  letter-spacing: 0.1rem;
+}
+.input-box input::placeholder{
+  color: #999;
+  font-size: 1.5rem;
+}
+.wrapper .summit-btn{
+  width: 100%;
+  height: 4.5rem;
+  border-radius: 4rem;
+  border: none;
+  outline: none;
+  background: #fff;
+  border: 0.2rem solid #fff;
+  box-shadow: 0 0 1rem rgba(0 , 0 , 0 , 0.1);
+  cursor: pointer;
+  font-size: 1.6rem;
+  color: #333;
+  font-weight: 600;
+  transition-duration: 0.5s;
+}
+.wrapper .summit-btn:hover{
+  color: #fff;
+  background-color: #333;
+  border: 0.2rem solid #cecece;
+}

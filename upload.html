@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload</title>
+  <link rel="shortcut icon" href="images/coffeeBeansIcon.ico" type="image/x-icon">
+  <!-- from css floder -->
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/upload.css">
+
+  <!-- Bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+
+  <!-- Firebase CDN -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-storage-compat.js"></script>
+
+  <!-- Font Awesome CDN -->
+  <script src="https://kit.fontawesome.com/2d437fa4ad.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- loading-container -->
+  <div class="loading-container"></div>
+  <!-- navbar -->
+  <nav class="navbar">
+    <a class="brand-title" href="index.html"><img class="logo-img" src="images/Coffee beans white.png" alt="Coffee beans"> Wayne Music</a>
+    <a href="#" class="toggle-button">
+      <span class="bar b1"></span>
+      <span class="bar b2"></span>
+      <span class="bar b3"></span>
+    </a>
+    <div class="navbar-links">
+      <ul>
+        <li class="nav-item">
+          <a class="nav-link active nav-home" href="#">首頁</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-library" href="#">播放清單</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-search" href="#">搜尋</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-login" href="login-and-sign-up.html">登入</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <div class="wrapper">
+      <form action="">
+          <div class="title-section">
+            <h1 class="form-title">上傳您的音樂</h1>
+          </div>
+          <div class="dataInfo">
+            <div class="input-box file-name-box">
+              <input id="fileName" type="text" placeholder="請輸入您的音樂名稱">
+            </div>
+            <div class="input-box file-creater-box">
+              <input id="fileCreater" type="text" placeholder="請輸入您的創作者名稱">
+            </div>
+            <div class="input-box image-file-box">
+              <input type="file" id="imageFileInput">
+              <img src="" alt="Preview Image" id="previewImage" style="max-width: 300px; display: none;">
+            </div>
+            <div class="input-box arduio-file-box">
+              <input type="file" id="audioFileInput">
+              <audio id="previewAudio" style="display: none;">
+                <source id="previewAudioSource" src="" type="audio/mpeg">
+              </audio>
+            </div>
+          </div>
+          
+          <button type="button" class="summit-btn">上傳</button>
+      </form>
+    </div>
+    <!-- <input type="text" id="fileName">
+    <input type="file" id="imageFileInput">
+    <img src="" alt="Preview Image" id="previewImage" style="max-width: 300px; display: none;">
+    <p id="nameShow"></p>
+    <input type="file" id="audioFileInput">
+    <audio id="previewAudio" style="display: none;">
+      <source id="previewAudioSource" src="" type="audio/mpeg">
+    </audio> -->
+  </main>
+  
+
+  <footer>
+    <img src="images/Coffee beans white.png">
+    <div class="footer-link-section">
+      <ul class="footer-section">
+        <li><a class="footer-link" href="index.html">首頁</a></li>
+        <li><a class="footer-link" href="library.html">播放清單</a></li>
+        <li><a class="footer-link" href="search.html">搜尋</a></li>
+      </ul>
+      <ul class="footer-section">
+        <li><a class="footer-link" href="#">關於我們</a></li>
+        <li><a class="footer-link" href="login-and-sign-up.html">登入/註冊</a></li>
+        <li><a class="footer-link" href="#">使用技術</a></li>
+      </ul>
+      <ul class="footer-section icon">
+        <li><a class="footer-link" href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+        <li><a class="footer-link" href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-square-facebook"></i></a></li>
+        <li><a class="footer-link" href="https://github.com/Joanne0119/music-player" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+        <li><a class="footer-link" href="https://discord.com/" target="_blank"><i class="fa-brands fa-discord"></i></a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script type="module" src="js/db.js"></script>
+  <script src="js/loading.js"></script>
+  <script src="js/navbar.js"></script>
+  <script type="module" src="js/upload.js"></script>
+</body>
+</html>

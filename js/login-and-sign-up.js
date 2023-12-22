@@ -1,12 +1,16 @@
-firebase.initializeApp( {
-  apiKey: "AIzaSyCF3s-mPifwQF5mHLhF6pnPGEOXldPG24s",
-  authDomain: "music-6716e.firebaseapp.com",
-  projectId: "music-6716e",
-  storageBucket: "music-6716e.appspot.com",
-  messagingSenderId: "985965400915",
-  appId: "1:985965400915:web:3495b9196029e01b3e87a6",
-  measurementId: "G-J51M0SKZLK"
-});
+export function firebaseInitalize(){
+  return firebase.initializeApp( {
+    apiKey: "AIzaSyCF3s-mPifwQF5mHLhF6pnPGEOXldPG24s",
+    authDomain: "music-6716e.firebaseapp.com",
+    projectId: "music-6716e",
+    storageBucket: "music-6716e.appspot.com",
+    messagingSenderId: "985965400915",
+    appId: "1:985965400915:web:3495b9196029e01b3e87a6",
+    measurementId: "G-J51M0SKZLK"
+  });
+}
+
+firebaseInitalize();
 
 // Initialize Firebase
 const auth = firebase.auth();
