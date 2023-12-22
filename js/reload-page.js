@@ -160,6 +160,12 @@ export function loadWebContent() {
     navSearch.addEventListener('click', () => {
         loadSearchPage(searchHtml);
     });
+
+    navLogin.innerHTML = name.length == 0 ? "登入":"登出";
+    navLogin.href = "index.html";
+    navLogin.addEventListener('click', () => {
+        loadSearchPage(searchHtml);
+    });
 }
 
 function loadHomePage(html) {
