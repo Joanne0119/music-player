@@ -94,7 +94,7 @@ function audioUpload(){
 function checkingAllFilled(){
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const filled = fileName.value && fileCreater.value && typeName.value && previewImage.src && previewAudio.src;
+      const filled = fileName.value && fileCreater.value && typeName.value && previewImage.src && previewAudioSource.src;
       resolve(filled);
     }, 1000); 
   });
@@ -187,7 +187,7 @@ uploadBtn.addEventListener('click', async () => {
         imageFileStyle.classList.remove('mustFillError');
       },200);
     }
-    if(previewAudio.src === ''){
+    if(previewAudioSource.src === ''){
       audioFileStyle.classList.add('mustFillError');
       console.log('audio');
       setTimeout(() => {
