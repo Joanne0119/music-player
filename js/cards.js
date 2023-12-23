@@ -84,8 +84,6 @@ export function cardScroll(){
   });
 }
 
-let cardsHTML;
-
 export function cardRender()
 {
     let cardsSections = document.querySelectorAll('.cards-section');
