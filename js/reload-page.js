@@ -11,8 +11,14 @@ import { renderLibrary } from "./library.js";
 import { activateSearch } from "./search.js";
 import { name } from "./db.js";
 import { signOut } from "./login-and-sign-up.js";
+import { playCounts } from "./db.js";
+import { songsLibrary } from "./songs.js";
 
 export function loadWebContent() {
+
+    songsLibrary.forEach(song => {
+        playCounts[song.type] = playCounts[song.type] || 1;
+    });
 
     const libraryHtml = `
       <div class="library-section">

@@ -2,6 +2,7 @@ import { songsLibrary } from "./songs.js";
 import { addToPlayerFromCard } from "./music-player-controls.js";
 import { addToSongsList } from "./db.js";
 import { playCounts } from "./db.js";
+import { name } from "./db.js";
 
 export function AddEventToCard() {
   const cards = document.querySelectorAll('.card');
@@ -114,24 +115,33 @@ function genCardHTML(type) {
           return;
       
       case "personal-recommendation-cards":
-          let sum = 0; let probability = {}; let prevSum = 0;
-          Object.keys(playCounts).forEach(key => {
-              sum += playCounts[key];
-          });
-          Object.keys(playCounts).forEach(key => {
-              prevSum += playCounts[key]/sum
-              probability[key] = prevSum;
-          });
-    
           let selectedSongs = [];
-          while(selectedSongs.length < songsLibrary.length/3) {
-              let randomValue = Math.random();
-              let selectedType = Object.keys(probability).find(type => randomValue < probability[type]);
-              let eligibleSongs = songsLibrary.filter(song => song.type === selectedType && !selectedSongs.includes(song));
-              let selectedSong = getRandomElement(eligibleSongs);
-              selectedSongs.push(selectedSong);
+          if(name == "") {
+              while(selectedSongs.length < songsLibrary.length/3) {
+                  let song = getRandomElement(songsLibrary);
+                  if(!selectedSongs.includes(song)) {
+                      selectedSongs.push(song);
+                  }
+              }
           }
-
+          else {
+              let sum = 0; let probability = {}; let prevSum = 0;
+              Object.keys(playCounts).forEach(key => {
+                  sum += playCounts[key];
+              });
+              Object.keys(playCounts).forEach(key => {
+                  prevSum += playCounts[key]/sum
+                  probability[key] = prevSum;
+              });
+    
+              while(selectedSongs.length < songsLibrary.length/3) {
+                  let randomValue = Math.random();
+                  let selectedType = Object.keys(probability).find(type => randomValue < probability[type]);
+                  let eligibleSongs = songsLibrary.filter(song => song.type === selectedType && !selectedSongs.includes(song));
+                  let selectedSong = getRandomElement(eligibleSongs);
+                  selectedSongs.push(selectedSong);
+              }
+          }
           selectedSongs.forEach((song) => {
               cardsHTML += 
                   `<div class="card border-0 p-3" id="${song.id}">
