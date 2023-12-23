@@ -2,7 +2,7 @@ export let name = "";
 export let songsList = [1,2,3];
 export let currentPlaying = -1;
 export let currentPlayingTime = 0;
-export let playCounts = {englishpop:10,mandopop:12};
+export let playCounts = {englishpop:10,mandopop:10};
 
 import { getDataFromDB } from "./login-and-sign-up.js";
 import { addToDB } from "./login-and-sign-up.js";1

@@ -50,7 +50,7 @@ export function cardScroll(){
       leftBtn.classList.add('display-none');
       rightBtn.classList.add('display-none');
     }
-    let totAdded = 0
+    let totAdded = 0;
     let spaceToScroll = cards.scrollWidth - cards.offsetWidth;
     rightBtn.addEventListener('click', () => {
       if(totAdded == spaceToScroll*-1) {
@@ -114,19 +114,18 @@ function genCardHTML(type) {
           return;
       
       case "personal-recommendation-cards":
-          let sum = 0; let probability = {}; let max = 0;
+          let sum = 0; let probability = {}; let prevSum = 0;
           Object.keys(playCounts).forEach(key => {
               sum += playCounts[key];
           });
           Object.keys(playCounts).forEach(key => {
-              probability[key] = playCounts[key]/sum;
-              max = max>probability[key] ? max:probability[key];
+              prevSum += playCounts[key]/sum
+              probability[key] = prevSum;
           });
     
           let selectedSongs = [];
           while(selectedSongs.length < songsLibrary.length/3) {
               let randomValue = Math.random();
-              if(randomValue >= max) continue;
               let selectedType = Object.keys(probability).find(type => randomValue < probability[type]);
               let eligibleSongs = songsLibrary.filter(song => song.type === selectedType && !selectedSongs.includes(song));
               let selectedSong = getRandomElement(eligibleSongs);
