@@ -102,7 +102,8 @@ function getRandomElement(array) {
 
 function genCardHTML(type) {
     let cardsHTML = '';
-    let sortedLibrary = songsLibrary.sort(function(a, b) {
+    let sortedLibrary = songsLibrary.slice();
+    sortedLibrary = sortedLibrary.sort(function(a, b) {
         return b.views - a.views;
     });
     let cnt = 0;
