@@ -3,9 +3,11 @@ const playerSection = document.querySelector('.player-section');
 
 function differentPagesWidth(){
   if(playerSection){
-    footer.classList.add('.widthCompatible');
+    footer.classList.add('widthCompatible');
   }
   else{
-    footer.classList.remove('.widthCompatible');
+    footer.classList.remove('widthCompatible');
   }
 }
+
+differentPagesWidth();
