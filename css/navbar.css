@@ -12,6 +12,7 @@ nav.navbar {
   border-radius: 0 0 0.8rem 0.8rem;
   transition: 0.8s;
   z-index: 200;
+  box-shadow: none;
 }
 
 nav .navbar-links ul{
@@ -74,16 +75,17 @@ nav.sticky a.brand-title:hover, nav.sticky div ul .nav-item a:hover  {
   font-weight: bold;
 }
 
-
 .toggle-button {
   position: absolute;
-  top: .75rem;
-  right: 1rem;
+  top: 2.2rem;
+  right: 2rem;
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 30px;
-  height: 21px;
+  width: 3rem;
+  height: 2rem;
+  cursor: pointer;
+  transition-duration: 0.3s;
 }
 
 .toggle-button:hover {
@@ -91,14 +93,29 @@ nav.sticky a.brand-title:hover, nav.sticky div ul .nav-item a:hover  {
   transform: scale(110%);
 }
 
-.toggle-button .bar {
-  height: 0.3rem;
-  width: 100%;
-  background-color: #eeee;
-  border-radius: 1rem;
+.toggle-button span, .toggle-button span:before, .toggle-button span:after {
+  cursor: pointer;
+  border-radius: 0.1rem;
+  height: 0.35rem;
+  width: 3rem;
+  background: #ffffff;
+  position: absolute;
+  display: block;
+  content: '';
+  transition: all 300ms ease-in-out;
+}
+.toggle-button span:before {
+  top: -1rem;
+}
+.toggle-button span:after {
+  bottom: -1rem;
 }
 
-nav.sticky .toggle-button .bar {
+nav.sticky .toggle-button{
+  top: 2rem;
+}
+
+nav.sticky .toggle-button span, nav.sticky .toggle-button span:before, nav.sticky .toggle-button span:after{
   background-color: #333
 }
 
@@ -116,6 +133,7 @@ nav.sticky .toggle-button .bar {
   .navbar-links {
       display: none;
       width: 100%;
+      margin-top: 1.5rem;
   }
 
   .navbar-links ul {
@@ -125,6 +143,7 @@ nav.sticky .toggle-button .bar {
 
   .navbar-links ul li {
       text-align: center;
+      margin-top: 0.5rem;
   }
 
   .navbar-links ul li a {
@@ -133,5 +152,22 @@ nav.sticky .toggle-button .bar {
 
   .navbar-links.active {
       display: flex;
+  }
+
+  .navbar.toggle-shadow{
+    box-shadow: 0 1rem 0.8rem rgba(0,0,0,0.5);
+  }
+
+  .toggle-button.btn-active span {
+    background-color: transparent;
+  }
+  .toggle-button.btn-active span:before, .toggle-button.btn-active span:after {
+      top: 0;
+  }
+  .toggle-button.btn-active span:before {
+      transform: rotate(45deg);
+  }
+  .toggle-button.btn-active span:after {
+      transform: rotate(-45deg);
   }
 }

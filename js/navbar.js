@@ -1,4 +1,4 @@
-const navbar = document.querySelector('nav');
+const navbar = document.querySelector('.navbar');
 const logoImg = document.querySelector('.logo-img');
 const toggleButton = document.getElementsByClassName('toggle-button')[0];
 const navbarLinks = document.getElementsByClassName('navbar-links')[0];
@@ -16,4 +16,12 @@ window.addEventListener('scroll', () => {
 
 toggleButton.addEventListener('click', () => {
   navbarLinks.classList.toggle('active');
+  toggleButton.classList.toggle('btn-active');
+  if(navbar.classList.contains('toggle-shadow')){
+    navbar.classList.remove('toggle-shadow');
+  }
+  else{
+    navbar.classList.add('toggle-shadow');
+  }
+  
 });
