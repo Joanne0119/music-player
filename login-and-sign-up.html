@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="css/navbar.css">
   <link rel="stylesheet" href="css/login-and-sign-up.css">
   <link rel="stylesheet" href="css/loading.css">
+  <link rel="stylesheet" href="css/footer.css">
 
   <!-- Bootstrap CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
@@ -46,6 +47,9 @@
           <a class="nav-link nav-search" href="index.html?toload=search">搜尋</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link nav-upload" href="upload.html">上傳音樂</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link nav-login active" href="#">登入</a>
         </li>
       </ul>
@@ -81,9 +85,31 @@
         </div>
     </form>
   </div>
+  <footer>
+    <img src="images/Coffee beans white.png">
+    <div class="footer-link-section">
+      <ul class="footer-section">
+        <li><a class="footer-link" href="index.html?toload=home">首頁</a></li>
+        <li><a class="footer-link" href="index.html?toload=library">播放清單</a></li>
+        <li><a class="footer-link" href="index.html?toload=search">搜尋</a></li>
+      </ul>
+      <ul class="footer-section">
+        <li><a class="footer-link" href="#">上傳音樂</a></li>
+        <li><a class="footer-link" href="login-and-sign-up.html">登入/註冊</a></li>
+        <li><a class="footer-link" href="#">關於我們</a></li>
+      </ul>
+      <ul class="footer-section icon">
+        <li><a class="footer-link" href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+        <li><a class="footer-link" href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-square-facebook"></i></a></li>
+        <li><a class="footer-link" href="https://github.com/Joanne0119/music-player" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+        <li><a class="footer-link" href="https://discord.com/" target="_blank"><i class="fa-brands fa-discord"></i></a></li>
+      </ul>
+    </div>
+  </footer>
   <script src="js/navbar.js"></script>
   <script src="js/loading.js"></script>
   <script type="module" src="js/db.js"></script>
   <script type="module" src="js/login-and-sign-up.js"></script>
+  <script src="js/footer.js"></script>
 </body>
 </html>
