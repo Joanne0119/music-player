@@ -93,6 +93,17 @@ function audioUpload(){
   });
 }
 
+function clearTheInputs(){
+  fileName.value = '';
+  fileCreater.value = '';
+  typeName.value = '';
+  imageFileInput.value = '';
+  audioFileInput.value = '';
+  previewImage.src = '';
+  previewAudioSource.src = '';
+  previewAudio.load(); 
+}
+
 function uploadBlobToStorage(type, blob, name) {
   const storage = firebase.storage(); // Get a reference to the Firebase Storage service
   const storageRef = storage.ref(); // Get a reference to the root of your storage bucket
@@ -120,6 +131,8 @@ uploadBtn.addEventListener('click', () => {
   console.log('upload');
   uploadBlobToStorage(imgData.blobType, imgData.blobFromFile, imgData.fileNameFromIput);
   uploadBlobToStorage(audioData.blobType, audioData.blobFromFile, audioData.fileNameFromIput);
+
+  clearTheInputs();
 })
 
 imageUpload();
