@@ -59,7 +59,7 @@ footer ul.footer-section.icon li:hover {
 }
 
 @media screen and (min-width: 756px) and (max-width: 1250px) {
-  footer {
+  footer.widthCompatible {
     width: 100%;
     padding-right: 5rem;
     grid-template-columns: 0.2fr 1fr 0.4fr;
@@ -67,12 +67,12 @@ footer ul.footer-section.icon li:hover {
 }
 
 @media screen and (max-width: 756px) {
-  footer {
+  footer.widthCompatible {
     width: 100%;
     padding-right: 5rem;
     grid-template-columns: 0.2fr 1fr 0.4fr;
   }
-  footer .footer-link-section {
+  footer.widthCompatible .footer-link-section {
     grid-template-columns: 1fr 1fr;
     grid-row-gap: 1.2rem;
   }
