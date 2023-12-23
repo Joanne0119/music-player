@@ -159,3 +159,26 @@ form {
   background-color: #333;
   border: 0.2rem solid #cecece;
 }
+
+.input-box #imageFileStyle.mustFillError, .input-box #audioFileStyle.mustFillError, .input-box .inputText.mustFillError{
+  box-shadow: 0 0 1rem #fff;
+  animation: wrong-wiggle 100ms ease-in-out infinite;
+}
+
+@keyframes wrong-wiggle {
+  0% {
+      transform: translateX(0);
+  }
+  25% {
+      transform: translateX(0.8rem);
+  }
+  50% {
+      transform: translateX(0);
+  }
+  75% {
+      transform: translateX(-0.8rem);
+  }
+  100% {
+      transform: translateX(0);
+  }
+}

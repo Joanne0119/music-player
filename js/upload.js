@@ -39,7 +39,7 @@ function imageUpload(){
       reader.readAsDataURL(blobFromFile);
       
       console.log(blobFromFile);
-      // You can also use `blobFromFile` for your upload to Firebase Storage if needed
+      
       imgData = {
         blobType: 'images',
         blobFromFile: blobFromFile,
@@ -76,8 +76,6 @@ function audioUpload(){
       reader.readAsDataURL(blobFromFile);
       
       console.log(blobFromFile);
-
-      // You can also use `blobFromFile` for your upload to Firebase Storage if needed
       
       audioData = {
         blobType: 'audio',
@@ -90,6 +88,15 @@ function audioUpload(){
       previewAudioSource.src = '';
       previewAudio.load(); 
     }
+  });
+}
+
+function checkingAllFilled(){
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const filled = fileName.value && fileCreater.value && typeName.value && previewImage.src && previewAudio.src;
+      resolve(filled);
+    }, 1000); 
   });
 }
 
@@ -113,56 +120,82 @@ function uploadBlobToStorage(type, blob, name) {
   // Create a reference to the location where you want to store the file in storage
   const fileRef = storageRef.child(filePath); // Replace 'path/to/your/file.jpg' with your desired path and filename
 
-  // Upload the file to Firebase Storage
   return fileRef.put(blob);
-  // .then((snapshot) => {
-  //   console.log('File uploaded successfully');
-  //   // Here you can get the download URL if needed
-  //   snapshot.ref.getDownloadURL().then((downloadURL) => {
-  //     console.log('File available at', downloadURL);
-
-  //     // Do something with the download URL if needed
-  //   });
-  // }).catch((error) => {
-  //   console.error('Error uploading file:', error);
-  // });
 }
 
 uploadBtn.addEventListener('click', async () => {
-  console.log('upload');
-  try{
-    const imgUploadTask = uploadBlobToStorage(imgData.blobType, imgData.blobFromFile, imgData.fileNameFromIput);
-    const audioUploadTask = uploadBlobToStorage(audioData.blobType, audioData.blobFromFile, audioData.fileNameFromIput);
+  const isFilled = await checkingAllFilled();
+  if (isFilled) {
+    console.log('upload');
+    try{
+      const imgUploadTask = uploadBlobToStorage(imgData.blobType, imgData.blobFromFile, imgData.fileNameFromIput);
+      const audioUploadTask = uploadBlobToStorage(audioData.blobType, audioData.blobFromFile, audioData.fileNameFromIput);
 
-    const [imgSnapshot, audioSnapshot] = await Promise.all([imgUploadTask, audioUploadTask]);
+      const [imgSnapshot, audioSnapshot] = await Promise.all([imgUploadTask, audioUploadTask]);
 
-    const imgDownloadURL = await imgSnapshot.ref.getDownloadURL();
-    const audioDownloadURL = await audioSnapshot.ref.getDownloadURL();
-    console.log('Image file available at', imgDownloadURL);
-    console.log('audio file available at', audioDownloadURL);
+      const imgDownloadURL = await imgSnapshot.ref.getDownloadURL();
+      const audioDownloadURL = await audioSnapshot.ref.getDownloadURL();
+      console.log('Image file available at', imgDownloadURL);
+      console.log('audio file available at', audioDownloadURL);
 
-    songsListRef.add({
-      id: '' + new Date().getTime(),
-      title: fileName.value || '',
-      singer: fileCreater.value || '',
-      image: imgDownloadURL,
-      audio: audioDownloadURL,
-      type: typeName.value || '',
-      view: 0
-    }).then((docRef) => {
-      console.log('Download URLs stored in Firestore with ID: ', docRef.id);
-      clearTheInputs(); // Clear inputs after successful upload
-    }).catch((error) => {
-      console.error('Error storing download URLs in Firestore: ', error);
-    });
-  } catch (error) {
-    console.error('Error uploading files:', error);
+      songsListRef.add({
+        id: '' + new Date().getTime(),
+        title: fileName.value || '',
+        singer: fileCreater.value || '',
+        image: imgDownloadURL,
+        audio: audioDownloadURL,
+        type: typeName.value || '',
+        view: 0
+      }).then((docRef) => {
+        console.log('Download URLs stored in Firestore with ID: ', docRef.id);
+        clearTheInputs(); // Clear inputs after successful upload
+      }).catch((error) => {
+        console.error('Error storing download URLs in Firestore: ', error);
+      });
+    } catch (error) {
+      console.error('Error uploading files:', error);
+    }
+  } else {
+    console.log("請填寫所有欄位");
+    console.log(previewImage.src);
+
+    if(fileName.value == ''){
+      fileName.classList.add('mustFillError');
+      console.log('name');
+      setTimeout(() => {
+        fileName.classList.remove('mustFillError');
+      },200);
+    }
+    if(fileCreater.value == ''){
+      fileCreater.classList.add('mustFillError');
+      console.log('creater');
+      setTimeout(() => {
+        fileCreater.classList.remove('mustFillError');
+      },200);
+    }
+    if(typeName.value == ''){
+      typeName.classList.add('mustFillError');
+      console.log('type');
+      setTimeout(() => {
+        typeName.classList.remove('mustFillError');
+      },200);
+    }
+    if(previewImage.src === ''){
+      imageFileStyle.classList.add('mustFillError');
+      console.log('img');
+      setTimeout(() => {
+        imageFileStyle.classList.remove('mustFillError');
+      },200);
+    }
+    if(previewAudio.src === ''){
+      audioFileStyle.classList.add('mustFillError');
+      console.log('audio');
+      setTimeout(() => {
+        audioFileStyle.classList.remove('mustFillError');
+      },200);
+    }
   }
- 
-  // uploadBlobToStorage(imgData.blobType, imgData.blobFromFile, imgData.fileNameFromIput);
-  // uploadBlobToStorage(audioData.blobType, audioData.blobFromFile, audioData.fileNameFromIput);
-
-  // clearTheInputs();
+  
 })
 
 imageUpload();
