@@ -9,6 +9,9 @@ html {
   font-size: 10px;
   width: 100%;
   height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 @media screen and (min-width: 800px) and (max-width: 1000px) {
   html {
@@ -26,6 +29,10 @@ body{
     padding: 1.2rem;
     width: 100%;
     height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 .wrapper {
   width: 42rem;
