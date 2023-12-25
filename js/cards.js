@@ -1,6 +1,8 @@
 import { songsLibrary } from "./songs.js";
 import { addToPlayerFromCard } from "./music-player-controls.js";
 import { addToSongsList } from "./db.js";
+import { playCounts } from "./db.js";
+import { name } from "./db.js";
 
 export function AddEventToCard() {
   const cards = document.querySelectorAll('.card');
@@ -49,7 +51,7 @@ export function cardScroll(){
       leftBtn.classList.add('display-none');
       rightBtn.classList.add('display-none');
     }
-    let totAdded = 0
+    let totAdded = 0;
     let spaceToScroll = cards.scrollWidth - cards.offsetWidth;
     rightBtn.addEventListener('click', () => {
       if(totAdded == spaceToScroll*-1) {
@@ -82,40 +84,118 @@ export function cardScroll(){
   });
 }
 
-let cardsHTML;
-const typeArr = ['mandopop', 'englishpop'];
-
 export function cardRender()
 {
-  let cardsContainer = document.querySelectorAll('.cards');
-  let i = 0;
-  cardsContainer.forEach((cardContainer) => {
-    cardContainer.innerHTML = '';
-    cardContainer.innerHTML = genCardHTML(typeArr[i]);
-    i++;
-  })
+    let cardsSections = document.querySelectorAll('.cards-section');
+    cardsSections.forEach((cardsSection) => {
+        let cardsContent = cardsSection.querySelector('.cards');
+        let title = cardsSection.id;
+        if(cardsContent) cardsContent.innerHTML = genCardHTML(title);
+    })
 }
 
-function genCardHTML(type){
-  cardsHTML = '';
-  songsLibrary.forEach((song) => {
-    if(song.type === type){
-      cardsHTML += 
-      `<div class="card border-0 p-3" id="${song.id}">
-        <img class="card-image rounded" src="${song.image}" alt="${song.title}">
-        <i class="fa-solid fa-plus"></i>
-        <i class="fa-solid fa-play"></i>
-        <div class="card-body">
-          <h4 class="card-title text-light song-title">${song.title}</h4>
-          <p class="card-text text-light singer">${song.singer}</p>
-        </div>
-      </div>`
+// Randomly choose one
+function getRandomElement(array) {
+    let randomIndex = Math.floor(Math.random() * array.length);
+    return array[randomIndex];
+}
+
+function genCardHTML(type) {
+    let cardsHTML = '';
+    let sortedLibrary = songsLibrary.slice();
+    sortedLibrary = sortedLibrary.sort(function(a, b) {
+        return b.views - a.views;
+    });
+    let cnt = 0;
+    
+    switch (type) {
+
+      case "search-results":
+          return;
+      
+      case "personal-recommendation-cards":
+          let selectedSongs = [];
+          if(name == "") {
+              while(selectedSongs.length < songsLibrary.length/3) {
+                  let song = getRandomElement(songsLibrary);
+                  if(!selectedSongs.includes(song)) {
+                      selectedSongs.push(song);
+                  }
+              }
+          }
+          else {
+              let sum = 0; let probability = {}; let prevSum = 0;
+              Object.keys(playCounts).forEach(key => {
+                  sum += playCounts[key];
+              });
+              Object.keys(playCounts).forEach(key => {
+                  prevSum += playCounts[key]/sum
+                  probability[key] = prevSum;
+              });
+    
+              while(selectedSongs.length < songsLibrary.length/3) {
+                  let randomValue = Math.random();
+                  let selectedType = Object.keys(probability).find(type => randomValue < probability[type]);
+                  let eligibleSongs = songsLibrary.filter(song => song.type === selectedType && !selectedSongs.includes(song));
+                  let selectedSong = getRandomElement(eligibleSongs);
+                  selectedSongs.push(selectedSong);
+              }
+          }
+          selectedSongs.forEach((song) => {
+              cardsHTML += 
+                  `<div class="card border-0 p-3" id="${song.id}">
+                      <img class="card-image rounded" src="${song.image}" alt="${song.title}">
+                      <i class="fa-solid fa-plus"></i>
+                      <i class="fa-solid fa-play"></i>
+                      <div class="card-body">
+                          <h4 class="card-title text-light song-title">${song.title}</h4>
+                          <p class="card-text text-light singer">${song.singer}</p>
+                      </div>
+                  </div>`;
+            
+          });
+          break;
+  
+      case "recommendation-cards":
+          
+          cnt = 0;
+          sortedLibrary.forEach((song) => {
+              cardsHTML += 
+                  `<div class="card border-0 p-3" id="${song.id}">
+                      <img class="card-image rounded" src="${song.image}" alt="${song.title}">
+                      <i class="fa-solid fa-plus"></i>
+                      <i class="fa-solid fa-play"></i>
+                      <div class="card-body">
+                          <h4 class="card-title text-light song-title">${song.title}</h4>
+                          <p class="card-text text-light singer">${song.singer}</p>
+                      </div>
+                  </div>`;
+              cnt++;
+              if(cnt >= 20) return;
+          });
+          break;
+
+      default:
+          cnt = 0;
+          sortedLibrary.forEach((song) => {
+              if(song.type+"-cards" === type) {
+                  cardsHTML += 
+                      `<div class="card border-0 p-3" id="${song.id}">
+                          <img class="card-image rounded" src="${song.image}" alt="${song.title}">
+                          <i class="fa-solid fa-plus"></i>
+                          <i class="fa-solid fa-play"></i>
+                          <div class="card-body">
+                              <h4 class="card-title text-light song-title">${song.title}</h4>
+                              <p class="card-text text-light singer">${song.singer}</p>
+                          </div>
+                      </div>`;
+                  cnt++;
+                  if(cnt >= 20) return;
+              }
+          });
+          break;
     }
-  })
-  return cardsHTML;
+    return cardsHTML;
 }
 
-cardRender();
-cardScroll();
 window.onresize = cardScroll;
-AddEventToCard();

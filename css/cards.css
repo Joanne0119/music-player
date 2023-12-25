@@ -105,7 +105,7 @@
   transition: 0.8s;
 }
 
-.card i.fa-plus {
+.card i.fa-plus, .card i.fa-check {
   top: 40%;
 }
 
@@ -115,11 +115,11 @@
   opacity: 1;
 }
 
-.card i.toPlay.fa-plus {
+.card i.toPlay.fa-plus, .card i.toPlay.fa-check {
   top: 30%;
 }
 
-.card i.toPlay:hover, .card i.toPlay.fa-plus:hover {
+.card i.toPlay:hover, .card i.toPlay.fa-plus:hover, .card i.toPlay.fa-check :hover {
   background-color: #555;
   border-color: #eee;
   color: #eee;

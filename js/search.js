@@ -28,13 +28,16 @@ export function activateSearch() {
 
         const searchTerm = searchInput.value.toLowerCase();
         resultsList.innerHTML = '';
-        const filteredResults = songsLibrary.filter(item =>
-            item.title.toLocaleLowerCase().includes(searchTerm) || item.singer.toLocaleLowerCase().includes(searchTerm)
+        const titleResults = songsLibrary.filter(item =>
+            item.title.toLocaleLowerCase().includes(searchTerm)
+        );
+        
+        const singerResults = songsLibrary.filter(item =>
+            item.singer.toLocaleLowerCase().includes(searchTerm)
         );
     
-        if (filteredResults.length > 0 && filteredResults.length != songsLibrary.length) {
-            resultsList.classList.add("cards");
-            filteredResults.forEach(result => {
+        if (titleResults.length > 0 && titleResults.length != songsLibrary.length) {
+            titleResults.forEach(result => {
                 const htmlString = `
                     <div class="card border-0 p-3" id="${result.id}">
                         <img class="card-image rounded" src="${result.image}" alt="${result.title}">
@@ -48,15 +51,35 @@ export function activateSearch() {
                 `;
                 resultsList.innerHTML += htmlString;
             });
-            noResult.style.display = "none";
-            AddEventToCard();
-            cardScroll();
         } 
-        else {
+        if (singerResults.length > 0 && singerResults.length != songsLibrary.length) {
+            singerResults.forEach(result => {
+                const htmlString = `
+                    <div class="card border-0 p-3" id="${result.id}">
+                        <img class="card-image rounded" src="${result.image}" alt="${result.title}">
+                        <i class="fa-solid fa-plus"></i>
+                        <i class="fa-solid fa-play"></i>
+                        <div class="card-body">
+                            <h4 class="card-title text-light song-title">${MarkSearchTerm(result.title, searchTerm)}</h4>
+                            <p class="card-text text-light singer">${MarkSearchTerm(result.singer, searchTerm)}</p>
+                        </div>
+                    </div>
+                `;
+                resultsList.innerHTML += htmlString;
+            });
+        }
+        if(!(titleResults.length > 0 && titleResults.length != songsLibrary.length) &&
+           !(singerResults.length > 0 && singerResults.length != songsLibrary.length)) {
             resultsList.classList.remove("cards");
             noResult.style.display = "block";
-            rightBtn.classList.toggle("display-none");
-            leftBtn.classList.toggle("display-none");
+            rightBtn.classList.add("display-none");
+            leftBtn.classList.add("display-none");
+        }
+        else {
+            noResult.style.display = "none";
+            resultsList.classList.add("cards");
+            AddEventToCard();
+            cardScroll();
         }
     });
 }
