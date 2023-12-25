@@ -189,29 +189,30 @@
     width: 5%;
 }
 
-.player-controls-progresses [type="range"] {
-    -webkit-appearance: none;
+.player-controls-progresses input[type="range"] {
     appearance: none;
+    -webkit-appearance: none;
     cursor: pointer;
     margin: 0rem 1rem;
 }
 
 .player-controls-progresses input[type="range"]::-webkit-slider-runnable-track {
-	/* appearance: none;
-	-webkit-appearance: none; */
     height: 0.3rem;
     border-radius: 1rem;
     background: white;
 }
 
+.player-controls-progresses input[type="range"] :focus {
+    outline: none;
+}
+
 .player-controls-progresses input[type="range"]::-webkit-slider-thumb {
-	/* appearance: none;
-	-webkit-appearance: none; */
-    position: relative;
-    height: 1rem;
-    width: 1rem;
-    margin-top: -0.7rem;
-    background-color: white;
+	-webkit-appearance: none;
+    background: #ffffff;
+    height: 0.9rem;
+    width: 0.9rem;
+    margin-top: -0.28rem;
+    border-radius: 50%;
 }
 
 .player-controls-progresses #progress {
