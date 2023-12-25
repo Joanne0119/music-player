@@ -195,7 +195,7 @@ export function addToDB(playlist, curID, curTime) {
 }
 
 import { loadDataFromDB } from "./db.js";
-import { loadWebContent } from "./reload-page.js";
+import { loadSongsLibrary } from "./songs.js";
 
 auth.onAuthStateChanged((user) => {
   userData = user;
@@ -205,7 +205,7 @@ auth.onAuthStateChanged((user) => {
   }
   else {
     console.log('not log in...');
-    loadWebContent();
+    loadSongsLibrary();
   }
 });
 

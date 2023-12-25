@@ -26,10 +26,18 @@ let isPlayingOther = false;
 export function loadPlayer() {
     if(!playerSection) return;
     if (currentPlaying != -1) {
-        currentMusicArea.querySelector("img").src = songsLibrary[songsList[currentPlaying]].image;
-        currentMusicArea.querySelector("h4").innerHTML = songsLibrary[songsList[currentPlaying]].title;
-        currentMusicArea.querySelector("p").innerHTML = songsLibrary[songsList[currentPlaying]].singer;
-        audio.querySelector("source").src = songsLibrary[songsList[currentPlaying]].audio;
+        let song;
+        songsLibrary.forEach(songData => {
+            if(songsList[currentPlaying] == songData.id) {
+                song = songData;
+                return;
+            }
+        });
+        if(!song) return;
+        currentMusicArea.querySelector("img").src = song.image;
+        currentMusicArea.querySelector("h4").innerHTML = song.title;
+        currentMusicArea.querySelector("p").innerHTML = song.singer;
+        audio.querySelector("source").src = song.audio;
         audio.load();
         audio.currentTime = currentPlayingTime;
         isPlaying = false;
@@ -39,12 +47,19 @@ export function loadPlayer() {
 }
 
 export function addToPlayerFromList(id) {
+    let song;
+    songsLibrary.forEach(songData => {
+        if(id == songData.id) {
+            song = songData;
+            return;
+        }
+    });
+    if(!song) return;
     updateCurrentPlaying(id);
-    id = songsList[id];
-    currentMusicArea.querySelector("img").src = songsLibrary[id].image;
-    currentMusicArea.querySelector("h4").innerHTML = songsLibrary[id].title;
-    currentMusicArea.querySelector("p").innerHTML = songsLibrary[id].singer;
-    audio.querySelector("source").src = songsLibrary[id].audio;
+    currentMusicArea.querySelector("img").src = song.image;
+    currentMusicArea.querySelector("h4").innerHTML = song.title;
+    currentMusicArea.querySelector("p").innerHTML = song.singer;
+    audio.querySelector("source").src = song.audio;
     audio.load(); ToPlay();
     isPlayingOther = false;
 }
