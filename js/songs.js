@@ -4,12 +4,14 @@ export let sortedTypeLibrary = [];
 
 import { fetchSongsData } from "./upload.js";
 import { loadWebContent } from "./reload-page.js";
+import { loadPlayer } from "./music-player-controls.js";
 
 export async function loadSongsLibrary() {
     songsLibrary = await fetchSongsData();
     console.log('songsLibrary:', songsLibrary);
     setTypeLibrary();
     loadWebContent();
+    loadPlayer();
 }
 
 function setTypeLibrary() {

@@ -46,7 +46,7 @@ export function loadPlayer() {
     }
 }
 
-export function addToPlayerFromList(id) {
+export function addToPlayerFromList(id, listId) {
     let song;
     songsLibrary.forEach(songData => {
         if(id == songData.id) {
@@ -55,7 +55,7 @@ export function addToPlayerFromList(id) {
         }
     });
     if(!song) return;
-    updateCurrentPlaying(id);
+    updateCurrentPlaying(listId);
     currentMusicArea.querySelector("img").src = song.image;
     currentMusicArea.querySelector("h4").innerHTML = song.title;
     currentMusicArea.querySelector("p").innerHTML = song.singer;
@@ -98,10 +98,18 @@ function UpdateCurrentMusic(musicID) {
     else {
         updateCurrentPlaying(musicID);
     }
-    currentMusicArea.querySelector("img").src = songsLibrary[songsList[currentPlaying]].image;
-    currentMusicArea.querySelector("h4").innerHTML = songsLibrary[songsList[currentPlaying]].title;
-    currentMusicArea.querySelector("p").innerHTML = songsLibrary[songsList[currentPlaying]].singer;
-    audio.querySelector("source").src = songsLibrary[songsList[currentPlaying]].audio;
+    let song;
+    songsLibrary.forEach(songData => {
+        if(songsList[currentPlaying] == songData.id) {
+            song = songData;
+            return;
+        }
+    });
+    if(!song) return;
+    currentMusicArea.querySelector("img").src = song.image;
+    currentMusicArea.querySelector("h4").innerHTML = song.title;
+    currentMusicArea.querySelector("p").innerHTML = song.singer;
+    audio.querySelector("source").src = song.audio;
     audio.load(); ToPlay();
     isPlayingOther = false;
 }

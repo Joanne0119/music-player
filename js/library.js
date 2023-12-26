@@ -24,9 +24,9 @@ function addSongHoverEvent(){
 function addSongPlayingEvent() {
   const songs = document.querySelectorAll('.song');
   songs.forEach((song) => {
-    
+    const listId = parseInt(song.querySelector('.number').innerHTML)-1;
     song.addEventListener('click', () => {
-      addToPlayerFromList(parseInt(song.id));
+      addToPlayerFromList(song.id, listId);
     });
   });
 }
@@ -81,8 +81,7 @@ function addEventToDeleteButton() {
   delBtns.forEach((delBtn) => {
     delBtn.addEventListener('click', function(event) {
       event.stopPropagation();
-      const delBtnId = parseInt(delBtn.id);
-      deleteSong(delBtnId);
+      deleteSong(delBtn.id);
     })
   })
 }

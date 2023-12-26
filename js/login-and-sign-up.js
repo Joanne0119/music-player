@@ -181,9 +181,6 @@ export function addToDB(playlist, curID, curTime) {
           currentPlaying: curID,
           currentPlayingTime: curTime
         })
-        .then(() => {
-          console.log("Document successfully updated!");
-        })
         .catch(error => {
           console.error("Error updating document: ", error);
         });
