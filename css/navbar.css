@@ -161,6 +161,9 @@ nav.sticky .toggle-button span, nav.sticky .toggle-button span:before, nav.stick
   .toggle-button.btn-active span {
     background-color: transparent;
   }
+  nav.sticky .toggle-button.btn-active span{
+    background-color: #eee;
+  }
   .toggle-button.btn-active span:before, .toggle-button.btn-active span:after {
       top: 0;
   }
