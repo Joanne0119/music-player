@@ -23,14 +23,13 @@ export function AddEventToCard() {
 
     const playBtn = card.querySelector(".fa-play");
     playBtn.addEventListener('click', ()=>{
-      addToPlayerFromCard(card.id);
-      updateSongsView(card.id);
+        addToPlayerFromCard(card.id);
+        updateSongsView(card.id);
     })
 
     const plusBtn = card.querySelector(".fa-plus");
     plusBtn.addEventListener('click', ()=>{
       addToSongsList(card.id);
-      updateSongsView(card.id);
     })
   })
 }

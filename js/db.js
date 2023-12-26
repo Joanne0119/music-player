@@ -5,9 +5,12 @@ export let currentPlayingTime = 0;
 export let playCounts = {};
 
 import { getDataFromDB } from "./login-and-sign-up.js";
-import { addToDB } from "./login-and-sign-up.js";1
+import { updateUserDataToDB } from "./login-and-sign-up.js";1
 import { songsLibrary } from "./songs.js";
 import { loadSongsLibrary } from "./songs.js";
+import { loadPlayer } from "./music-player-controls.js";
+import { updateSongsView } from "./upload.js";
+import { updateUserDataToDBByplayCounts } from "./login-and-sign-up.js";
 
 export async function loadDataFromDB() {
     getDataFromDB().then(userData => {
@@ -35,14 +38,15 @@ export function addToSongsList(id) {
         currentPlaying = 0;
         loadPlayer();
     }
+    updateSongsView(id);
     songsLibrary.forEach(song => {
         if(song.id == id) {
-            song.views += 1;
             playCounts[song.type] = (playCounts[song.type] || 0) + 1;
             return;
         }
     });
-    addToDB(songsList, currentPlaying, currentPlayingTime);
+    updateUserDataToDBByplayCounts(playCounts);
+    updateUserDataToDB(songsList, currentPlaying, currentPlayingTime);
 }
 
 export function removeFromSongsList(id) {
@@ -51,16 +55,16 @@ export function removeFromSongsList(id) {
         currentPlaying = -1;
         currentPlayingTime = 0;
     }
-    addToDB(songsList, currentPlaying, currentPlayingTime);
+    updateUserDataToDB(songsList, currentPlaying, currentPlayingTime);
 }
 
 export function updateCurrentPlaying(id) {
     currentPlaying = id;
-    addToDB(songsList, currentPlaying, currentPlayingTime);
+    updateUserDataToDB(songsList, currentPlaying, currentPlayingTime);
 }
 
 export function updateCurPlayingTime(time) {
     if(songsList.length == 0) return;
     currentPlayingTime = time;
-    addToDB(songsList, currentPlaying, currentPlayingTime);
+    updateUserDataToDB(songsList, currentPlaying, currentPlayingTime);
 }

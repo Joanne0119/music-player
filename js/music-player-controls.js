@@ -19,6 +19,7 @@ import { currentPlayingTime } from "./db.js";
 import { updateCurrentPlaying } from "./db.js";
 import { updateCurPlayingTime } from "./db.js";
 import { playCounts } from "./db.js";
+import { updateUserDataToDBByplayCounts } from "./login-and-sign-up.js";
 
 let isPlaying = false;
 let isPlayingOther = false;
@@ -69,6 +70,7 @@ export function addToPlayerFromCard(id) {
         if(song.id == id) {
             song.views += 1;
             playCounts[song.type] = (playCounts[song.type] || 0) + 1;
+            updateUserDataToDBByplayCounts(playCounts);
             currentMusicArea.querySelector("img").src = song.image;
             currentMusicArea.querySelector("h4").innerHTML = song.title;
             currentMusicArea.querySelector("p").innerHTML = song.singer;

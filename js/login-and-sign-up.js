@@ -72,10 +72,7 @@ function signUpSummit(){
         playlist: [],
         currentPlaying: -1,
         currentPlayingTime: 0,
-        playCounts: {
-          mandopop: 0,
-          englishpop: 0,
-        }
+        playCounts: {}
       });
     })
     .catch((err) => {
@@ -170,7 +167,7 @@ export function getDataFromDB() {
   });
 }
 
-export function addToDB(playlist, curID, curTime) {
+export function updateUserDataToDB(playlist, curID, curTime) {
   if(!userData) return;
   usersRef.where('uid', '==', userData.uid).get()
     .then(querySnapshot => {
@@ -180,6 +177,25 @@ export function addToDB(playlist, curID, curTime) {
           playlist: playlist,
           currentPlaying: curID,
           currentPlayingTime: curTime
+        })
+        .catch(error => {
+          console.error("Error updating document: ", error);
+        });
+      });
+    })
+    .catch(error => {
+      console.error("Error fetching documents: ", error);
+    });
+}
+
+export function updateUserDataToDBByplayCounts(playCounts) {
+  if(!userData) return;
+  usersRef.where('uid', '==', userData.uid).get()
+    .then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        let userdocRef = usersRef.doc(doc.id);
+        userdocRef.update({
+          playCounts: playCounts,
         })
         .catch(error => {
           console.error("Error updating document: ", error);
