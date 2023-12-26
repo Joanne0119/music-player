@@ -131,9 +131,10 @@ function genCardHTML(type) {
                   sum += playCounts[key];
               });
               Object.keys(playCounts).forEach(key => {
-                  prevSum += playCounts[key]/sum
+                  prevSum += playCounts[key]/sum;
                   probability[key] = prevSum;
               });
+              probability[Object.keys(playCounts)[Object.keys(playCounts).length-1]] = 1;
     
               while(selectedSongs.length < songsLibrary.length/3) {
                   let randomValue = Math.random();
@@ -142,8 +143,9 @@ function genCardHTML(type) {
                   let selectedSong = getRandomElement(eligibleSongs);
                   selectedSongs.push(selectedSong);
               }
-              console.log(selectedSongs);
+              console.log(selectedSongs, probability);
           }
+
           selectedSongs.forEach((song) => {
               cardsHTML += 
                   `<div class="card border-0 p-3" id="${song.id}">
