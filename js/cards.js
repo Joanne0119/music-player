@@ -3,6 +3,7 @@ import { addToPlayerFromCard } from "./music-player-controls.js";
 import { addToSongsList } from "./db.js";
 import { playCounts } from "./db.js";
 import { name } from "./db.js";
+import { updateSongsView } from "./upload.js";
 
 export function AddEventToCard() {
   const cards = document.querySelectorAll('.card');
@@ -23,11 +24,13 @@ export function AddEventToCard() {
     const playBtn = card.querySelector(".fa-play");
     playBtn.addEventListener('click', ()=>{
       addToPlayerFromCard(card.id);
+      updateSongsView(card.id);
     })
 
     const plusBtn = card.querySelector(".fa-plus");
     plusBtn.addEventListener('click', ()=>{
-      addToSongsList(parseInt(card.id));
+      addToSongsList(card.id);
+      updateSongsView(card.id);
     })
   })
 }
@@ -140,6 +143,7 @@ function genCardHTML(type) {
                   let selectedSong = getRandomElement(eligibleSongs);
                   selectedSongs.push(selectedSong);
               }
+              console.log(selectedSongs);
           }
           selectedSongs.forEach((song) => {
               cardsHTML += 

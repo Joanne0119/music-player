@@ -250,3 +250,24 @@ export async function fetchSongsData() {
       return [];
   }
 }
+
+export function updateSongsView(id) {
+    songsListRef.where('id', '==', id).get()
+        .then(querySnapshot => {
+            querySnapshot.forEach(doc => {
+                let songsListDocRef = songsListRef.doc(doc.id);
+                songsListDocRef.update({
+                    view: doc.data().view + 1
+                })
+                .then(() => {
+                    console.log("Songs Library successfully updated!");
+                })
+                .catch(error => {
+                    console.error("Error updating document: ", error);
+                });
+            });
+        })
+        .catch(error => {
+            console.error("Error fetching documents: ", error);
+        });
+}
