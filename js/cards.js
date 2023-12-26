@@ -148,9 +148,11 @@ function genCardHTML(type) {
           selectedSongs.forEach((song) => {
               cardsHTML += 
                   `<div class="card border-0 p-3" id="${song.id}">
-                      <img class="card-image rounded" src="${song.image}" alt="${song.title}">
-                      <i class="fa-solid fa-plus"></i>
-                      <i class="fa-solid fa-play"></i>
+                      <div class="img-box">
+                        <img class="card-image rounded" src="${song.image}" alt="${song.title}">
+                        <i class="fa-solid fa-plus"></i>
+                        <i class="fa-solid fa-play"></i>
+                      </div>
                       <div class="card-body">
                           <h4 class="card-title text-light song-title">${song.title}</h4>
                           <p class="card-text text-light singer">${song.singer}</p>
@@ -166,9 +168,11 @@ function genCardHTML(type) {
           sortedLibrary.forEach((song) => {
               cardsHTML += 
                   `<div class="card border-0 p-3" id="${song.id}">
-                      <img class="card-image rounded" src="${song.image}" alt="${song.title}">
-                      <i class="fa-solid fa-plus"></i>
-                      <i class="fa-solid fa-play"></i>
+                      <div class="img-box">
+                        <img class="card-image rounded" src="${song.image}" alt="${song.title}">
+                        <i class="fa-solid fa-plus"></i>
+                        <i class="fa-solid fa-play"></i>
+                      </div>
                       <div class="card-body">
                           <h4 class="card-title text-light song-title">${song.title}</h4>
                           <p class="card-text text-light singer">${song.singer}</p>
@@ -185,9 +189,11 @@ function genCardHTML(type) {
               if(song.type+"-cards" === type) {
                   cardsHTML += 
                       `<div class="card border-0 p-3" id="${song.id}">
-                          <img class="card-image rounded" src="${song.image}" alt="${song.title}">
-                          <i class="fa-solid fa-plus"></i>
-                          <i class="fa-solid fa-play"></i>
+                          <div class="img-box">
+                            <img class="card-image rounded" src="${song.image}" alt="${song.title}">
+                            <i class="fa-solid fa-plus"></i>
+                            <i class="fa-solid fa-play"></i>
+                          </div>
                           <div class="card-body">
                               <h4 class="card-title text-light song-title">${song.title}</h4>
                               <p class="card-text text-light singer">${song.singer}</p>
