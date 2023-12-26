@@ -26,6 +26,29 @@ export function loadWebContent() {
       <div class="songs-container"></div>
       </div>
     `;
+    
+    let carouselHtml = ``;
+
+    let top4 = [{view:-1}, {view:-1}, {view:-1}, {view:-1}];
+    songsLibrary.forEach(song => {
+        if (song.view > top4[3].view) {
+            top4[3] = song;
+            top4.sort((a,b) => b.view - a.view);
+        }
+    });
+
+    top4.forEach(song => {
+        let active = (song == top4[0]) ? " active" : "";
+        carouselHtml += `
+          <div class="carousel-item${active}">
+            <img src="${song.image}" class="d-block w-100 " alt="${song.title}">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>${song.title}</h5>
+              <p>${song.singer}</p>
+            </div>
+          </div>
+        `;
+    });
 
     const homeHtml = `
     <!-- contain carousel and cards section -->
@@ -39,34 +62,7 @@ export function loadWebContent() {
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
       </div>
       <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="images/好不容易.jpeg" class="d-block w-100 " alt="好不容易">
-          <div class="carousel-caption d-none d-md-block">
-            <h5>好不容易</h5>
-            <p>告五人</p>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="images/too much.jpg" class="d-block w-100" alt="too much">
-          <div class="carousel-caption d-none d-md-block">
-            <h5>Too Much</h5>
-            <p>The Kid LAROI, Jung Kook, Central Cee</p>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="images/seven.jpg" class="d-block w-100" alt="seven">
-          <div class="carousel-caption d-none d-md-block text-dark">
-            <h5>Seven</h5>
-            <p>Jung Kook feat. Latto</p>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="images/Super shy.webp" class="d-block w-100 super-shy-img" alt="Super shy" style="object-position: 5% 5%;">
-          <div class="carousel-caption d-none d-md-block">
-            <h5>Super Shy</h5>
-            <p>New Jeans</p>
-          </div>
-        </div>
+        
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -164,7 +160,7 @@ export function loadWebContent() {
     
     switch (toload) {
         case 'home':
-            loadHomePage(homeHtml);
+            loadHomePage(homeHtml, carouselHtml);
             break;
         case 'library':
             loadLibraryPage(libraryHtml);
@@ -173,11 +169,11 @@ export function loadWebContent() {
             loadSearchPage(searchHtml);
             break;
         default:
-            loadHomePage(homeHtml);
+            loadHomePage(homeHtml, carouselHtml);
     }
 
     navHome.addEventListener('click', () => {
-        loadHomePage(homeHtml);
+        loadHomePage(homeHtml, carouselHtml);
     });
     
     navLibrary.addEventListener('click', () => {
@@ -195,9 +191,11 @@ export function loadWebContent() {
     });
 }
 
-function loadHomePage(html) {
+function loadHomePage(homeHtml, carouselHtml) {
     if(!reloadContent) return;
-    reloadContent.innerHTML = html;
+    reloadContent.innerHTML = homeHtml;
+    let carouselContent = document.querySelector('.carousel-inner');
+    carouselContent.innerHTML = carouselHtml;
     navHome.classList.remove("active");
     navLibrary.classList.remove("active");
     navSearch.classList.remove("active");
