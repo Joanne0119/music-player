@@ -76,7 +76,7 @@
   text-overflow: ellipsis; 
 }
 
-.card-title {
+.card-song-title {
   overflow: hidden;
   white-space: nowrap; 
   text-overflow: ellipsis; 

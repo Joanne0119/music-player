@@ -154,7 +154,7 @@ function genCardHTML(type) {
                         <i class="fa-solid fa-play"></i>
                       </div>
                       <div class="card-body">
-                          <h4 class="card-title text-light song-title">${song.title}</h4>
+                          <h4 class="card-song-title text-light song-title">${song.title}</h4>
                           <p class="card-text text-light singer">${song.singer}</p>
                       </div>
                   </div>`;
@@ -174,7 +174,7 @@ function genCardHTML(type) {
                         <i class="fa-solid fa-play"></i>
                       </div>
                       <div class="card-body">
-                          <h4 class="card-title text-light song-title">${song.title}</h4>
+                          <h4 class="card-song-title text-light song-title">${song.title}</h4>
                           <p class="card-text text-light singer">${song.singer}</p>
                       </div>
                   </div>`;
@@ -195,7 +195,7 @@ function genCardHTML(type) {
                             <i class="fa-solid fa-play"></i>
                           </div>
                           <div class="card-body">
-                              <h4 class="card-title text-light song-title">${song.title}</h4>
+                              <h4 class="card-song-title text-light song-title">${song.title}</h4>
                               <p class="card-text text-light singer">${song.singer}</p>
                           </div>
                       </div>`;
