@@ -97,6 +97,26 @@ export function loadWebContent() {
         <div class="cards"></div>
       </div>
     </div>
+
+    <!-- k-pop -->
+    <div class="cards-section" id="kpop-cards">
+      <h3 class="card-title">韓國流行</h3>
+      <div class="left-btn display-none"><i class="fa-solid fa-angle-left"></i></div>
+      <div class="right-btn display-none"><i class="fa-solid fa-angle-right"></i></div>
+      <div class="cards-container">
+        <div class="cards"></div>
+      </div>
+    </div>
+
+    <!-- soundtrack -->
+    <div class="cards-section" id="soundtrack-cards">
+      <h3 class="card-title">影視原聲帶</h3>
+      <div class="left-btn display-none"><i class="fa-solid fa-angle-left"></i></div>
+      <div class="right-btn display-none"><i class="fa-solid fa-angle-right"></i></div>
+      <div class="cards-container">
+        <div class="cards"></div>
+      </div>
+    </div>
     </main>
     `;
 
