@@ -23,7 +23,13 @@ export function loadWebContent() {
     });
 
     songsLibrary.forEach(song => {
-        playCounts[song.type] = playCounts[song.type] || sum/100 * 3;
+        if(playCounts[song.type]) {
+            playCounts[song.type] = 
+                (playCounts[song.type] < sum/100 * 3) ? sum/100 * 3:playCounts[song.type];
+        }
+        else {
+            playCounts[song.type] = sum/100 * 3
+        }
     });
 
     const libraryHtml = `
