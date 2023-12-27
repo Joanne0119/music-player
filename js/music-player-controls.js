@@ -107,6 +107,7 @@ export function addToPlayerFromCarousel(id) {
 const toDo_Per1Sec = setInterval(updateTimeToDB, 1000);
 
 function updateTimeToDB() {
+    if(isPlayingCarousel) return;
     if(isPlayingOther) return;
     if(isPlaying) updateCurPlayingTime(audio.currentTime);
 }

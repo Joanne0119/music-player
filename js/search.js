@@ -108,9 +108,6 @@ export function activateSearch() {
         else {
             noResult.style.display = "none";
             resultsList.classList.add("cards");
-            console.log(3, resultsList);
-            AddEventToCard();
-            cardScroll();
         }
 
         if(!(typeResults.length > 0 && typeResults.length != sortedTypeLibrary.length)) {
@@ -118,13 +115,19 @@ export function activateSearch() {
         }
         else {
             cardRender();
-            AddEventToCard();
-            cardScroll();
             if(!(titleResults.length > 0 && titleResults.length != songsLibrary.length) &&
                !(singerResults.length > 0 && singerResults.length != songsLibrary.length)) {
                 searchResults.style.display = "none";
             }
         }
+
+        if ( (titleResults.length > 0 && titleResults.length != songsLibrary.length) ||
+             (singerResults.length > 0 && singerResults.length != songsLibrary.length) ||
+             (typeResults.length > 0 && typeResults.length != sortedTypeLibrary.length)) { 
+            AddEventToCard();
+            cardScroll();
+        }
+
     });
 }
 
