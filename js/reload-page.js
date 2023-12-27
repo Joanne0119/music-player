@@ -109,6 +109,8 @@ export function loadWebContent() {
                       <div id="results-list"></div>
                   </div>
               </div>
+
+              <div class="type-search-results"></div>
           </div>
           
           <div class="cards-section" id="personal-recommendation-cards">

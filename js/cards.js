@@ -92,7 +92,12 @@ export function cardRender()
     cardsSections.forEach((cardsSection) => {
         let cardsContent = cardsSection.querySelector('.cards');
         let title = cardsSection.id;
-        if(cardsContent) cardsContent.innerHTML = genCardHTML(title);
+        if(genCardHTML(title) == "OK") {
+           return;
+        }
+        else {
+           if(cardsContent) cardsContent.innerHTML = genCardHTML(title);
+        }
     })
 }
 
@@ -113,7 +118,7 @@ function genCardHTML(type) {
     switch (type) {
 
       case "search-results":
-          return;
+          return "OK";
       
       case "personal-recommendation-cards":
           let selectedSongs = [];

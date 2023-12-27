@@ -1,7 +1,8 @@
-
 import { songsLibrary } from "./songs.js";
 import { AddEventToCard } from "./cards.js";
 import { cardScroll } from "./cards.js";
+import { sortedTypeLibrary } from "./songs.js";
+import { cardRender } from "./cards.js";
 
 function MarkSearchTerm(string, target) {
 
@@ -19,15 +20,16 @@ function MarkSearchTerm(string, target) {
 }
 
 export function activateSearch() {
+    const searchResults = document.querySelector('#search-results');
+    const typeSearchResults = document.querySelector('.type-search-results');
     const searchInput = document.getElementById('search-input');
     const resultsList = document.getElementById('results-list');
     const noResult = document.getElementById('no-result');
-    const rightBtn = document.querySelector('.right-btn');
-    const leftBtn = document.querySelector('.left-btn');
     searchInput.addEventListener('input', function () {
 
         const searchTerm = searchInput.value.toLowerCase();
         resultsList.innerHTML = '';
+        typeSearchResults.innerHTML = '';
         let titleResults = songsLibrary.filter(item =>
             item.title.toLocaleLowerCase().includes(searchTerm)
         );
@@ -36,12 +38,13 @@ export function activateSearch() {
             item.singer.toLocaleLowerCase().includes(searchTerm)
         );
 
-        let typeResults = songsLibrary.filter(item =>
-            item.type.toLocaleLowerCase().includes(searchTerm)
+        let typeResults = sortedTypeLibrary.filter(item =>
+            item.toLocaleLowerCase().includes(searchTerm)
         );
     
         if (titleResults.length > 0 && titleResults.length != songsLibrary.length) {
             titleResults.forEach(result => {
+                console.log(result);
                 const htmlString = `
                     <div class="card border-0 p-3" id="${result.id}">
                         <img class="card-image rounded" src="${result.image}" alt="${result.title}">
@@ -55,9 +58,6 @@ export function activateSearch() {
                 `;
                 resultsList.innerHTML += htmlString;
                 singerResults = singerResults.filter(item => {
-                    return item !== result;
-                });
-                typeResults = typeResults.filter(item => {
                     return item !== result;
                 });
             });
@@ -76,40 +76,54 @@ export function activateSearch() {
                     </div>
                 `;
                 resultsList.innerHTML += htmlString;
-                typeResults = typeResults.filter(item => {
-                    return item !== result;
-                });
             });
         }
-        if (typeResults.length > 0 && typeResults.length != songsLibrary.length) {
+
+        if (typeResults.length > 0 && typeResults.length != sortedTypeLibrary.length) {
             typeResults.forEach(result => {
                 const htmlString = `
-                    <div class="card border-0 p-3" id="${result.id}">
-                        <img class="card-image rounded" src="${result.image}" alt="${result.title}">
-                        <i class="fa-solid fa-plus"></i>
-                        <i class="fa-solid fa-play"></i>
-                        <div class="card-body">
-                            <h4 class="card-title text-light song-title">${MarkSearchTerm(result.title, searchTerm)}</h4>
-                            <p class="card-text text-light singer">${MarkSearchTerm(result.singer, searchTerm)}</p>
+                    <div class="cards-section" id="${result}-cards">
+                        <h3 class="card-title">${MarkSearchTerm(result, searchTerm)}</h3>
+                        <div class="left-btn display-none"><i class="fa-solid fa-angle-left"></i></div>
+                        <div class="right-btn display-none"><i class="fa-solid fa-angle-right"></i></div>
+                        <div class="cards-container">
+                        <div class="cards"></div>
                         </div>
                     </div>
                 `;
-                resultsList.innerHTML += htmlString;
+                typeSearchResults.innerHTML += htmlString;
             });
         }
+
+        const rightBtn = document.querySelectorAll('.right-btn');
+        const leftBtn = document.querySelectorAll('.left-btn');
+
         if(!(titleResults.length > 0 && titleResults.length != songsLibrary.length) &&
-           !(singerResults.length > 0 && singerResults.length != songsLibrary.length) &&
-           !(typeResults.length > 0 && typeResults.length != songsLibrary.length)) {
+           !(singerResults.length > 0 && singerResults.length != songsLibrary.length)) {
             resultsList.classList.remove("cards");
             noResult.style.display = "block";
-            rightBtn.classList.add("display-none");
-            leftBtn.classList.add("display-none");
+            rightBtn[0].classList.add("display-none");
+            leftBtn[0].classList.add("display-none");
         }
         else {
             noResult.style.display = "none";
             resultsList.classList.add("cards");
+            console.log(3, resultsList);
             AddEventToCard();
             cardScroll();
+        }
+
+        if(!(typeResults.length > 0 && typeResults.length != sortedTypeLibrary.length)) {
+            typeSearchResults.innerHTML = "";
+        }
+        else {
+            cardRender();
+            AddEventToCard();
+            cardScroll();
+            if(!(titleResults.length > 0 && titleResults.length != songsLibrary.length) &&
+               !(singerResults.length > 0 && singerResults.length != songsLibrary.length)) {
+                searchResults.style.display = "none";
+            }
         }
     });
 }
