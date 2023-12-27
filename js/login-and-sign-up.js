@@ -80,7 +80,7 @@ function signUpSummit(){
       console.log('格式錯誤');
       incorrectPasswordOrAcount();
     })
-    signOut();
+    goToHomepage();
 }
 
 export function signOut() {
