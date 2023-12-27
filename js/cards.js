@@ -140,6 +140,7 @@ function genCardHTML(type) {
                   let randomValue = Math.random();
                   let selectedType = Object.keys(probability).find(type => randomValue < probability[type]);
                   let eligibleSongs = songsLibrary.filter(song => song.type === selectedType && !selectedSongs.includes(song));
+                  if(eligibleSongs == undefined) continue;
                   let selectedSong = getRandomElement(eligibleSongs);
                   selectedSongs.push(selectedSong);
               }
