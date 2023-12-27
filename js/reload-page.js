@@ -52,7 +52,7 @@ export function loadWebContent() {
     top4.forEach(song => {
         let active = (song == top4[0]) ? " active" : "";
         carouselHtml += `
-          <div class="carousel-item${active}">
+          <div class="carousel-item${active}" id="${song.id}">
             <img src="${song.image}" class="d-block w-100 " alt="${song.title}">
             <div class="carousel-caption d-none d-md-block">
               <h5>${song.title}</h5>
@@ -181,6 +181,7 @@ export function loadWebContent() {
     });
 }
 
+import { addToPlayerFromCarousel } from "./music-player-controls.js";
 function loadHomePage(homeHtml, carouselHtml) {
     if(!reloadContent) return;
     reloadContent.innerHTML = homeHtml;
@@ -193,6 +194,13 @@ function loadHomePage(homeHtml, carouselHtml) {
     cardRender();
     cardScroll();
     AddEventToCard();
+
+    let carouselItems = document.querySelectorAll('.carousel-item');
+    carouselItems.forEach(carouselItem =>(
+        carouselItem.addEventListener('click' , ()=>{
+            addToPlayerFromCarousel(carouselItem.id);
+        })
+    ))
 }
 
 function loadLibraryPage(html) {

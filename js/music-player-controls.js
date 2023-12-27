@@ -44,6 +44,7 @@ export function loadPlayer() {
         isPlaying = false;
         ToPause();
         isPlayingOther = false;
+        isPlayingCarousel = false;
     }
 }
 
@@ -63,6 +64,7 @@ export function addToPlayerFromList(id, listId) {
     audio.querySelector("source").src = song.audio;
     audio.load(); ToPlay();
     isPlayingOther = false;
+    isPlayingCarousel = false;
 }
 
 export function addToPlayerFromCard(id) {
@@ -80,6 +82,26 @@ export function addToPlayerFromCard(id) {
         }
     });
     isPlayingOther = true;
+    isPlayingCarousel = false;
+}
+
+let isPlayingCarousel = false;
+export function addToPlayerFromCarousel(id) {
+    songsLibrary.forEach(song => {
+        if(song.id == id) {
+            song.views += 1;
+            playCounts[song.type] = (playCounts[song.type] || 0) + 1;
+            updateUserDataToDBByplayCounts(playCounts);
+            currentMusicArea.querySelector("img").src = song.image;
+            currentMusicArea.querySelector("h4").innerHTML = song.title;
+            currentMusicArea.querySelector("p").innerHTML = song.singer;
+            audio.querySelector("source").src = song.audio;
+            audio.load(); ToPlay();
+            return;
+        }
+    });
+    isPlayingOther = false;
+    isPlayingCarousel = true;
 }
 
 const toDo_Per1Sec = setInterval(updateTimeToDB, 1000);
@@ -114,6 +136,7 @@ function UpdateCurrentMusic(musicID) {
     audio.querySelector("source").src = song.audio;
     audio.load(); ToPlay();
     isPlayingOther = false;
+    isPlayingCarousel = false;
 }
 
 function UpdateTimeDisplay() {
@@ -160,6 +183,7 @@ export function ToPause() {
 }
 
 function PlayPrevSongs() {
+    if(isPlayingCarousel) return;
     if(isPlayingOther) return;
     if(isShuffle) {
         PlayRandomSongs();
@@ -169,6 +193,7 @@ function PlayPrevSongs() {
 }
 
 function PlayNextSongs() {
+    if(isPlayingCarousel) return;
     if(isPlayingOther) return;
     if(isShuffle) {
         PlayRandomSongs();
