@@ -21,8 +21,8 @@ import { updateCurPlayingTime } from "./db.js";
 import { playCounts } from "./db.js";
 import { updateUserDataToDBByplayCounts } from "./login-and-sign-up.js";
 
-let isPlaying = false;
-let isPlayingOther = false;
+export let isPlaying = false;
+export let isPlayingOther = false;
 
 export function loadPlayer() {
     if(!playerSection) return;
@@ -140,18 +140,23 @@ function GetTotTime(totTIme) {
     totalTime.innerHTML = `${minutes}:${seconds}`;
 }
 
-function ToPlay() {
+import { cardPause } from "./cards.js";
+import { cardPlay } from "./cards.js";
+
+export function ToPlay() {
     audio.play();
     playPauseButton.innerHTML = 
     `<img src="images/music-player-controls/pause.png" alt="pause">`;
     isPlaying = true;
+    if(isPlayingOther) cardPlay();
 }
 
-function ToPause() {
+export function ToPause() {
     audio.pause();
     playPauseButton.innerHTML = 
     `<img src="images/music-player-controls/play.png" alt="play">`;
     isPlaying = false;
+    if(isPlayingOther) cardPause();
 }
 
 function PlayPrevSongs() {

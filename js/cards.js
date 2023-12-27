@@ -4,34 +4,108 @@ import { addToSongsList } from "./db.js";
 import { playCounts } from "./db.js";
 import { name } from "./db.js";
 import { updateSongsView } from "./upload.js";
+import { isPlaying } from "./music-player-controls.js";
+import { isPlayingOther } from "./music-player-controls.js";
+import { ToPause } from "./music-player-controls.js";
+import { ToPlay } from "./music-player-controls.js";
+
+let nowBtn = undefined;
+
+export function cardPause() {
+    if (nowBtn) {
+        nowBtn.classList.remove("fa-pause");
+        nowBtn.classList.add("fa-play");
+        nowBtn.classList.remove("toPlay");
+    }
+}
+
+export function cardPlay() {
+  if (nowBtn) {
+      nowBtn.classList.remove("fa-play");
+      nowBtn.classList.add("fa-pause");
+      nowBtn.classList.add("toPlay");
+  }
+}
 
 export function AddEventToCard() {
-  const cards = document.querySelectorAll('.card');
-  cards.forEach((card) => {
-    const playIcons = card.querySelectorAll('i');
-    
-    card.addEventListener('mouseenter', () => {
-      playIcons.forEach((playIcon) => {
-        playIcon.classList.add('toPlay');
-      });
-    })
-    card.addEventListener('mouseleave', () => {
-      playIcons.forEach((playIcon) => {
-        playIcon.classList.remove('toPlay');
-      });
-    })
+    const cards = document.querySelectorAll('.card');
+    cards.forEach((card) => {
 
-    const playBtn = card.querySelector(".fa-play");
-    playBtn.addEventListener('click', ()=>{
-        addToPlayerFromCard(card.id);
-        updateSongsView(card.id);
-    })
+        const playIcons = card.querySelectorAll('i');
+        
+        card.addEventListener('mouseenter', () => {
+            playIcons.forEach((playIcon) => {
+                playIcon.classList.add('toPlay');
+            });
+        })
+        card.addEventListener('mouseleave', () => {
+            playIcons.forEach((playIcon) => {
+                if(!playIcon.classList.contains("fa-pause")) {
+                    playIcon.classList.remove('toPlay');
+                }
+            });
+        })
 
-    const plusBtn = card.querySelector(".fa-plus");
-    plusBtn.addEventListener('click', ()=>{
-      addToSongsList(card.id);
-    })
+        const playBtn = card.querySelector(".fa-play");
+        
+        playBtn.addEventListener('click', ()=>{
+            if (nowBtn == undefined && !isPlayingOther) {
+                nowBtn = playBtn;
+                playBtn.classList.remove("fa-play");
+                playBtn.classList.add("fa-pause");
+                addToPlayerFromCard(card.id);
+                updateSongsView(card.id);
+                return;
+            }
+            if (nowBtn != playBtn) {
+                nowBtn.classList.remove("fa-pause");
+                nowBtn.classList.add("fa-play");
+                nowBtn.classList.remove("toPlay");
+                nowBtn = playBtn;
+                playBtn.classList.remove("fa-play");
+                playBtn.classList.add("fa-pause");
+                addToPlayerFromCard(card.id);
+                updateSongsView(card.id);
+                return;
+            }
+            if (isPlayingOther && isPlaying) {
+                playBtn.classList.add("fa-play");
+                playBtn.classList.remove("fa-pause");
+                ToPause();
+                return;
+            }
+            if (isPlayingOther && !isPlaying) {
+                playBtn.classList.remove("fa-play");
+                playBtn.classList.add("fa-pause");
+                ToPlay();
+                return;
+            }
+        })
+
+        const plusBtn = card.querySelector(".fa-plus");
+        plusBtn.addEventListener('click', ()=>{
+            if(plusBtn.classList.contains("fa-plus")) {
+                plusBtn.classList.remove("fa-plus");
+                plusBtn.classList.add("fa-check");
+            }
+            addToSongsList(card.id);
+        })
   })
+}
+
+export function addToPlayInClass(id) {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach((card) => {
+        if(card.id == id) {
+            const btn = card.querySelector(".fa-play")
+            btn.classList.remove("fa-play");
+            btn.classList.add("fa-pause");
+            const playIcons = card.querySelectorAll('i');
+            playIcons.forEach((playIcon) => {
+                playIcon.classList.add('toPlay');
+            });
+        }
+    })
 }
 
 export function cardScroll(){
@@ -165,7 +239,6 @@ function genCardHTML(type) {
                           <p class="card-text text-light singer">${song.singer}</p>
                       </div>
                   </div>`;
-            
           });
           break;
   
