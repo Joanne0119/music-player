@@ -28,12 +28,16 @@ export function activateSearch() {
 
         const searchTerm = searchInput.value.toLowerCase();
         resultsList.innerHTML = '';
-        const titleResults = songsLibrary.filter(item =>
+        let titleResults = songsLibrary.filter(item =>
             item.title.toLocaleLowerCase().includes(searchTerm)
         );
         
-        const singerResults = songsLibrary.filter(item =>
+        let singerResults = songsLibrary.filter(item =>
             item.singer.toLocaleLowerCase().includes(searchTerm)
+        );
+
+        let typeResults = songsLibrary.filter(item =>
+            item.type.toLocaleLowerCase().includes(searchTerm)
         );
     
         if (titleResults.length > 0 && titleResults.length != songsLibrary.length) {
@@ -50,6 +54,12 @@ export function activateSearch() {
                     </div>
                 `;
                 resultsList.innerHTML += htmlString;
+                singerResults = singerResults.filter(item => {
+                    return item !== result;
+                });
+                typeResults = typeResults.filter(item => {
+                    return item !== result;
+                });
             });
         } 
         if (singerResults.length > 0 && singerResults.length != songsLibrary.length) {
@@ -66,10 +76,30 @@ export function activateSearch() {
                     </div>
                 `;
                 resultsList.innerHTML += htmlString;
+                typeResults = typeResults.filter(item => {
+                    return item !== result;
+                });
+            });
+        }
+        if (typeResults.length > 0 && typeResults.length != songsLibrary.length) {
+            typeResults.forEach(result => {
+                const htmlString = `
+                    <div class="card border-0 p-3" id="${result.id}">
+                        <img class="card-image rounded" src="${result.image}" alt="${result.title}">
+                        <i class="fa-solid fa-plus"></i>
+                        <i class="fa-solid fa-play"></i>
+                        <div class="card-body">
+                            <h4 class="card-title text-light song-title">${MarkSearchTerm(result.title, searchTerm)}</h4>
+                            <p class="card-text text-light singer">${MarkSearchTerm(result.singer, searchTerm)}</p>
+                        </div>
+                    </div>
+                `;
+                resultsList.innerHTML += htmlString;
             });
         }
         if(!(titleResults.length > 0 && titleResults.length != songsLibrary.length) &&
-           !(singerResults.length > 0 && singerResults.length != songsLibrary.length)) {
+           !(singerResults.length > 0 && singerResults.length != songsLibrary.length) &&
+           !(typeResults.length > 0 && typeResults.length != songsLibrary.length)) {
             resultsList.classList.remove("cards");
             noResult.style.display = "block";
             rightBtn.classList.add("display-none");
