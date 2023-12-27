@@ -16,9 +16,14 @@ import { songsLibrary } from "./songs.js";
 import { sortedTypeLibrary } from "./songs.js";
 
 export function loadWebContent() {
-  
+    
+    let sum = 0;
+    Object.keys(playCounts).forEach(key => {
+        sum += playCounts[key];
+    });
+
     songsLibrary.forEach(song => {
-        playCounts[song.type] = playCounts[song.type] || 1;
+        playCounts[song.type] = playCounts[song.type] || sum/100 * 3;
     });
 
     const libraryHtml = `
