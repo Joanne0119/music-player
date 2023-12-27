@@ -174,7 +174,7 @@ export function loadWebContent() {
         loadSearchPage(searchHtml);
     });
 
-    navLogin.innerHTML = name.length == 0 ? "登入":"登出";
+    navLogin.innerHTML = name.length == 0 ? "登入／註冊":"登出";
     navLogin.href = name.length == 0 ? "login-and-sign-up.html":"index.html";;
     navLogin.addEventListener('click', () => {
         signOut();
