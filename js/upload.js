@@ -1,4 +1,5 @@
 import { firebaseInitalize } from "./login-and-sign-up.js";
+import { sortedTypeLibrary } from "./songs.js";
 
 firebaseInitalize();
 
@@ -16,6 +17,7 @@ const previewImage = document.getElementById('previewImage');
 const previewAudio = document.getElementById('previewAudio');
 const previewAudioSource = document.getElementById('previewAudioSource');
 const uploadBtn = document.querySelector('.upload-btn');
+const recommendationSelectList = document.querySelector('.recommendationSelectList');
 
 let imgData = '';
 let audioData = '';
@@ -125,6 +127,10 @@ function uploadBlobToStorage(type, blob, name) {
 
   return fileRef.put(blob);
 }
+function reload(){
+  console.log('reload');
+  window.location.href = '../upload.html';
+}
 
 if(uploadBtn) {
   uploadBtn.addEventListener('click', async () => {
@@ -153,6 +159,7 @@ if(uploadBtn) {
         }).then((docRef) => {
           console.log('Download URLs stored in Firestore with ID: ', docRef.id);
           clearTheInputs(); // Clear inputs after successful upload
+          return reload();
         }).catch((error) => {
           console.error('Error storing download URLs in Firestore: ', error);
         });
@@ -271,3 +278,39 @@ export function updateSongsView(id) {
             console.error("Error fetching documents: ", error);
         });
 }
+
+function typeNameRecommendation(){
+  if(typeName){
+    typeName.addEventListener('input', (event) => {
+      recommendationSelectList.innerHTML = '';
+      const typeNameValue = typeName.value.toLowerCase();
+  
+      if (event.inputType === 'deleteContentBackward') {
+        recommendationSelectList.innerHTML = '';
+        return; 
+      }
+  
+      let ListResults = sortedTypeLibrary.filter(type =>
+        type.toLowerCase().includes(typeNameValue)
+      );
+  
+      if(ListResults.length > 0 &&  ListResults.length != sortedTypeLibrary.length){
+        ListResults.forEach((result) => {
+          const li = document.createElement('li');
+          li.innerHTML = result;
+          recommendationSelectList.appendChild(li);
+          li.addEventListener('click', () => {
+            typeName.value = result; 
+            recommendationSelectList.innerHTML = ''; 
+          });
+        })
+      }
+      else {
+        recommendationSelectList.innerHTML = '';
+      }
+    })
+  }
+}
+
+
+typeNameRecommendation();

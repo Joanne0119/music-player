@@ -66,10 +66,9 @@ form {
   position: relative;
 }
 
-/* .dataInfo {
-  display: grid;
-  grid-template-columns: 1fr;
-} */
+.dataInfo{
+  position: relative;
+}
 
 .title-section {
   display: flex;
@@ -189,4 +188,28 @@ form {
   100% {
       transform: translateX(0);
   }
+}
+
+ul.recommendationSelectList {
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 0;
+  box-shadow: 0 0 0.5rem rgba(0,0,0,0.5);
+  position: absolute;
+  width: 100%;
+  top: 56%;
+}
+
+.recommendationSelectList li {
+  list-style: none;
+  width: 100%;
+  background-color: #fff;
+  color: #333;
+  padding: 1.5rem 2rem 0.5rem 2rem;
+  font-size: 1.2rem;
+  z-index: 9000;
+  border-radius: 1rem;
+}
+.recommendationSelectList li:hover{
+  background-color: #cecece
 }
