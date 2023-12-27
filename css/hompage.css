@@ -62,3 +62,7 @@ main {
   object-fit: cover;
   object-position: 40% 40%;
 }
+
+.carousel-item img:hover{
+  cursor: pointer;
+}
