@@ -102,6 +102,7 @@ export function addToPlayerFromCarousel(id) {
     });
     isPlayingOther = false;
     isPlayingCarousel = true;
+    cardPause();
 }
 
 const toDo_Per1Sec = setInterval(updateTimeToDB, 1000);

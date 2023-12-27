@@ -20,11 +20,11 @@ export function cardPause() {
 }
 
 export function cardPlay() {
-  if (nowBtn) {
-      nowBtn.classList.remove("fa-play");
-      nowBtn.classList.add("fa-pause");
-      nowBtn.classList.add("toPlay");
-  }
+    if (nowBtn) {
+        nowBtn.classList.remove("fa-play");
+        nowBtn.classList.add("fa-pause");
+        nowBtn.classList.add("toPlay");
+    }
 }
 
 export function AddEventToCard() {
@@ -47,6 +47,7 @@ export function AddEventToCard() {
         })
 
         const playBtn = card.querySelector(".fa-play");
+        const plusBtn = card.querySelector(".fa-plus");
         
         playBtn.addEventListener('click', ()=>{
             if (nowBtn == undefined && !isPlayingOther) {
@@ -71,6 +72,7 @@ export function AddEventToCard() {
             if (isPlayingOther && isPlaying) {
                 playBtn.classList.add("fa-play");
                 playBtn.classList.remove("fa-pause");
+                plusBtn.classList.remove("toPlay");
                 ToPause();
                 return;
             }
@@ -82,7 +84,6 @@ export function AddEventToCard() {
             }
         })
 
-        const plusBtn = card.querySelector(".fa-plus");
         plusBtn.addEventListener('click', ()=>{
             if(plusBtn.classList.contains("fa-plus")) {
                 plusBtn.classList.remove("fa-plus");
