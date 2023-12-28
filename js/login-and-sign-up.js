@@ -27,6 +27,7 @@ const summitBtn = document.querySelector('.summit-btn');
 const questionText = document.querySelector('.question-text');
 const link = document.querySelector('.link');
 const rememberForgot = document.querySelector('.remember-forgot');
+const navLogin = document.querySelector('.nav-login');
 
 let SignUpOrNot = false; 
 let username = '';
@@ -47,40 +48,46 @@ function loginSummit(){
     })
 }
 
-function signUpSummit(){
-  console.log('sign up summit');
-  auth.createUserWithEmailAndPassword(emailInput.value, passwordInput.value)
-    .then((res, user) => {
-      console.log(res);
-      console.log(emailInput.value + ' ' + passwordInput.value);
-      username = usernameInput.value;
-      console.log(username);
-      setTimeout(() => {
-        SignUpAndLoginPageSwitch();
-        passwordInput.value = '';
-      }, 1500);
+async function signUpSummit() {
+  try {
+    console.log('sign up summit');
+    const res = await auth.createUserWithEmailAndPassword(emailInput.value, passwordInput.value);
 
-      if(username.length == 0) {
-        username = "user";
-      }
-      //create user database
-      user = res.user;
-      usersRef.add({
-        uid: user.uid,
-        name: username,
-        email: user.email,
-        playlist: [],
-        currentPlaying: -1,
-        currentPlayingTime: 0,
-        playCounts: {}
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      console.log('格式錯誤');
-      incorrectPasswordOrAcount();
-    })
-    goToHomepage();
+    console.log(res);
+    console.log(emailInput.value + ' ' + passwordInput.value);
+    const username = usernameInput.value || "user";
+
+    setTimeout(() => {
+      SignUpAndLoginPageSwitch();
+      passwordInput.value = '';
+    }, 1500);
+
+    const user = res.user;
+
+    await usersRef.add({
+      uid: user.uid,
+      name: username,
+      email: user.email,
+      playlist: [],
+      currentPlaying: -1,
+      currentPlayingTime: 0,
+      playCounts: {}
+    });
+
+    await auth.signOut();
+    console.log('User signed out after signing up');
+    return navLoginHTML();
+  } catch (err) {
+    console.log(err);
+    console.log('格式錯誤');
+    incorrectPasswordOrAcount();
+  }
+}
+
+function navLoginHTML(){
+  document.querySelector('.nav-login').innerHTML = "登入／註冊";
+  console.log(navLogin);
+  location.reload();
 }
 
 export function signOut() {
@@ -215,10 +222,14 @@ auth.onAuthStateChanged((user) => {
   userData = user;
   if(user){
     console.log("hi,", user);
+    navLogin.innerHTML = "登出";
+    navLogin.href = "index.html";
     loadDataFromDB();
   }
   else {
     console.log('not log in...');
+    navLogin.innerHTML = "登入／註冊";
+    navLogin.href = "login-and-sign-up.html";
     loadSongsLibrary();
   }
 });
