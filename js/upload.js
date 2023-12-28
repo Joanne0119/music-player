@@ -6,6 +6,8 @@ firebaseInitalize();
 const db = firebase.firestore();
 let songsListRef = db.collection('songsList');
 
+
+const wrapper =  document.querySelector('.wrapper');
 const fileName = document.getElementById('fileName');
 const fileCreater = document.getElementById('fileCreater');
 const typeName = document.getElementById('typeName');
@@ -18,6 +20,7 @@ const previewAudio = document.getElementById('previewAudio');
 const previewAudioSource = document.getElementById('previewAudioSource');
 const uploadBtn = document.querySelector('.upload-btn');
 const recommendationSelectList = document.querySelector('.recommendationSelectList');
+const loadingCircle = document.querySelector('.loading-circle');
 
 let imgData = '';
 let audioData = '';
@@ -132,10 +135,21 @@ function reload(){
   window.location.href = 'upload.html';
 }
 
+function reloadDisable(){
+  fileName.disabled = true;
+  fileCreater.disabled = true;
+  typeName.disabled = true;
+  imageFileInput.disabled = true;
+  audioFileInput.disabled = true;
+  wrapper.classList.add('disabled');
+}
+
 if(uploadBtn) {
   uploadBtn.addEventListener('click', async () => {
     const isFilled = await checkingAllFilled();
     if (isFilled) {
+      loadingCircle.classList.remove('no-show');
+      reloadDisable();
       console.log('upload');
       try{
         const imgUploadTask = uploadBlobToStorage(imgData.blobType, imgData.blobFromFile, imgData.fileNameFromIput);

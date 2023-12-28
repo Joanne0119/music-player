@@ -213,3 +213,38 @@ ul.recommendationSelectList {
 .recommendationSelectList li:hover{
   background-color: #cecece
 }
+
+.wrapper.uploadLoading{
+  opacity: 0.5;
+  background-color: #555;
+  color: #cecece;
+}
+
+.loading-circle {
+  position: absolute;
+  top: 50%;
+	left: 47%;
+	transform: translate(-50%, -50%);
+  border: 0.9rem solid #fff; 
+  border-top: 0.9rem solid transparent; 
+  border-radius: 50%; 
+  width: 12rem; 
+  height: 12rem; 
+  animation: spin 1s linear infinite; 
+  margin: 2rem auto; 
+  z-index: 200;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); } 
+  100% { transform: rotate(360deg); } 
+}
+
+.no-show {
+  display: none;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.3;
+}
