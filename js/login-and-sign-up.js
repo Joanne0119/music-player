@@ -89,7 +89,7 @@ export function signOut() {
 }
 
 function goToHomepage(){
-  window.location.href = '../index.html';
+  window.location.href = 'index.html';
 }
 
 function incorrectPasswordOrAcount(){
