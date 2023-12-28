@@ -217,7 +217,7 @@ function genCardHTML(type) {
                 });
                 probability[Object.keys(playCounts)[Object.keys(playCounts).length-1]] = 1;
     
-                while(selectedSongs.length < songsLibrary.length/3) {
+                while(selectedSongs.length < 10) {
                     let randomValue = Math.random();
                     let selectedType = Object.keys(probability).find(type => randomValue < probability[type]);
                     let eligibleSongs = songsLibrary.filter(song => song.type === selectedType && !selectedSongs.includes(song));
