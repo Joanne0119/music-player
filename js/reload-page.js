@@ -17,6 +17,15 @@ import { sortedTypeLibrary } from "./songs.js";
 
 export function loadWebContent() {
     
+    songsLibrary.forEach(song => {
+        if(playCounts[song.type]) {
+            playCounts[song.type] = playCounts[song.type];
+        }
+        else {
+            playCounts[song.type] = 1;
+        }
+    });
+
     let sum = 0;
     Object.keys(playCounts).forEach(key => {
         sum += playCounts[key];
@@ -31,6 +40,8 @@ export function loadWebContent() {
             playCounts[song.type] = sum/100 * 3
         }
     });
+
+    console.log(sum, playCounts);
 
     const libraryHtml = `
       <div class="library-section">

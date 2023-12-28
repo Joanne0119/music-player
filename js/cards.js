@@ -192,40 +192,42 @@ function genCardHTML(type) {
     
     switch (type) {
 
-      case "search-results":
-          return "OK";
+        case "search-results":
+            return "OK";
       
-      case "personal-recommendation-cards":
-          let selectedSongs = [];
-          if(name == "") {
-              while(selectedSongs.length < songsLibrary.length/3) {
-                  let song = getRandomElement(songsLibrary);
-                  if(!selectedSongs.includes(song)) {
-                      selectedSongs.push(song);
-                  }
-              }
-          }
-          else {
-              let sum = 0; let probability = {}; let prevSum = 0;
-              Object.keys(playCounts).forEach(key => {
-                  sum += playCounts[key];
-              });
-              Object.keys(playCounts).forEach(key => {
-                  prevSum += playCounts[key]/sum;
-                  probability[key] = prevSum;
-              });
-              probability[Object.keys(playCounts)[Object.keys(playCounts).length-1]] = 1;
+        case "personal-recommendation-cards":
+            let selectedSongs = [];
+            if(name == "") {
+                while(selectedSongs.length < songsLibrary.length/3) {
+                    let song = getRandomElement(songsLibrary);
+                    if(!selectedSongs.includes(song)) {
+                        selectedSongs.push(song);
+                    }
+                }
+            }
+            else {
+                let sum = 0; let probability = {}; let prevSum = 0;
+                Object.keys(playCounts).forEach(key => {
+                    sum += playCounts[key];
+                });
+                console.log(playCounts, sum);
+                Object.keys(playCounts).forEach(key => {
+                    prevSum += playCounts[key]/sum;
+                    probability[key] = prevSum;
+                });
+                probability[Object.keys(playCounts)[Object.keys(playCounts).length-1]] = 1;
     
-              while(selectedSongs.length < songsLibrary.length/3) {
-                  let randomValue = Math.random();
-                  let selectedType = Object.keys(probability).find(type => randomValue < probability[type]);
-                  let eligibleSongs = songsLibrary.filter(song => song.type === selectedType && !selectedSongs.includes(song));
-                  if(eligibleSongs == undefined) continue;
-                  let selectedSong = getRandomElement(eligibleSongs);
-                  selectedSongs.push(selectedSong);
-              }
-              console.log(selectedSongs, probability);
-          }
+                while(selectedSongs.length < songsLibrary.length/3) {
+                    let randomValue = Math.random();
+                    let selectedType = Object.keys(probability).find(type => randomValue < probability[type]);
+                    let eligibleSongs = songsLibrary.filter(song => song.type === selectedType && !selectedSongs.includes(song));
+                    if(eligibleSongs.length == 0) continue;
+                    let selectedSong = getRandomElement(eligibleSongs);
+                    if (!selectedSong) console.log(randomValue, selectedType, eligibleSongs, selectedSong);
+                    selectedSongs.push(selectedSong);
+                }
+                console.log(selectedSongs, probability);
+            }
 
           selectedSongs.forEach((song) => {
               cardsHTML += 
