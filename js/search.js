@@ -47,9 +47,11 @@ export function activateSearch() {
                 console.log(result);
                 const htmlString = `
                     <div class="card border-0 p-3" id="${result.id}">
-                        <img class="card-image rounded" src="${result.image}" alt="${result.title}">
-                        <i class="fa-solid fa-plus"></i>
-                        <i class="fa-solid fa-play"></i>
+                        <div class="img-box">
+                            <img class="card-image rounded" src="${result.image}" alt="${result.title}">
+                            <i class="fa-solid fa-plus"></i>
+                            <i class="fa-solid fa-play"></i>
+                        </div>
                         <div class="card-body">
                             <h4 class="card-title text-light song-title">${MarkSearchTerm(result.title, searchTerm)}</h4>
                             <p class="card-text text-light singer">${MarkSearchTerm(result.singer, searchTerm)}</p>
@@ -66,9 +68,11 @@ export function activateSearch() {
             singerResults.forEach(result => {
                 const htmlString = `
                     <div class="card border-0 p-3" id="${result.id}">
-                        <img class="card-image rounded" src="${result.image}" alt="${result.title}">
-                        <i class="fa-solid fa-plus"></i>
-                        <i class="fa-solid fa-play"></i>
+                        <div class="img-box">
+                            <img class="card-image rounded" src="${result.image}" alt="${result.title}">
+                            <i class="fa-solid fa-plus"></i>
+                            <i class="fa-solid fa-play"></i>
+                        </div>
                         <div class="card-body">
                             <h4 class="card-title text-light song-title">${MarkSearchTerm(result.title, searchTerm)}</h4>
                             <p class="card-text text-light singer">${MarkSearchTerm(result.singer, searchTerm)}</p>
