@@ -129,7 +129,7 @@ function uploadBlobToStorage(type, blob, name) {
 }
 function reload(){
   console.log('reload');
-  window.location.href = '../upload.html';
+  window.location.href = 'upload.html';
 }
 
 if(uploadBtn) {
