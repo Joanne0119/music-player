@@ -123,6 +123,9 @@ export function activateSearch() {
                !(singerResults.length > 0 && singerResults.length != songsLibrary.length)) {
                 searchResults.style.display = "none";
             }
+            else {
+                searchResults.style.display = "block";
+            }
         }
 
         if ( (titleResults.length > 0 && titleResults.length != songsLibrary.length) ||
