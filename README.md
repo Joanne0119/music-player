@@ -1,3 +1,4 @@
+![image](https://github.com/Joanne0119/music-player/blob/0ce03616d890e5d07090a2adee890950a149a289/images/Coffee%20beans%20white.png) 
 # 韋恩音樂網站 Wayne Music
 大二上前端工程設計課程的課程專題
 
